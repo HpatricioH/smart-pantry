@@ -1,0 +1,13 @@
+{
+  "name": "smart-pantry",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "pnpm --filter web dev",
+    "lint": "biome lint .",
+    "format": "biome format . --write"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4"
+  }
+}

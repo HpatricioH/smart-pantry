@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@db/*": ["packages/db/src/*"],
+      "@trpc/*": ["packages/trpc/src/*"],
+      "@ai/*": ["packages/ai/src/*"],
+      "@ui/*": ["packages/ui/src/*"],
+      "@types/*": ["packages/types/src/*"],
+      "@config/*": ["packages/config/src/*"]
+    },
+    "moduleResolution": "node",
+    "target": "ESNext",
+    "module": "ESNext",
+    "lib": ["DOM", "ESNext"],
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true
+  }
+}
