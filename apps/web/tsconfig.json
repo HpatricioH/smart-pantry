@@ -24,9 +24,11 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "**/*.cjs",
+    "**/*.js",
     ".next/types/**/*.ts",
     "src"
-  ],
+, "postcss.config.mjs"  ],
   "exclude": [
     "node_modules"
   ]
