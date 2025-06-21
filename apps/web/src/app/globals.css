@@ -12,6 +12,8 @@
   --color-primary: #1A1A1A;
   --color-secondary: #6B7280;
   --color-light-bg: #FDFDFD;
+  --color-alert: #F87171;
+  --color-alert-text: #996A69;
 }
 
 @media (prefers-color-scheme: light) {
