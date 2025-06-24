@@ -14,6 +14,10 @@
   --color-light-bg: #FDFDFD;
   --color-alert: #F87171;
   --color-alert-text: #996A69;
+  --color-nav-home: #4F83FF;
+  --color-nav-add: #6CDAB6;
+  --color-nav-pantry: #FB6D63;
+  --color-nav-recipes: #A78BFA;
 }
 
 @media (prefers-color-scheme: light) {
