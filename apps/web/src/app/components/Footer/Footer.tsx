@@ -1,7 +1,3 @@
-import { House } from 'lucide-react';
-import { Plus } from 'lucide-react';
-import { ArrowDown } from 'lucide-react';
-import { ChefHat } from 'lucide-react';
 import { footerItems } from '../../lib/data/footerItems';
 import Link from 'next/link';
 
