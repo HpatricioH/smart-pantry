@@ -8,7 +8,7 @@ export function CurrentStock() {
         <h2 className='text-xl font-semibold tracking-tight pb-2'>
           Current Stock
         </h2>
-        <ChevronRight className='self-center text-secondary' />
+        <ChevronRight className='self-center text-text-secondary' />
       </div>
       <CurrentStockCards />
     </section>
