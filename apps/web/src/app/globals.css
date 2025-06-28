@@ -6,24 +6,56 @@
 }
 
 @theme inline {
+  /* Base color palette */
+  --color-white: #FDFDFD;
+  --color-black: #1A1A1A;
+  --color-gray-500: #6B7280;
+  --color-gray-700: #996A69;
+  --color-blue-500: #4F83FF;
+  --color-green-400: #6CDAB6;
+  --color-red-400: #F87171;
+  --color-red-500: #FB6D63;
+  --color-purple-400: #A78BFA;
+
+  /* Semantic color system */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--color-white);
+  
+  /* Typography colors */
+  --color-text-primary: var(--color-black);
+  --color-text-secondary: var(--color-gray-500);
+  
+  /* State colors */
+  --color-danger: var(--color-red-400);
+  --color-danger-text: var(--color-gray-700);
+  
+  /* Navigation colors */
+  --color-nav-home: var(--color-blue-500);
+  --color-nav-add: var(--color-green-400);
+  --color-nav-pantry: var(--color-red-500);
+  --color-nav-recipes: var(--color-purple-400);
+  
+  /* Interactive elements */
+  --color-primary: var(--color-green-400);
+  --color-primary-hover: #5BC7A8;
+  --color-secondary: var(--color-red-500);
+  --color-secondary-hover: #E55A54;
+  
+  /* Font families */
   --font-inter: var(--font-inter);
-  --color-primary: #1A1A1A;
-  --color-secondary: #6B7280;
-  --color-light-bg: #FDFDFD;
-  --color-alert: #F87171;
-  --color-alert-text: #996A69;
-  --color-nav-home: #4F83FF;
-  --color-nav-add: #6CDAB6;
-  --color-nav-pantry: #FB6D63;
-  --color-nav-recipes: #A78BFA;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    
+    /* Adjust semantic colors for dark mode */
+    --color-surface: #1f1f1f;
+    --color-text-primary: #ededed;
+    --color-text-secondary: #a1a1aa;
+    --color-primary-hover: #4fb89d;
   }
 }
 
