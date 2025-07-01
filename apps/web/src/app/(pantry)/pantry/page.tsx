@@ -1,6 +1,7 @@
 import { Plus } from 'lucide-react';
 import { Camera } from 'lucide-react';
 import Button from "../../lib/utils/Button";
+import { PantryCards } from "../../components/Pantry Cards/PantryCards"
 import Link from 'next/link';
 
 export default function Home() {
@@ -21,6 +22,8 @@ export default function Home() {
           <Camera />
           Add via Camera
         </Link>
+
+        <PantryCards />
       </div>
     </main>
   );
