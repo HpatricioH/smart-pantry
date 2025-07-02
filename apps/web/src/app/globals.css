@@ -41,6 +41,12 @@
   --color-primary-hover: #5BC7A8;
   --color-secondary: var(--color-red-500);
   --color-secondary-hover: #E55A54;
+
+  /* Cards colors */
+  --color-card-red: var(--color-red-500);
+  --color-card-green: var(--color-green-400);
+  --color-card-blue: var(--color-blue-500);
+  --color-card-purple: var(--color-purple-400);
   
   /* Font families */
   --font-inter: var(--font-inter);
