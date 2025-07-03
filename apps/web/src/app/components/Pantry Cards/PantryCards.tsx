@@ -13,13 +13,6 @@ type PantryItem = {
   lowStock: false
 };
 
-const bgColors = [
-  'bg-card-red',
-  'bg-card-green',
-  'bg-card-blue',
-  'bg-card-purple'
-]
-
 export function PantryCards() {
   const [pantryData, usePantryData] = useState<PantryItem[]>([])
 
@@ -31,21 +24,15 @@ export function PantryCards() {
     fetchPantryData()
   }, [])
 
-  const getRandomColor = () => bgColors[Math.floor(Math.random() * bgColors.length)]
-
-
   return (
     <article>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {pantryData.map(item => {
-          const randomBg = getRandomColor();
-
-          console.log(randomBg)
 
           return (
             <div
               key={item.id}
-              className={`flex justify-between items-center p-4 shadow-md rounded-lg h-20 ${randomBg}/20`}
+              className="flex justify-between items-center p-4 shadow-md rounded-lg h-20 bg-pale-orange"
             >
               <div className="flex justify-center items-center gap-3">
                 <Image
