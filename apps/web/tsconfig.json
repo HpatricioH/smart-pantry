@@ -12,9 +12,14 @@
       }
     ],
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@/*": ["./src/*"],
+      "@smart-pantry/ui": ["../../packages/ui-web/src/index.ts"],
+      "@smart-pantry/ui/*": ["../../packages/ui-web/src/*"],
+      "@db/*": ["../../packages/db/src/*"],
+      "@trpc/*": ["../../packages/trpc/src/*"],
+      "@ai/*": ["../../packages/ai/src/*"],
+      "@types/*": ["../../packages/types/src/*"],
+      "@config/*": ["../../packages/config/src/*"]
     },
     "allowJs": true,
     "resolveJsonModule": true,
