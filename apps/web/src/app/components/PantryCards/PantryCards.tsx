@@ -32,7 +32,7 @@ export function PantryCards() {
           return (
             <div
               key={item.id}
-              className="flex justify-between items-center p-4 shadow-md rounded-lg h-20 bg-pale-orange"
+              className="flex justify-between items-center p-4 shadow-md rounded-lg h-20 bg-card-orange"
             >
               <div className="flex justify-center items-center gap-3">
                 <Image
