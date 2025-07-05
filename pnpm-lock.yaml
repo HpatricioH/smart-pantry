@@ -30,9 +30,6 @@ importers:
       '@radix-ui/react-slot':
         specifier: ^1.2.3
         version: 1.2.3(@types/react@19.1.8)(react@19.1.0)
-      '@smart-pantry/ui':
-        specifier: workspace:*
-        version: link:../../packages/ui-web
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -98,12 +95,6 @@ importers:
 
   packages/ui-web:
     dependencies:
-      '@radix-ui/react-slot':
-        specifier: ^1.2.3
-        version: 1.2.3(@types/react@19.1.8)(react@19.1.0)
-      class-variance-authority:
-        specifier: ^0.7.1
-        version: 0.7.1
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
