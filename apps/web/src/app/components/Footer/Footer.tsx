@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export function Footer() {
   return (
-    <footer className='fixed bottom-0 left-0 right-0'>
+    <footer className='fixed bottom-0 left-0 right-0 backdrop-blur-[6px] transition-all'>
       <div className='flex justify-around items-center p-4'>
         {
           footerItems.map((item) => {
