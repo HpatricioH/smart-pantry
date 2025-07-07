@@ -24,8 +24,8 @@ export function SearchBar() {
   const handleClick = () => resetField("search")
 
   return (
-    <search>
-      <form className="relative group">
+    <search className="relative group">
+      <form>
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground h-5 w-5 pointer-events-none" />
         <Input {...register("search", { required: false })} className="pl-10" placeholder="Search items..." />
         <Button
