@@ -32,7 +32,7 @@ export function SearchBar() {
           variant="ghost"
           size="sm"
           type="button"
-          className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hidden group-focus-within:block hover:bg-none"
+          className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hidden group-focus-within:block"
           onClick={handleClick}
         >
           <X className="h-3 w-3" />
