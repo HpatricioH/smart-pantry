@@ -7,8 +7,8 @@ import { SearchBar } from '../../components/SearchBar/SearchBar';
 
 export default function Home() {
   return (
-    <main className="grid grid-rows-[20px_1fr_20px] justify-items-start min-h-screen p-4 pb-20 gap-16 sm:p-20">
-      <div className="inline-flex flex-col gap-4 mt-12 w-full ">
+    <main className="min-h-screen p-4 pb-32 gap-16 sm:p-20 sm:pb-32">
+      <div className="flex flex-col gap-4 mt-12 w-full max-w-7xl mx-auto">
         <h1 className="text-4xl font-bold text-gray-900">Pantry Inventory</h1>
         <SearchBar />
         <div className='flex justify-between gap-2'>
@@ -28,7 +28,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <PantryCards />
+        <PantryCards URL='/data/mock-pantry.json' />
       </div>
     </main>
   );

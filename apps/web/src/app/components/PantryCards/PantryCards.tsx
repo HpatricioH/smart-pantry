@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { Badge } from "../../lib/utils/badge";
 
-type PantryItem = {
+type DataItems = {
   id: string | number;
   name: string;
   image: string;
@@ -13,37 +14,43 @@ type PantryItem = {
   lowStock: false
 };
 
-export function PantryCards() {
-  const [pantryData, usePantryData] = useState<PantryItem[]>([])
+interface PantryCardsProps {
+  URL: string
+}
 
+export function PantryCards({ URL }: PantryCardsProps) {
+  const [itemsData, useItemsData] = useState<DataItems[]>([])
+
+  // TODO: create a custom hook with this useEffect
   useEffect(() => {
     const fetchPantryData = async () => {
-      const res = await fetch('/data/mock-pantry.json')
-      usePantryData(await res.json());
+      const res = await fetch(URL)
+      useItemsData(await res.json());
     }
     fetchPantryData()
-  }, [])
+  }, [URL])
 
   return (
     <article>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {pantryData.map(item => {
+      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {itemsData.map(item => {
 
           return (
             <div
               key={item.id}
-              className="flex justify-between items-center p-4 shadow-md rounded-lg h-20 bg-card-orange"
+              className="flex flex-col justify-start items-start p-4 shadow-md rounded-lg bg-ring/5 "
             >
-              <div className="flex justify-center items-center gap-3">
+              {item.quantity < 2 && <Badge variant="destructive" className="self-end">Low</Badge>}
+              <div className="w-28 h-28 relative rounded-md self-center">
                 <Image
                   src={item.image}
                   alt={`${item.name} image`}
-                  width={55}
-                  height={55}
+                  fill
+                  className="object-contain"
                 />
-                <h3 className="text-xl font-semibold">{item.name}</h3>
               </div>
-              <p className="font-bold text-xl">{item.quantity}</p>
+              <h3 className="text-md font-semibold place-content-start">{item.name}</h3>
+              <p className="font-bold text-lg mt-1">{item.quantity}</p>
             </div>
           )
         })}
