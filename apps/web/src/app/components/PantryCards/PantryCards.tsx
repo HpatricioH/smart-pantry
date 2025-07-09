@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Badge } from "../../lib/utils/badge";
+import { Plus } from 'lucide-react';
 
 type DataItems = {
   id: string | number;
@@ -49,8 +50,15 @@ export function PantryCards({ URL }: PantryCardsProps) {
                   className="object-contain"
                 />
               </div>
-              <h3 className="text-md font-semibold place-content-start">{item.name}</h3>
-              <p className="font-bold text-lg mt-1">{item.quantity}</p>
+              <div className="flex justify-between items-end w-full">
+                <div className="flex flex-col">
+                  <h3 className="text-md font-semibold place-content-start">{item.name}</h3>
+                  <p className="font-bold text-lg mt-1">{item.quantity}</p>
+                </div>
+                <div className="bg-chart-2 rounded-full p-2 [&_svg]:cursor-pointer [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0">
+                  <Plus className="stroke-white" />
+                </div>
+              </div>
             </div>
           )
         })}
