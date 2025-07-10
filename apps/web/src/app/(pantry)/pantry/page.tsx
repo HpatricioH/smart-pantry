@@ -4,12 +4,14 @@ import { PantryCards } from "../../components/PantryCards/PantryCards"
 import Link from 'next/link';
 import { Button } from '../../lib/utils/button';
 import { SearchBar } from '../../components/SearchBar/SearchBar';
+import { Suspense } from 'react';
+import { SkeletonCards } from '../../components/SkeletonCards/SkeletonCards';
 
 export default function Home() {
   return (
     <main className="min-h-screen p-4 pb-32 gap-16 sm:p-20 sm:pb-32">
       <div className="flex flex-col gap-4 mt-12 w-full max-w-7xl mx-auto">
-        <h1 className="text-4xl font-bold text-gray-900">Pantry Inventory</h1>
+        <h2 className="text-4xl font-bold text-gray-900">Pantry Inventory</h2>
         <SearchBar />
         <div className='flex justify-between gap-2'>
           <Button
@@ -27,8 +29,9 @@ export default function Home() {
             Add via Camera
           </Link>
         </div>
-
-        <PantryCards URL='/data/mock-pantry.json' />
+        <Suspense fallback={<SkeletonCards />}>
+          <PantryCards URL='/data/mock-pantry.json' />
+        </Suspense>
       </div>
     </main>
   );
