@@ -16,7 +16,7 @@ export const footerItems = [
     name:'add',
     link: '/add-item',
     icon: Plus,
-    bgColor: 'bg-nav-add',
+    bgColor: 'bg-chart-2',
   },
   {
     id: '3',
