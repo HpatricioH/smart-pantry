@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { BrowserMultiFormatReader } from "@zxing/browser";
+import { useIsScanning } from "apps/web/src/store/isScanning";
 
 interface BarcodeScannerProps {
   onDetected?: (result: string) => void;
@@ -11,6 +12,7 @@ export function BarcodeScanner({ onDetected }: BarcodeScannerProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const codeReaderRef = useRef<BrowserMultiFormatReader | null>(null);
   const stopScannerRef = useRef<import("@zxing/browser").IScannerControls | null>(null);
+  const { setIsScanning } = useIsScanning()
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -29,14 +31,15 @@ export function BarcodeScanner({ onDetected }: BarcodeScannerProps) {
             deviceId,
             videoRef.current,
             (result, error) => {
+              console.log("error inside scan", error?.message)
               if (result) {
                 console.log("📦 Barcode:", result.getText());
                 onDetected?.(result.getText());
                 stopScan.stop();
+                setIsScanning(false)
               }
             }
           );
-
           stopScannerRef.current = stopScan;
         }
       } catch (err) {
@@ -50,12 +53,12 @@ export function BarcodeScanner({ onDetected }: BarcodeScannerProps) {
     return () => {
       stopScannerRef.current?.stop();
     };
-  }, [onDetected]);
+  }, [onDetected, setIsScanning]);
 
   return (
-    <div className="w-full max-w-sm mx-auto">
+    <div className="w-full h-full mx-auto ">
       {error && <p className="text-red-500 mb-2">{error}</p>}
-      <video ref={videoRef} className="w-full rounded-md" autoPlay muted playsInline />
+      <video ref={videoRef} className="h-full w-full rounded-md " autoPlay muted playsInline />
     </div>
   );
 }
