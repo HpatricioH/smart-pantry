@@ -24,7 +24,7 @@ export default function PageCamera() {
       </div>
 
       <div className='flex flex-col justify-center items-center p-4 pb-32 gap-4'>
-        <p className="text-center">Align item within the frame, tap the button to add item.</p>
+        <p className="text-center">Tap the button to initiate the camera and start scanning. Align the product barcode within the frame to add the item.</p>
         <button
           type="button"
           className='flex justify-center items-center bg-chart-2 rounded-full size-16 p-2'
