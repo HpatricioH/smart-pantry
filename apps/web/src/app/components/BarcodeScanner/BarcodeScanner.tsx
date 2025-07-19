@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { BrowserMultiFormatReader } from "@zxing/browser";
+import { BrowserMultiFormatReader, type IScannerControls } from "@zxing/browser";
 import { useIsScanning } from "apps/web/src/store/isScanning";
 
 interface BarcodeScannerProps {
@@ -11,13 +11,13 @@ interface BarcodeScannerProps {
 export function BarcodeScanner({ onDetected }: BarcodeScannerProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const codeReaderRef = useRef<BrowserMultiFormatReader | null>(null);
-  const stopScannerRef = useRef<import("@zxing/browser").IScannerControls | null>(null);
+  const stopScannerRef = useRef<IScannerControls | null>(null);
   const { setIsScanning } = useIsScanning()
   const [error, setError] = useState<string | null>(null);
 
+  // TODO: move this to a custom hook
   useEffect(() => {
     const startScanner = async () => {
-      console.log("Starting scanner");
 
       try {
         const codeReader = new BrowserMultiFormatReader();
@@ -27,7 +27,7 @@ export function BarcodeScanner({ onDetected }: BarcodeScannerProps) {
         const deviceId = devices[0]?.deviceId;
 
         if (deviceId && videoRef.current) {
-          const stopScan = await codeReader.decodeFromVideoDevice(
+          const controls = await codeReader.decodeFromVideoDevice(
             deviceId,
             videoRef.current,
             (result, error) => {
@@ -35,15 +35,15 @@ export function BarcodeScanner({ onDetected }: BarcodeScannerProps) {
               if (result) {
                 console.log("📦 Barcode:", result.getText());
                 onDetected?.(result.getText());
-                stopScan.stop();
+                controls.stop();
                 setIsScanning(false)
               }
             }
           );
-          stopScannerRef.current = stopScan;
+
+          setTimeout(() => controls.stop(), 20000)
         }
       } catch (err) {
-        console.error(err);
         setError("Camera access failed. Please check permissions.");
       }
     };
@@ -51,14 +51,22 @@ export function BarcodeScanner({ onDetected }: BarcodeScannerProps) {
     startScanner();
 
     return () => {
+
       stopScannerRef.current?.stop();
     };
   }, [onDetected, setIsScanning]);
 
+
   return (
-    <div className="w-full h-full mx-auto ">
+    <div className="w-full h-[30rem] mx-auto-md mx-auto">
       {error && <p className="text-red-500 mb-2">{error}</p>}
-      <video ref={videoRef} className="h-full w-full rounded-md " autoPlay muted playsInline />
+      <video
+        ref={videoRef}
+        className="h-full w-full rounded-md object-cover"
+        autoPlay
+        muted
+        playsInline
+      />
     </div>
   );
 }
