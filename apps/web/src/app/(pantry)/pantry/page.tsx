@@ -1,11 +1,10 @@
-import { Plus } from 'lucide-react';
 import { Camera } from 'lucide-react';
 import { PantryCards } from "../../components/PantryCards/PantryCards"
 import Link from 'next/link';
-import { Button } from '../../lib/utils/button';
 import { SearchBar } from '../../components/SearchBar/SearchBar';
 import { Suspense } from 'react';
 import { SkeletonCards } from '../../components/SkeletonCards/SkeletonCards';
+import { DrawerAddItem } from '../../components/DrawerAddItem/DrawerAddItem';
 
 export default function Home() {
   return (
@@ -14,13 +13,7 @@ export default function Home() {
         <h2 className="text-4xl font-bold text-gray-900">Pantry Inventory</h2>
         <SearchBar />
         <div className='flex justify-between gap-2'>
-          <Button
-            variant="default"
-            className="flex-1"
-          >
-            <Plus />
-            Add Item
-          </Button>
+          <DrawerAddItem />
           <Link
             className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none bg-chart-3 text-primary-foreground shadow-xs hover:bg-chart-3/90 h-9 px-4 py-2 has-[>svg]:px-3 flex-1"
             href={'/add-item/camera'}

@@ -1,0 +1,53 @@
+import React from 'react'
+import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from '../../lib/utils/drawer'
+import { Button } from '../../lib/utils/button'
+import { Plus } from 'lucide-react';
+import { Input } from '../../lib/utils/input';
+
+interface DrawerAddItemProps {
+  footer?: boolean
+}
+
+export function DrawerAddItem({ footer }: DrawerAddItemProps) {
+  return (
+    <Drawer>
+      <DrawerTrigger asChild>
+        {!footer
+          ?
+          <Button variant="default" className="flex-1">
+            <Plus />
+            Add Item
+          </Button>
+          :
+          <button className='flex flex-col items-center cursor-pointer' type='button'>
+            <div className='size-11 flex items-center justify-center rounded-[35%] bg-chart-2 text-white mb-1'>
+              <Plus className='stroke-3' />
+            </div>
+            <p className='capitalize'>Add</p>
+          </button>
+        }
+      </DrawerTrigger>
+      <DrawerContent>
+        <div className="mx-auto w-full max-w-sm">
+          <DrawerHeader>
+            <DrawerTitle className='text-2xl font-bold text-gray-900'>Add Item</DrawerTitle>
+            <DrawerDescription>Enter the required information to add your item manually.</DrawerDescription>
+          </DrawerHeader>
+          <div className="p-4 pb-0">
+            <form className="flex flex-col items-center justify-center gap-3">
+              <Input id='itemName' name='itemName' placeholder='Name' />
+              <Input id='category' name='category' placeholder='Category' />
+              <Input id='barcode' name='barcode' placeholder='Barcode e.g.,05536990345' />
+            </form>
+          </div>
+        </div>
+        <DrawerFooter>
+          <Button>Submit</Button>
+          <DrawerClose asChild>
+            <Button variant="destructive">Cancel</Button>
+          </DrawerClose>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+  )
+}
