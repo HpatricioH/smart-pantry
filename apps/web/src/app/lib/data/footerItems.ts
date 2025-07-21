@@ -13,10 +13,10 @@ export const footerItems = [
   },
   {
     id: '2',
-    name:'add',
-    link: '/add-item',
-    icon: Plus,
-    bgColor: 'bg-chart-2',
+    name:'recipes',
+    link: '/recipes',
+    icon: ChefHat,
+    bgColor: 'bg-nav-recipes',
   },
   {
     id: '3',
@@ -24,12 +24,5 @@ export const footerItems = [
     link: '/pantry',
     icon: ArrowDown,
     bgColor: 'bg-nav-pantry',
-  },
-  {
-    id: '4',
-    name:'recipes',
-    link: '/recipes',
-    icon: ChefHat,
-    bgColor: 'bg-nav-recipes',
   },
 ]

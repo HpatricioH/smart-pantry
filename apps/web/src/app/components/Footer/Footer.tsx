@@ -1,5 +1,6 @@
 import { footerItems } from '../../lib/data/footerItems';
 import Link from 'next/link';
+import { DrawerAddItem } from '../DrawerAddItem/DrawerAddItem';
 
 
 export function Footer() {
@@ -23,6 +24,7 @@ export function Footer() {
             )
           })
         }
+        <DrawerAddItem footer={true} />
       </div>
     </footer>
   )
