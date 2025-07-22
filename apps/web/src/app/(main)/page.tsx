@@ -5,7 +5,7 @@ import { LowMissingItems } from "../../sections/LowMissingItems";
 
 export default function Home() {
   return (
-    <main className="grid grid-rows-[20px_1fr_20px] justify-items-start min-h-screen p-4 pb-20 gap-16 sm:p-20">
+    <main className="min-h-screen p-4 pb-32 gap-16 sm:p-20 sm:pb-32">
       <div className="flex flex-col gap-[16px] mt-12">
         <Hero />
         <CurrentStock />
