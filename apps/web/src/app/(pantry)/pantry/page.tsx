@@ -1,10 +1,8 @@
 import { Camera } from 'lucide-react';
-import { PantryCards } from "../../components/PantryCards/PantryCards"
 import Link from 'next/link';
 import { SearchBar } from '../../components/SearchBar/SearchBar';
-import { Suspense } from 'react';
-import { SkeletonCards } from '../../components/SkeletonCards/SkeletonCards';
 import { DrawerAddItem } from '../../components/DrawerAddItem/DrawerAddItem';
+import { PantryCardsContainer } from '../../components/PantryCardsContainer/PantryCardsContainer';
 
 export default function Home() {
   return (
@@ -22,9 +20,7 @@ export default function Home() {
             Add via Camera
           </Link>
         </div>
-        <Suspense fallback={<SkeletonCards />}>
-          <PantryCards URL='/data/mock-pantry.json' />
-        </Suspense>
+        <PantryCardsContainer />
       </div>
     </main>
   );
