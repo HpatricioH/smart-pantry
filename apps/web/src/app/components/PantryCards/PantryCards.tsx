@@ -15,26 +15,16 @@ type DataItems = {
   lowStock: false
 };
 
-interface PantryCardsProps {
-  URL: string
+export interface PantryCardsProps {
+  pantryData: DataItems[];
 }
 
-export function PantryCards({ URL }: PantryCardsProps) {
-  const [itemsData, useItemsData] = useState<DataItems[]>([])
-
-  // TODO: create a custom hook with this useEffect
-  useEffect(() => {
-    const fetchPantryData = async () => {
-      const res = await fetch(URL)
-      useItemsData(await res.json());
-    }
-    fetchPantryData()
-  }, [URL])
+export function PantryCards({ pantryData }: PantryCardsProps) {
 
   return (
     <article>
       <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {itemsData.map(item => {
+        {pantryData.map(item => {
 
           return (
             <div
