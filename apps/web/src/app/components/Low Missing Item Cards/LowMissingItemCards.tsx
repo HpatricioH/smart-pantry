@@ -9,8 +9,6 @@ export function LowMissingItemCards() {
   const lowItems = itemsData.filter((item) => item.quantity <= 1)
   const lowStockItemsToShow = lowItems.slice(0, 2)
 
-  console.log(lowStockItemsToShow)
-
   return (
     <>
       {
