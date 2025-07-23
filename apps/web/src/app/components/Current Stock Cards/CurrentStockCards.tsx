@@ -6,10 +6,9 @@ import { PantryCards } from "../PantryCards/PantryCards";
 export function CurrentStockCards() {
   const { itemsData } = usePantryData({ URL: "/data/mock-pantry.json" })
 
-  const currentStockItems = itemsData.slice(0, 4)
+  const currentStockItems = itemsData.slice(0, 2)
   return (
     <>
-      {/* Cards */}
       {
         <PantryCards pantryData={currentStockItems} />
       }
