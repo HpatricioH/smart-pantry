@@ -1,4 +1,5 @@
 
+import { LowItemsCardContainer } from '../../../components/LowItemsCardContainer/LowItemsCardContainer';
 import { SearchBar } from '../../../components/SearchBar/SearchBar';
 
 export default function LowItems() {
@@ -7,6 +8,7 @@ export default function LowItems() {
       <div className="flex flex-col gap-4 mt-12 w-full max-w-7xl mx-auto">
         <h2 className="text-4xl font-bold text-gray-900">Low Items</h2>
         <SearchBar />
+        <LowItemsCardContainer />
       </div>
     </main>
   );
