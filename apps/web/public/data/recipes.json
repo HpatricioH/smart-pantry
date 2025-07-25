@@ -1,0 +1,108 @@
+[
+  {
+    "id": "recipe_001",
+    "title": "Creamy Garlic Pasta",
+    "description": "A quick and rich pasta dish with parmesan, garlic, and cream for a cozy dinner.",
+    "image": "/images/creamy-garlic-pasta.webp",
+    "prepTime": "10 mins",
+    "cookTime": "15 mins",
+    "totalTime": "25 mins",
+    "servings": 2,
+    "liked": false,
+    "ingredients": [
+      "200g pasta",
+      "2 cloves garlic, minced",
+      "1 tbsp olive oil",
+      "1 cup heavy cream",
+      "1/4 cup grated parmesan",
+      "Salt and pepper"
+    ],
+    "instructions": [
+      "Cook pasta.",
+      "Sauté garlic in olive oil.",
+      "Add cream, simmer, and stir in parmesan.",
+      "Mix with pasta and season."
+    ],
+    "tags": ["pasta", "quick", "vegetarian"],
+    "difficulty": "Easy",
+    "calories": 520
+  },
+  {
+    "id": "recipe_002",
+    "title": "Avocado Toast with Egg",
+    "description": "A healthy, protein-packed breakfast toast with creamy avocado and a runny egg.",
+    "image": "/images/avocado-toast.webp",
+    "prepTime": "5 mins",
+    "cookTime": "5 mins",
+    "totalTime": "10 mins",
+    "servings": 1,
+    "liked": true,
+    "ingredients": [
+      "1 slice whole grain bread",
+      "1/2 avocado",
+      "1 egg",
+      "Salt, pepper, chili flakes"
+    ],
+    "instructions": [
+      "Toast bread.",
+      "Mash avocado with salt and pepper.",
+      "Fry or poach egg.",
+      "Top toast with avocado and egg. Sprinkle chili flakes."
+    ],
+    "tags": ["breakfast", "healthy", "quick"],
+    "difficulty": "Easy",
+    "calories": 300
+  },
+  {
+    "id": "recipe_003",
+    "title": "One-Pot Chicken Rice",
+    "description": "Comforting one-pot chicken and rice dinner with minimal cleanup.",
+    "image": "/images/chicken-rice.webp",
+    "prepTime": "10 mins",
+    "cookTime": "30 mins",
+    "totalTime": "40 mins",
+    "servings": 4,
+    "liked": false,
+    "ingredients": [
+      "2 chicken breasts",
+      "1 cup rice",
+      "2 cups chicken broth",
+      "1 onion, chopped",
+      "1 tsp paprika",
+      "Salt and pepper"
+    ],
+    "instructions": [
+      "Sauté onion and chicken.",
+      "Add rice, broth, and spices.",
+      "Cover and simmer until rice is tender."
+    ],
+    "tags": ["one-pot", "dinner", "comfort"],
+    "difficulty": "Medium",
+    "calories": 620
+  },
+  {
+    "id": "recipe_004",
+    "title": "Banana Oat Pancakes",
+    "description": "Fluffy and naturally sweet pancakes made with bananas and oats.",
+    "image": "/images/banana-oat-pancakes.webp",
+    "prepTime": "5 mins",
+    "cookTime": "10 mins",
+    "totalTime": "15 mins",
+    "servings": 2,
+    "liked": false,
+    "ingredients": [
+      "1 ripe banana",
+      "2 eggs",
+      "1/4 cup oats",
+      "1/4 tsp cinnamon",
+      "Butter for pan"
+    ],
+    "instructions": [
+      "Blend banana, eggs, oats, and cinnamon.",
+      "Cook pancakes on buttered skillet until golden."
+    ],
+    "tags": ["breakfast", "gluten-free", "easy"],
+    "difficulty": "Easy",
+    "calories": 350
+  }
+]
