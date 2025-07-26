@@ -7,7 +7,8 @@
       "@ai/*": ["packages/ai/src/*"],
       "@smart-pantry/ui": ["packages/ui-web/src/index.ts"],
       "@smart-pantry/ui/*": ["packages/ui-web/src/*"],
-      "@types/*": ["packages/types/src/*"],
+      "@smart-pantry/types": ["packages/types/src/index.ts"],
+      "@smart-pantry/types/*": ["packages/types/src/*"],
       "@config/*": ["packages/config/src/*"]
     },
     "moduleResolution": "node",

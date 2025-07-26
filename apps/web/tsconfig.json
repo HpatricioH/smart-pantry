@@ -18,7 +18,8 @@
       "@db/*": ["../../packages/db/src/*"],
       "@trpc/*": ["../../packages/trpc/src/*"],
       "@ai/*": ["../../packages/ai/src/*"],
-      "@types/*": ["../../packages/types/src/*"],
+      "@smart-pantry/types": ["../../packages/types/src/index.ts"],
+      "@smart-pantry/types/*": ["../../packages/types/src/*"],
       "@config/*": ["../../packages/config/src/*"]
     },
     "allowJs": true,
@@ -32,9 +33,8 @@
     "**/*.cjs",
     "**/*.js",
     ".next/types/**/*.ts",
-    "src"
-, "postcss.config.mjs"  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "src",
+    "postcss.config.mjs"
+  ],
+  "exclude": ["node_modules"]
 }
