@@ -9,9 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@smart-pantry/types": "workspace:*",
     "@radix-ui/react-dialog": "^1.1.14",
     "@radix-ui/react-slot": "^1.2.3",
+    "@smart-pantry/types": "workspace:*",
+    "@tanstack/react-query": "^4.40.1",
     "@zxing/browser": "^0.1.5",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
