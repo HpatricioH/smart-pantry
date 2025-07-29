@@ -1,24 +1,20 @@
 'use client'
-import type { Recipe } from "@smart-pantry/types"
+
 import Image from "next/image";
 import { Button } from "../../lib/utils/button";
 import { Plus } from 'lucide-react';
 import { Clock9 } from 'lucide-react';
 import { ShoppingBasket } from 'lucide-react';
+import { useRecipe } from "../../lib/hooks/useRecipe";
 
 
-
-export interface RecipeCardsProps {
-  recipeData: Recipe[];
-}
-
-export function RecipeCards({ recipeData }: RecipeCardsProps) {
-  console.log(recipeData)
+export function RecipeCards() {
+  const { data: recipes } = useRecipe()
 
   return (
     <article>
       <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {recipeData.map(item => {
+        {recipes?.map(item => {
 
           return (
             <div
