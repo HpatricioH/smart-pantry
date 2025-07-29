@@ -1,8 +1,15 @@
 {
-  "name": "db",
+  "name": "@smart-pantry/queries",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Database queries for Smart Pantry",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "types": "./src/index.ts"
+    }
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

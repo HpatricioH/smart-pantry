@@ -20,6 +20,8 @@
       "@ai/*": ["../../packages/ai/src/*"],
       "@smart-pantry/types": ["../../packages/types/src/index.ts"],
       "@smart-pantry/types/*": ["../../packages/types/src/*"],
+      "@smart-pantry/queries": ["../../packages/db/src/index.ts"],
+      "@smart-pantry/queries/*": ["../../packages/db/src/*"],
       "@config/*": ["../../packages/config/src/*"]
     },
     "allowJs": true,

@@ -9,6 +9,7 @@
       "@smart-pantry/ui/*": ["packages/ui-web/src/*"],
       "@smart-pantry/types": ["packages/types/src/index.ts"],
       "@smart-pantry/types/*": ["packages/types/src/*"],
+      "@smart-pantry/queries": ["packages/db/src/index.ts"],
       "@config/*": ["packages/config/src/*"]
     },
     "moduleResolution": "node",
