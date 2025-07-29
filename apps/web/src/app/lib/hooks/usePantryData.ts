@@ -1,31 +1,10 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getPantryItems } from "@smart-pantry/queries"
 
-type DataItems = {
-  id: string | number;
-  name: string;
-  image: string;
-  quantity: number;
-  unit: string;
-  expiresInDays: number
-  lowStock: false
-};
-
-export function usePantryData({ URL }: { URL: string }) {
-  const [itemsData, useItemsData] = useState<DataItems[]>([]) 
-
-  useEffect(() => {
-    const fetchPantryData = async () => {
-      try {
-        const res = await fetch(URL)
-        useItemsData(await res.json());
-      } catch (error) {
-        console.log(error)
-        throw new Error((error as Error).message)
-      }
-      
-    }
-    fetchPantryData()
-  }, [URL])
-
-  return {itemsData}
+export function usePantryData() {
+  return useQuery({
+    queryKey: ['pantry'],
+    queryFn: getPantryItems,
+    suspense: true
+  })
 }
