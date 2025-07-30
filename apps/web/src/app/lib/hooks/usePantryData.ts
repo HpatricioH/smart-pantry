@@ -5,6 +5,5 @@ export function usePantryData() {
   return useQuery({
     queryKey: ['pantry'],
     queryFn: getPantryItems,
-    suspense: true
   })
 }
