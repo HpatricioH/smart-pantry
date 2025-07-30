@@ -1,18 +1,27 @@
 'use client'
 
 import Image from "next/image";
-import { usePantryData } from "../../lib/hooks/usePantryData";
 import { Badge } from "../../lib/utils/badge";
 import { Plus } from 'lucide-react';
 
 
-export function PantryCards() {
-  const { data: pantry } = usePantryData()
+type PantryItem = {
+  id: string | number;
+  name: string;
+  image: string;
+  quantity: number;
+};
+
+interface PantryCardsProps {
+  pantryItems: PantryItem[];
+}
+
+export function PantryCards({ pantryItems }: PantryCardsProps) {
 
   return (
     <article>
       <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {pantry?.map(item => {
+        {pantryItems?.map(item => {
 
           return (
             <div

@@ -5,14 +5,15 @@ import { usePantryData } from "../../lib/hooks/usePantryData";
 import { PantryCards } from "../PantryCards/PantryCards";
 
 export function LowMissingItemCards() {
-  const { itemsData } = usePantryData({ URL: "/data/mock-pantry.json" })
-  const lowItems = itemsData.filter((item) => item.quantity <= 1)
-  const lowStockItemsToShow = lowItems.slice(0, 2)
+  const { data: pantry } = usePantryData()
+
+  const lowItems = pantry?.filter((item) => item.quantity <= 1)
+  const lowStockItemsToShow = lowItems?.slice(0, 2)
 
   return (
     <>
       {
-        <PantryCards pantryData={lowStockItemsToShow} />
+        <PantryCards pantryItems={lowStockItemsToShow ?? []} />
       }
     </>
   )

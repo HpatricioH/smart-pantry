@@ -3,19 +3,22 @@ import { Skeleton } from "../../lib/utils/skeleton";
 
 export function SkeletonCards() {
   return (
-    <div
-      className="flex flex-col justify-start items-start p-4 shadow-md rounded-lg bg-ring/5 "
-    >
-      <div className="w-28 h-28 relative rounded-md self-center">
-        <Skeleton className="h-28 w-28 rounded-xl" />
-      </div>
-      <div className="flex justify-between items-end w-full">
-        <div className="flex flex-col">
-          <Skeleton className="text-md font-semibold place-content-start" />
-          <Skeleton className="font-bold text-lg mt-1" />
+    <article>
+      <div
+        className="flex flex-col justify-start items-start shadow-md rounded-lg bg-ring/5 "
+      >
+        <div className="w-full h-33 relative rounded-t-lg overflow-hidden">
+          <Skeleton className="h-32 w-full rounded-t-xl" />
         </div>
-        <Skeleton />
+        <div className="flex justify-between items-end w-full p-1">
+          <div className="flex flex-col w-full">
+            <Skeleton className="h-2 mt-2" />
+            <Skeleton className="h-2 mt-2 w-20" />
+            <Skeleton className="h-2 mt-2 w-16" />
+            <Skeleton className="h-8 w-full my-3" />
+          </div>
+        </div>
       </div>
-    </div>
+    </article>
   )
 }
