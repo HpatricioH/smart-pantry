@@ -18,7 +18,6 @@ export function PantryCardsContainer() {
         </div>
       }>
         <PantryCards pantryItems={pantry ?? []} />
-
       </Suspense>
     </>
   )
