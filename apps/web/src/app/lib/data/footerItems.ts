@@ -21,7 +21,7 @@ export const footerItems = [
   {
     id: '3',
     name:'pantry',
-    link: '/pantry',
+    link: '/categories',
     icon: ArrowDown,
     bgColor: 'bg-nav-pantry',
   },
