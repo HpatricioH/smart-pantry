@@ -1,10 +1,18 @@
+import Link from "next/link"
 import { Camera } from 'lucide-react';
-import Link from 'next/link';
-import { SearchBar } from '../../components/SearchBar/SearchBar';
-import { DrawerAddItem } from '../../components/DrawerAddItem/DrawerAddItem';
-import { PantryCardsContainer } from '../../components/PantryCardsContainer/PantryCardsContainer';
+import { DrawerAddItem } from "../../../components/DrawerAddItem/DrawerAddItem"
+import { SearchBar } from "../../../components/SearchBar/SearchBar"
+import { PantryCardsContainer } from "../../../components/PantryCardsContainer/PantryCardsContainer";
 
-export default function Home() {
+
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+  const decodedParam = decodeURIComponent(slug);
+
   return (
     <main className="min-h-screen p-4 pb-32 gap-16 sm:p-20 sm:pb-32">
       <div className="flex flex-col gap-4 mt-12 w-full max-w-7xl mx-auto">
@@ -20,8 +28,8 @@ export default function Home() {
             Add via Camera
           </Link>
         </div>
-        <PantryCardsContainer />
+        <PantryCardsContainer slug={decodedParam} />
       </div>
     </main>
-  );
+  )
 }

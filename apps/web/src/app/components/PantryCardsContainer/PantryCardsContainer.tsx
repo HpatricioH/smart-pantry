@@ -5,9 +5,9 @@ import { PantryCards } from '../PantryCards/PantryCards'
 import { usePantryData } from '../../lib/hooks/usePantryData'
 import { SkeletonPantry } from '../SkeletonCards/SkeletonPantry'
 
-export function PantryCardsContainer() {
+export function PantryCardsContainer({ slug }: { slug: string }) {
   const { data: pantry } = usePantryData()
-
+  const categorizedItems = pantry?.filter((item) => item.category.toLowerCase() === slug)
 
   return (
     <>
@@ -17,7 +17,7 @@ export function PantryCardsContainer() {
           <SkeletonPantry />
         </div>
       }>
-        <PantryCards pantryItems={pantry ?? []} />
+        <PantryCards pantryItems={categorizedItems ?? []} />
       </Suspense>
     </>
   )
