@@ -14,7 +14,7 @@
     "name": "Eggs",
     "quantity": 10,
     "unit": "pieces",
-    "category": "Protein",
+    "category": "Dairy",
     "image": "/images/eggs.webp",
     "expiresInDays": 7,
     "lowStock": false

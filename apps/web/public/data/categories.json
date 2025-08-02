@@ -1,0 +1,52 @@
+[
+  {
+    "id": "vegetables",
+    "name": "Vegetables",
+    "image": "https://res.cloudinary.com/dase1w9ff/image/upload/c_thumb,w_200,g_face/v1753933722/SmartPantry/vegetables_bdq9as.webp"
+  },
+  {
+    "id": "meats",
+    "name": "Meats",
+    "image": "https://res.cloudinary.com/dase1w9ff/image/upload/c_thumb,w_200,g_face/v1754019864/SmartPantry/meats_hhoprz.webp"
+  },
+  {
+    "id": "seaFood",
+    "name": "Sea Food",
+    "image": "https://res.cloudinary.com/dase1w9ff/image/upload/v1754023501/SmartPantry/sea_food_sdocnx.webp"
+  },
+  {
+    "id": "dairy",
+    "name": "Dairy",
+    "image": "https://res.cloudinary.com/dase1w9ff/image/upload/c_thumb,w_200,g_face/v1754020202/SmartPantry/dairy_rl5nxu.webp"
+  },
+  {
+    "id": "grains",
+    "name": "Grains",
+    "image": "https://res.cloudinary.com/dase1w9ff/image/upload/c_thumb,w_200,g_face/v1754020560/SmartPantry/grains_vshwos.webp"
+  },
+  {
+    "id": "spices",
+    "name": "Spices",
+    "image": "https://res.cloudinary.com/dase1w9ff/image/upload/c_thumb,w_200,g_face/v1754020998/SmartPantry/spices_sndcuw.webp"
+  },
+  {
+    "id": "canned",
+    "name": "Canned Goods",
+    "image": "https://res.cloudinary.com/dase1w9ff/image/upload/c_thumb,w_200,g_face/v1754021281/SmartPantry/canned-food_azvhic.webp"
+  },
+  {
+    "id": "snacks",
+    "name": "Snacks",
+    "image": "https://res.cloudinary.com/dase1w9ff/image/upload/v1754021634/SmartPantry/snacks_jtyxlj.webp"
+  },
+  {
+    "id": "beverages",
+    "name": "Beverages",
+    "image": "https://res.cloudinary.com/dase1w9ff/image/upload/c_thumb,w_200,g_face/v1754022140/SmartPantry/beverages_nquxhn.webp"
+  },
+  {
+    "id": "baking",
+    "name": "Baking",
+    "image": "https://res.cloudinary.com/dase1w9ff/image/upload/c_thumb,w_200,g_face/v1754022438/SmartPantry/Bakery_arou8u.webp"
+  }  
+]
