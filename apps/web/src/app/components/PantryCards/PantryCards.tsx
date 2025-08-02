@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Badge } from "../../lib/utils/badge";
 import { Plus } from 'lucide-react';
+import { NoPantryItems } from "../NoPantryItems/NoPantryItems";
 
 
 type PantryItem = {
@@ -17,6 +18,8 @@ interface PantryCardsProps {
 }
 
 export function PantryCards({ pantryItems }: PantryCardsProps) {
+
+  if (pantryItems.length <= 0) return <NoPantryItems />
 
   return (
     <article>
