@@ -6,6 +6,7 @@ import { Plus } from 'lucide-react';
 import { Clock9 } from 'lucide-react';
 import { ShoppingBasket } from 'lucide-react';
 import { useRecipe } from "../../lib/hooks/useRecipe";
+import Link from "next/link";
 
 
 export function RecipeCards() {
@@ -45,10 +46,12 @@ export function RecipeCards() {
                     <p className="font-semibold text-sm mt-1">{item.ingredients.length}</p>
                   </div>
 
-                  <Button variant="default" className="flex-1 p-1">
+                  <Link
+                    href={`recipes/${item.id}`}
+                    className="flex-1 p-1 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive cursor-pointer bg-primary text-primary-foreground shadow-xs hover:bg-primary/90">
                     <Plus />
                     View Recipe
-                  </Button>
+                  </Link>
                 </div>
               </div>
             </div>
