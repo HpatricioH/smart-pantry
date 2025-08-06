@@ -4,7 +4,6 @@ import { getRecipes } from "@smart-pantry/queries"
 export function useRecipe() {
   return useQuery({
     queryKey: ['recipes'],
-    queryFn: getRecipes,
-    suspense: true
+    queryFn: getRecipes
   })
 }
