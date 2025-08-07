@@ -5,7 +5,7 @@ import { DrawerAddItem } from '../DrawerAddItem/DrawerAddItem';
 
 export function Footer() {
   return (
-    <footer className='fixed bottom-0 left-0 right-0 backdrop-blur-[6px] transition-all'>
+    <footer className='fixed bottom-0 left-0 right-0 backdrop-blur-[6px] transition-transform'>
       <div className='flex justify-around items-center p-4'>
         {
           footerItems.map((item) => {

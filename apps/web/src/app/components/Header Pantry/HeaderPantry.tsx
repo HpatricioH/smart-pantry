@@ -9,7 +9,7 @@ export function HeaderPantry() {
 
   return (
     <header>
-      <nav className="flex items-center justify-between p-4 bg-light-bg text-text-secondary"
+      <nav className="flex items-center justify-between p-4 bg-light-bg text-text-secondary backdrop-blur-[6px] transition-transform z-40"
         style={{ position: 'fixed', top: 0, width: '100%' }}>
         <button
           onClick={() => router.back()}
