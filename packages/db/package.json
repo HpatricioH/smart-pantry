@@ -16,5 +16,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.12.1"
+  "packageManager": "pnpm@10.12.1",
+  "dependencies": {
+    "@libsql/client": "^0.15.10",
+    "dotenv": "^17.2.1",
+    "drizzle-orm": "^0.44.4"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.31.4"
+  }
 }
