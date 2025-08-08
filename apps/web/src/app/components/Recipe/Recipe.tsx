@@ -30,6 +30,7 @@ export function Recipe({ id }: { id: string }) {
 
       <div className="p-4">
         <p>{recipe?.description}</p>
+
         <div className="grid grid-cols-3 py-4 gap-3 place-items-center [&_p]:flex [&_p]:gap-2 [&_svg]:stroke-chart-2">
           <p><CookingPot />{recipe?.cookTime}</p>
           <p><Carrot />{recipe?.prepTime}</p>
