@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@libsql/isomorphic-fetch': 0.3.0
+
 importers:
 
   .:
@@ -57,6 +60,12 @@ importers:
       '@trpc/client':
         specifier: ^11.4.4
         version: 11.4.4(@trpc/server@11.4.4(typescript@5.8.3))(typescript@5.8.3)
+      '@trpc/react-query':
+        specifier: ^11.4.4
+        version: 11.4.4(@tanstack/react-query@4.40.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@trpc/client@11.4.4(@trpc/server@11.4.4(typescript@5.8.3))(typescript@5.8.3))(@trpc/server@11.4.4(typescript@5.8.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3)
+      '@trpc/server':
+        specifier: ^11.4.4
+        version: 11.4.4(typescript@5.8.3)
       '@zxing/browser':
         specifier: ^0.1.5
         version: 0.1.5(@zxing/library@0.21.3)
@@ -153,8 +162,6 @@ importers:
       drizzle-kit:
         specifier: ^0.31.4
         version: 0.31.4
-
-  packages/trpc: {}
 
   packages/types: {}
 
@@ -740,8 +747,8 @@ packages:
   '@libsql/hrana-client@0.7.0':
     resolution: {integrity: sha512-OF8fFQSkbL7vJY9rfuegK1R7sPgQ6kFMkDamiEccNUvieQ+3urzfDFI616oPl8V7T9zRmnTkSjMOImYCAVRVuw==}
 
-  '@libsql/isomorphic-fetch@0.3.1':
-    resolution: {integrity: sha512-6kK3SUK5Uu56zPq/Las620n5aS9xJq+jMBcNSOmjhNf/MUvdyji4vrMTqD7ptY7/4/CAVEAYDeotUz60LNQHtw==}
+  '@libsql/isomorphic-fetch@0.3.0':
+    resolution: {integrity: sha512-GwBtp0WLRfKiJVQQy34kko+CKZCV9thBvP3DVZDva8jm0jFYRopyH+uQm//FgQCb1+6BmFQdKQ+7TLR23+zzIA==}
     engines: {node: '>=18.0.0'}
 
   '@libsql/isomorphic-ws@0.1.5':
@@ -1123,6 +1130,16 @@ packages:
     resolution: {integrity: sha512-86OZl+Y+Xlt9ITGlhCMImERcsWCOrVzpNuzg3XBlsDSmSs9NGsghKjeCpJQlE36XaG3aze+o9pRukiYYvBqxgQ==}
     peerDependencies:
       '@trpc/server': 11.4.4
+      typescript: '>=5.7.2'
+
+  '@trpc/react-query@11.4.4':
+    resolution: {integrity: sha512-syXx1JLSERAHWh8BtBZsbv2PIt2nfvO1Sd6C6vHzNO8wAHxpcmq9HyEdrfi+5SfeRfPCJc/ZPCN2wVv98T+big==}
+    peerDependencies:
+      '@tanstack/react-query': ^5.80.3
+      '@trpc/client': 11.4.4
+      '@trpc/server': 11.4.4
+      react: '>=18.2.0'
+      react-dom: '>=18.2.0'
       typescript: '>=5.7.2'
 
   '@trpc/server@11.4.4':
@@ -2174,7 +2191,7 @@ snapshots:
 
   '@libsql/hrana-client@0.7.0':
     dependencies:
-      '@libsql/isomorphic-fetch': 0.3.1
+      '@libsql/isomorphic-fetch': 0.3.0
       '@libsql/isomorphic-ws': 0.1.5
       js-base64: 3.7.7
       node-fetch: 3.3.2
@@ -2182,7 +2199,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@libsql/isomorphic-fetch@0.3.1': {}
+  '@libsql/isomorphic-fetch@0.3.0': {}
 
   '@libsql/isomorphic-ws@0.1.5':
     dependencies:
@@ -2477,6 +2494,15 @@ snapshots:
   '@trpc/client@11.4.4(@trpc/server@11.4.4(typescript@5.8.3))(typescript@5.8.3)':
     dependencies:
       '@trpc/server': 11.4.4(typescript@5.8.3)
+      typescript: 5.8.3
+
+  '@trpc/react-query@11.4.4(@tanstack/react-query@4.40.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@trpc/client@11.4.4(@trpc/server@11.4.4(typescript@5.8.3))(typescript@5.8.3))(@trpc/server@11.4.4(typescript@5.8.3))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3)':
+    dependencies:
+      '@tanstack/react-query': 4.40.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@trpc/client': 11.4.4(@trpc/server@11.4.4(typescript@5.8.3))(typescript@5.8.3)
+      '@trpc/server': 11.4.4(typescript@5.8.3)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
       typescript: 5.8.3
 
   '@trpc/server@11.4.4(typescript@5.8.3)':
