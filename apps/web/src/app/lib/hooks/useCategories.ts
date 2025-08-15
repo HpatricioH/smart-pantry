@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getCategories } from "@smart-pantry/queries"
+import { getCategories } from "../../../../../../packages/db/src/queries/getCategories"
 
 export function useCategories() {
   return useQuery({
