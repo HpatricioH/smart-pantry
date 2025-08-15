@@ -13,6 +13,8 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
+      "@smart-pantry/api": ["../../packages/api/src/root.ts"],
+      "@smart-pantry/api/*": ["../../packages/api/src/*"],
       "@smart-pantry/ui": ["../../packages/ui-web/src/index.ts"],
       "@smart-pantry/ui/*": ["../../packages/ui-web/src/*"],
       "@db/*": ["../../packages/db/src/*"],
