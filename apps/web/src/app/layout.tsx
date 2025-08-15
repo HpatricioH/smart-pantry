@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "../providers/ThemeProvider";
+import { ClerkProvider } from '@clerk/nextjs'
 import QueryProvider from "../providers/QueryProvider";
+import { TRPCReactProvider } from "../trpc/react";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -24,15 +26,17 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} antialiased`}>
       <body >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          disableTransitionOnChange
-        >
-          <QueryProvider>
-            {children}
-          </QueryProvider>
-        </ThemeProvider>
+        <TRPCReactProvider>
+          <ClerkProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="light"
+              disableTransitionOnChange
+            >
+              {children}
+            </ThemeProvider>
+          </ClerkProvider>
+        </TRPCReactProvider>
       </body>
     </html>
   );
