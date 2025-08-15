@@ -1,8 +1,23 @@
 {
   "name": "@smart-pantry/api",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "TRPC API for Smart Pantry",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts",
+      "types": "./src/index.ts"
+    },
+    "./react": {
+      "import": "./src/index.ts",
+      "types": "./src/index.ts"
+    },
+    "./trpc": {
+      "import": "./src/trpc.ts",
+      "types": "./src/trpc.ts"
+    }
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,7 +26,12 @@
   "license": "ISC",
   "packageManager": "pnpm@10.12.1",
   "dependencies": {
+    "@smart-pantry/db": "workspace:*",
     "@trpc/server": "^11.4.4",
-    "superjson": "^2.2.2"
+    "superjson": "^2.2.2",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20"
   }
 }
