@@ -27,7 +27,16 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className={`${inter.variable} antialiased`}>
       <body >
         <TRPCReactProvider>
-          <ClerkProvider>
+          <ClerkProvider
+            appearance={{
+              elements: {
+                footer: {
+                  display: 'none',
+                },
+                cssLayerName: 'clerk'
+              }
+            }}
+          >
             <ThemeProvider
               attribute="class"
               defaultTheme="light"
