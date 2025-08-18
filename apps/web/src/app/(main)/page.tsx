@@ -1,17 +1,13 @@
-import { CurrentStock } from "../../sections/CurrentStock";
-import { Hero } from "../../sections/Hero";
-import { LowMissingItems } from "../../sections/LowMissingItems";
-import { TestTRPC } from "../components/TestTRPC";
+import { LandingCards } from "../../sections/LandingCards";
+import { LandingHero } from "../../sections/LandingHero";
 
 
 export default function Home() {
   return (
-    <main className="min-h-screen p-4 pb-32 gap-16 sm:p-20 sm:pb-32">
-      <div className="flex flex-col gap-[16px] mt-12">
-        <TestTRPC />
-        <Hero />
-        <CurrentStock />
-        <LowMissingItems />
+    <main className="min-h-screen gap-16">
+      <div className="flex flex-col gap-[16px]">
+        <LandingHero />
+        <LandingCards />
       </div>
     </main>
   );
