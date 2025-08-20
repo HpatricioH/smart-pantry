@@ -5,6 +5,8 @@ import { ThemeProvider } from "../providers/ThemeProvider";
 import { ClerkProvider } from '@clerk/nextjs'
 import QueryProvider from "../providers/QueryProvider";
 import { TRPCReactProvider } from "../trpc/react";
+import { ReactScan } from "./components/ReactScan/ReactScan";
+
 
 const inter = Inter({
   variable: "--font-inter",
@@ -25,6 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} antialiased`}>
+      <ReactScan />
       <body >
         <TRPCReactProvider>
           <ClerkProvider
