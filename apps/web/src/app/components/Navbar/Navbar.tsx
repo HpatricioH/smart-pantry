@@ -24,13 +24,6 @@ export function Navbar() {
             }
           }} />
       </SignedIn>
-      <SignedOut>
-        <SignInButton>
-          <div className='rounded-full p-2 cursor-pointer hover:bg-chart-2/70 hover:[&_svg]:stroke-white'>
-            <UserRound />
-          </div>
-        </SignInButton>
-      </SignedOut>
     </nav>
   )
 }
