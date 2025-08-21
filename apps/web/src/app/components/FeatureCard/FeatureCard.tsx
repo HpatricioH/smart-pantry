@@ -26,21 +26,21 @@ export function FeatureCard({
     <div
       className={`flex flex-col items-center justify-start rounded-xl p-4 sm:p-6 ${bg} w-full h-full`}
     >
-      <div className="flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 mb-3">
+      <div className="flex items-center justify-center w-28 h-16 sm:h-20 mb-3">
         {imageSrc ? (
           <Image
             src={imageSrc}
             alt={imageAlt || title}
-            width={80}
+            width={100}
             height={80}
-            className="object-contain"
+            className="h-24 w-56"
           />
         ) : Icon ? (
-          <Icon className="w-10 h-10 sm:w-12 sm:h-12 stroke-text-primary fill-white/40" />
+          <Icon className="w-10 h-10 sm:w-12 sm:h-12 stroke-text-primary fill-white/60" />
         ) : null}
       </div>
 
-      <h2 className="text-text-primary font-semibold text-base sm:text-lg text-center">
+      <h2 className="text-text-primary font-bold text-md sm:text-lg text-center">
         {title}
       </h2>
       <p className="text-center text-sm sm:text-base mt-2">{description}</p>
