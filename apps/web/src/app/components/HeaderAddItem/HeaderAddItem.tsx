@@ -19,7 +19,7 @@ export function HeaderAddItem() {
           <ArrowLeft />
         </button>
         <Link
-          href="/"
+          href="/pantry"
           className='flex-1 text-end'
         >
           Cancel
