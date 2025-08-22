@@ -2,8 +2,10 @@ import Image from "next/image";
 import { HeroBackground } from "../app/components/HeroBackground/HeroBackground";
 import { Button } from "../app/lib/utils/button";
 import { SignedOut, SignInButton } from "@clerk/nextjs";
+import Link from "next/link";
 
-export function LandingHero() {
+export async function LandingHero({ userId }: { userId?: string }) {
+
   return (
     <section className="relative overflow-hidden">
       {/* Background Blobs */}
@@ -37,6 +39,16 @@ export function LandingHero() {
                   </Button>
                 </SignInButton>
               </SignedOut>
+              {
+                userId
+                &&
+                <Link
+                  href="/pantry"
+                  className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all shrink-0 outline-none bg-chart-2 text-primary-foreground shadow-xs hover:bg-chart-3/90 h-9 px-4 py-2"
+                >
+                  Pantry Dashboard
+                </Link>
+              }
               <Button
                 variant="outline"
               >
