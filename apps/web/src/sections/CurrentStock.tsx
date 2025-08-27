@@ -6,7 +6,7 @@ export function CurrentStock() {
   return (
     <section>
       <div className="flex justify-between items-baseline">
-        <h2 className='text-xl font-semibold tracking-tight pb-2'>
+        <h2 className='text-xl font-semibold text-text-primary tracking-tight pb-2'>
           Current Stock
         </h2>
         <Link
