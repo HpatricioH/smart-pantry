@@ -34,7 +34,7 @@ export default function RootLayout({
             appearance={{
               elements: {
                 footer: {
-                  display: 'none',
+                  opacity: '0',
                 },
                 cssLayerName: 'clerk'
               }
