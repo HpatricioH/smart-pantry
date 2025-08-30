@@ -1,3 +1,4 @@
+import { categoriesRouter } from "./routers/categories";
 import { pantryRouter } from "./routers/pantry";
 import { createCallerFactory, createTRPCRouter } from "./trpc";
 
@@ -9,6 +10,7 @@ import { createCallerFactory, createTRPCRouter } from "./trpc";
 
 export const appRouter = createTRPCRouter({
   pantry: pantryRouter,
+  categories: categoriesRouter,
 })
 
 // export type definition of API
