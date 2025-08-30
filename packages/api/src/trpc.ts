@@ -1,6 +1,7 @@
 import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson"
 import { ZodError } from "zod"
+import { db } from "@smart-pantry/db";
 
 /**
  * 1. CONTEXT
@@ -19,8 +20,7 @@ export const createTRPCContext = async (opts: { headers: Headers }) => {
   // Get user ID from Clerk (it should be set in headers by Clerk middleware)
   const userId = opts.headers.get('x-clerk-user-id') || opts.headers.get('x-user-id')
 
-  // Temporarily skip importing the DB to isolate the SyntaxError source during debugging.
-  const db = undefined;
+  // db comes from @smart-pantry/db (Drizzle instance with .query, .select, etc.)
 
   return {
     db,
@@ -81,3 +81,15 @@ export const createTRPCRouter = t.router;
  * are logged in.
  */
 export const publicProcedure = t.procedure;
+
+export const protectedProcedure = t.procedure
+  .use(({ctx, next}) => {
+    if (!ctx.userId) {
+      throw new TRPCError({code: "UNAUTHORIZED"})
+    }
+    return next({
+      ctx: {
+        session: { user: ctx.userId }
+      }
+    })
+  })

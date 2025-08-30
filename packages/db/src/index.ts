@@ -15,19 +15,17 @@ declare global {
   var __tursoClient: ReturnType<typeof createClient> | undefined;
 }
 
-const makeClient = () =>
-  createClient({
-    url:
-      process.env.TURSO_CONNECTION_URL ??
-      (() => {
-        throw new Error("TURSO_CONNECTION_URL is not defined");
-      })(),
-    authToken:
-      process.env.TURSO_AUTH_TOKEN ??
-      (() => {
-        throw new Error("TURSO_AUTH_TOKEN is not defined");
-      })(),
-  });
+const makeClient = () => {
+  const url = process.env.DATABASE_URL;
+  const authToken = process.env.TURSO_AUTH_TOKEN;
+  if (!url) {
+    throw new Error("DATABASE_URL is not set. Expected libsql://<db-name>-<org>.turso.io");
+  }
+  if (!authToken) {
+    throw new Error("TURSO_AUTH_TOKEN is not set. Generate a db token with 'turso db tokens create <db>'");
+  }
+  return createClient({ url, authToken });
+};
 
 // Use a global singleton in dev to avoid exhausting connections.
 export const client = globalThis.__tursoClient ?? makeClient();
