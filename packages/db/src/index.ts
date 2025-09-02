@@ -1,12 +1,29 @@
 export { getRecipes } from "./queries/getRecipes";
 export { getPantryItems } from "./queries/getPantryItems";
-export { getCategories } from "./queries/getCategories";
 import { createClient } from "@libsql/client";
 import { config } from "dotenv";
 import { drizzle } from "drizzle-orm/libsql";
 import * as schema from "./schema";
 
-config({ path: ".env" });
+// Attempt to load env vars from several typical monorepo locations (non-destructive: first wins for each var)
+(() => {
+  const candidates = [
+    // Prefer explicit local overrides
+    ".env.local",
+    ".env",
+    // Monorepo root (when code runs from a nested package)
+    "../.env.local",
+    "../.env",
+    // Two levels up (in case of packages/db loaded from apps/web)
+    "../../.env.local",
+    "../../.env",
+  ];
+  for (const p of candidates) {
+    // dotenv won't overwrite existing vars unless override:true; we keep default (false)
+    config({ path: p });
+    if (process.env.DATABASE_URL && process.env.TURSO_AUTH_TOKEN) break;
+  }
+})();
 
 // Cache the database connection in development without using TS `as` assertions at runtime.
 declare global {
