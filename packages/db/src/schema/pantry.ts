@@ -1,4 +1,4 @@
-import { createTable } from '@db/utils/createTable'
+import { createTable } from '../utils/createTable'
 import { 
   text, 
   integer, 

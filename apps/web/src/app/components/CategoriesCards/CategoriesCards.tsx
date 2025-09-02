@@ -1,15 +1,13 @@
-'use client'
-
 import Image from "next/image"
-import { useCategories } from "../../lib/hooks/useCategories"
 import Link from "next/link"
+import { api } from "apps/web/src/trpc/server"
 
-export function CategoriesCards() {
-  const { data: categories } = useCategories()
+export async function CategoriesCards() {
+  const categoriesData = await api.categories.getAllCategories()
 
   return (
     <article className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {categories?.map(item => {
+      {categoriesData?.map(item => {
         return (
           <Link
             key={item.id}
@@ -18,7 +16,7 @@ export function CategoriesCards() {
           >
             <div className="w-full h-36 relative rounded-md self-center">
               <Image
-                src={item.image}
+                src={item.image ?? ""}
                 alt={`${item.name} image`}
                 fill
                 className="object-contain"
