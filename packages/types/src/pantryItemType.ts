@@ -8,3 +8,7 @@ export const createItemPantryType = z.object({
   image: z.string(),
   category: z.string(),
 })
+
+export const GetPantryItemSchema = z.object({
+  category: z.string(),
+})
