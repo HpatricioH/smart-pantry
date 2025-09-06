@@ -18,6 +18,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      drizzle-orm:
+        specifier: ^0.44.4
+        version: 0.44.4(@libsql/client@0.15.11)
       superjson:
         specifier: ^2.2.2
         version: 2.2.2
