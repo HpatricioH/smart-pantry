@@ -4,8 +4,8 @@ import {
   protectedProcedure,
   publicProcedure,
 } from "../trpc"
-import { eq } from 'drizzle-orm';
-import { createItemPantryType } from "../../../types/src/pantryItemType"
+import { eq, and } from 'drizzle-orm';
+import { createItemPantryType, updatePantryItemSchema } from "../../../types/src/pantryItemType"
 import { GetPantryItemSchema } from "../../../types/src/pantryItemType"
 import { pantry } from "../../../db/src/schema/pantry"
 
@@ -38,12 +38,29 @@ export const pantryRouter = createTRPCRouter({
   }),
 
   // Get one pantry item 
-  getPantryItem: protectedProcedure
+  getPantryItemByCategory: protectedProcedure
     .input(GetPantryItemSchema)
     .query(async ({ ctx, input}) => {
       return ctx.db.query.pantry.findMany({
         where: eq(pantry.category, input.category)
       })
+    }),
+
+
+  // Update pantry item 
+  updatePantryItem: protectedProcedure
+    .input(updatePantryItemSchema)
+    .mutation(async ({ctx, input}) => {
+      return ctx.db.update(pantry)
+        .set({
+          ...input,
+        })
+        .where(
+          and(
+            eq(pantry.id, input.id),
+            eq(pantry.userId, ctx.userId as string)
+          )
+        );
     })
     
 
