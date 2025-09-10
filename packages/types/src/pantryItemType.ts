@@ -19,3 +19,7 @@ export const updatePantryItemSchema = z.object({
   userId: z.string(),
   quantity: z.number(),
 })
+
+export const deletePantryItemSchema = z.object({
+  id: z.string
+})
