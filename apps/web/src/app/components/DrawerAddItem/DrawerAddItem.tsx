@@ -42,9 +42,9 @@ export function DrawerAddItem({ footer }: DrawerAddItemProps) {
           </div>
         </div>
         <DrawerFooter>
-          <Button>Submit</Button>
+          <Button className="bg-text-primary hover:bg-text-primary/80 text-white px-6">Submit</Button>
           <DrawerClose asChild>
-            <Button variant="destructive">Cancel</Button>
+            <Button variant="outline" >Cancel</Button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>
