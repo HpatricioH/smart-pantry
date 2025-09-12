@@ -8,6 +8,20 @@
       "when": 1756436855388,
       "tag": "0000_shocking_demogoblin",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1757651873472,
+      "tag": "0001_jittery_korg",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1757651989301,
+      "tag": "0002_glossy_valkyrie",
+      "breakpoints": true
     }
   ]
 }
