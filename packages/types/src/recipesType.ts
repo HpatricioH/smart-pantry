@@ -16,3 +16,7 @@ export const createRecipesSchema = z.object({
   difficulty: z.enum(["Easy", "Medium", "Hard"]),
   calories: z.number(),
 })
+
+export const getRecipeByIngredientsSchema = z.object({
+  ingredients: z.array(z.string()),
+})
