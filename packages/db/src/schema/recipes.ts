@@ -3,6 +3,7 @@ import {
   text, 
   integer,
 } from 'drizzle-orm/sqlite-core'
+import { relations } from "drizzle-orm";
 
 
 export const recipes = createTable('recipes', {
@@ -34,13 +35,28 @@ export const recipeInstructions = createTable('recipe_instructions', {
   order: integer("order").default(0)
 })
 
-export const tags = createTable("tags", {
-  id: text("id").primaryKey(),
-  slug: text("slug").notNull(),
-  label: text("label").notNull(),
-})
-
 export const recipeTags = createTable("recipe_tags", {
   recipeId: text("recipe_id").notNull(),
   tagId: text("tag_id").notNull(),
 })
+
+// Relations
+export const recipesRelations = relations(recipes, ({ many }) => ({
+  ingredients: many(recipeIngredients),
+  instructions: many(recipeInstructions),
+  recipeTags: many(recipeTags),
+}));
+
+export const recipeIngredientsRelations = relations(recipeIngredients, ({ one }) => ({
+  recipe: one(recipes, {
+    fields: [recipeIngredients.recipeId],
+    references: [recipes.id],
+  }),
+}));
+
+export const recipeInstructionsRelations = relations(recipeInstructions, ({ one }) => ({
+  recipe: one(recipes, {
+    fields: [recipeInstructions.recipeId],
+    references: [recipes.id],
+  }),
+}));
