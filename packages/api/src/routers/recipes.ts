@@ -3,7 +3,7 @@ import {
   createTRPCRouter,
   protectedProcedure,
 } from "../trpc"
-import { createRecipesSchema, getRecipeByIngredientsSchema } from "@smart-pantry/types";
+import { createRecipesSchema, getRecipeByIngredientsSchema } from "../../../types/src/recipesType";
 import {  recipeIngredients, recipes, recipeInstructions } from "../../../db/src/schema/recipes";
 
 export const recipesRouter = createTRPCRouter({
