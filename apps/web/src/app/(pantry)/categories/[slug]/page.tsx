@@ -11,7 +11,7 @@ export default async function Page({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const decodedParam = decodeURIComponent(slug);
+  const decodedParam = decodeURIComponent(slug)
 
   return (
     <main className="min-h-screen p-4 pb-32 gap-16 sm:p-20 sm:pb-32">
