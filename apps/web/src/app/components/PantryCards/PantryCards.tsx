@@ -9,8 +9,8 @@ import { NoPantryItems } from "../NoPantryItems/NoPantryItems";
 type PantryItem = {
   id: string | number;
   name: string;
-  image: string;
-  quantity: number;
+  image: string | null;
+  quantity: number | null;
 };
 
 interface PantryCardsProps {
@@ -31,10 +31,11 @@ export function PantryCards({ pantryItems }: PantryCardsProps) {
               key={item.id}
               className="flex flex-col justify-start items-start p-4 shadow-md rounded-lg bg-ring/5 "
             >
-              {item.quantity < 2 && <Badge variant="destructive" className="self-end">Low</Badge>}
+              {item?.quantity !== null && item?.quantity < 2 && <Badge variant="destructive" className="self-end">Low</Badge>}
               <div className="w-28 h-28 relative rounded-md self-center">
+                {/* TODO: add placeholder image */}
                 <Image
-                  src={item.image}
+                  src={item.image ?? "/placeholder.png"}
                   alt={`${item.name} image`}
                   fill
                   className="object-contain"
