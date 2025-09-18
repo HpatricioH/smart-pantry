@@ -1,13 +1,11 @@
-'use client'
-
 import React, { Suspense } from 'react'
 import { PantryCards } from '../PantryCards/PantryCards'
-import { usePantryData } from '../../lib/hooks/usePantryData'
 import { SkeletonPantry } from '../SkeletonCards/SkeletonPantry'
+import { api } from "apps/web/src/trpc/server"
 
-export function PantryCardsContainer({ slug }: { slug: string }) {
-  const { data: pantry } = usePantryData()
-  const categorizedItems = pantry?.filter((item) => item.category.toLowerCase() === slug)
+
+export async function PantryCardsContainer({ slug }: { slug: string }) {
+  const categorizedItems = await api.pantry.getPantryItemByCategory({ category: slug })
 
   return (
     <>

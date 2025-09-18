@@ -1,13 +1,10 @@
-'use client'
-
-import Image from "next/image";
-import { usePantryData } from "../../lib/hooks/usePantryData";
 import { PantryCards } from "../PantryCards/PantryCards";
+import { api } from "apps/web/src/trpc/server";
 
-export function LowMissingItemCards() {
-  const { data: pantry } = usePantryData()
+export async function LowMissingItemCards() {
+  const pantry = await api.pantry.getAllPantryItems()
 
-  const lowItems = pantry?.filter((item) => item.quantity <= 1)
+  const lowItems = pantry?.filter((item) => item.quantity != null && item.quantity <= 1)
   const lowStockItemsToShow = lowItems?.slice(0, 2)
 
   return (

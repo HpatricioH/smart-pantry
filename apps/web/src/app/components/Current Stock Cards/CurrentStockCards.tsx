@@ -1,12 +1,10 @@
-'use client'
-
 import { Suspense } from "react";
-import { usePantryData } from "../../lib/hooks/usePantryData";
 import { PantryCards } from "../PantryCards/PantryCards";
 import { SkeletonPantry } from "../SkeletonCards/SkeletonPantry";
+import { api } from "apps/web/src/trpc/server";
 
-export function CurrentStockCards() {
-  const { data: pantry } = usePantryData()
+export async function CurrentStockCards() {
+  const pantry = await api.pantry.getAllPantryItems()
   const currentStockItems = pantry?.slice(0, 2)
 
   return (
