@@ -38,7 +38,9 @@ export const pantryRouter = createTRPCRouter({
 
   // Get all pantry items
   getAllPantryItems: protectedProcedure.query(async ({ ctx }) => {
-    const getPantryItems = await ctx.db.query.pantry.findMany();
+    const getPantryItems = await ctx.db.query.pantry.findMany({
+      where: eq(pantry.userId, ctx.userId as string)
+    });
 
     return getPantryItems ?? null
   }),
@@ -48,7 +50,10 @@ export const pantryRouter = createTRPCRouter({
     .input(GetPantryItemSchema)
     .query(async ({ ctx, input}) => {
       return ctx.db.query.pantry.findMany({
-        where: eq(pantry.category, input.category)
+        where: and(
+          eq(pantry.category, input.category),
+          eq(pantry.userId, ctx.userId as string)
+        )
       })
     }),
 
