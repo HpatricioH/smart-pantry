@@ -14,8 +14,6 @@ import {
 } from "../../../types/src/pantryItemType"
 
 
-
-
 export const pantryRouter = createTRPCRouter({
   // Test endpoint (public)
   hello: publicProcedure
