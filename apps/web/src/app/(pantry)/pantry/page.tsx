@@ -1,5 +1,4 @@
 import { Hero } from "apps/web/src/sections/Hero";
-import { TestTRPC } from "../../components/TestTRPC";
 import { CurrentStock } from "apps/web/src/sections/CurrentStock";
 import { LowMissingItems } from "apps/web/src/sections/LowMissingItems";
 
