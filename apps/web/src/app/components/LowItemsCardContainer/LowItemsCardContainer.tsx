@@ -1,15 +1,12 @@
-'use client'
-
 import { Suspense } from "react";
 import { PantryCards } from "../PantryCards/PantryCards";
-import { usePantryData } from "../../lib/hooks/usePantryData";
 import { SkeletonPantry } from "../SkeletonCards/SkeletonPantry";
+import { api } from "apps/web/src/trpc/server"
 
+export async function LowItemsCardContainer({ query }: { query: string }) {
+  const pantry = await api.pantry.getAllPantryItems()
 
-export function LowItemsCardContainer() {
-  const { data: pantry } = usePantryData()
-
-  const lowItems = pantry?.filter((item) => item.quantity <= 1)
+  const lowItems = pantry?.filter((item) => item.quantity != null && item.quantity <= 1)
 
   return (
     <>
