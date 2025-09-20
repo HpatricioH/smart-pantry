@@ -7,6 +7,8 @@ import { api } from "apps/web/src/trpc/server"
 export async function PantryCardsContainer({ slug }: { slug: string }) {
   const categorizedItems = await api.pantry.getPantryItemByCategory({ category: slug })
 
+  console.log("slug", slug)
+
   return (
     <>
       <Suspense fallback={

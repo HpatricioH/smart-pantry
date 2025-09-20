@@ -6,7 +6,13 @@ import { api } from "apps/web/src/trpc/server"
 export async function LowItemsCardContainer({ query }: { query: string }) {
   const pantry = await api.pantry.getAllPantryItems()
 
+  // Filter low items 
   const lowItems = pantry?.filter((item) => item.quantity != null && item.quantity <= 1)
+
+  // Filter for search bar 
+  const filteredLowItems = lowItems?.filter((item) => {
+    return item.name.toLowerCase().includes((query ?? "").toLocaleLowerCase())
+  })
 
   return (
     <>
@@ -16,7 +22,7 @@ export async function LowItemsCardContainer({ query }: { query: string }) {
           <SkeletonPantry />
         </div>
       }>
-        <PantryCards pantryItems={lowItems ?? []} />
+        <PantryCards pantryItems={filteredLowItems ?? []} />
       </Suspense>
     </>
   )
