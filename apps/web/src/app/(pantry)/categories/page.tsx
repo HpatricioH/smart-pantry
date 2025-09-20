@@ -1,14 +1,14 @@
 import { CategoriesCards } from '../../components/CategoriesCards/CategoriesCards';
 import { SearchContainer } from '../../components/SearchBar/SearchContainer';
 
-export default function Home({
+export default async function Home({
   searchParams,
 }: {
-  searchParams?: {
-    query?: string;
-  }
+  searchParams: Promise<{
+    query: string;
+  }>
 }) {
-  const query = searchParams?.query ?? ''
+  const { query } = await searchParams
 
   return (
     <main className="min-h-screen p-4 pb-32 gap-16 sm:p-20 sm:pb-32">

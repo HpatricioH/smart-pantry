@@ -2,12 +2,16 @@ import Image from "next/image"
 import Link from "next/link"
 import { api } from "apps/web/src/trpc/server"
 
-export async function CategoriesCards() {
+export async function CategoriesCards({ query }: { query: string }) {
   const categoriesData = await api.categories.getAllCategories()
+
+  const filteredCategories = categoriesData?.filter((category) => {
+    return category.name.toLowerCase().includes((query ?? "").toLowerCase())
+  })
 
   return (
     <article className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {categoriesData?.map(item => {
+      {filteredCategories?.map(item => {
         return (
           <Link
             key={item.id}
