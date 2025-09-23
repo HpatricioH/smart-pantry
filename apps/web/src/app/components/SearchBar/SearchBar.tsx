@@ -41,7 +41,21 @@ export function SearchBar({ pathname }: SearchProps) {
     replacePath.replace(`${pathname}?${params.toString()}`)
   }, 300)
 
-  const handleClick = () => resetField("search")
+  const handleClick = () => {
+    const params = new URLSearchParams(searchParams)
+
+    if (params.get('query') !== null) {
+      // delete params
+      params.delete('query')
+
+      // replace url 
+      replacePath.replace(`${pathname}?${params.toString()}`)
+
+      // reset field 
+      resetField("search")
+    }
+
+  }
 
   return (
     <search className="relative group">
