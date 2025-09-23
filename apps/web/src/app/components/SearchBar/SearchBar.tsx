@@ -54,7 +54,6 @@ export function SearchBar({ pathname }: SearchProps) {
       // reset field 
       resetField("search")
     }
-
   }
 
   return (

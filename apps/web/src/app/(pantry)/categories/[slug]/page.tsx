@@ -7,11 +7,16 @@ import { SearchContainer } from "../../../components/SearchBar/SearchContainer";
 
 export default async function Page({
   params,
+  searchParams,
 }: {
-  params: Promise<{ slug: string }>
+  params: Promise<{ slug: string }>,
+  searchParams: Promise<{
+    query: string;
+  }>
 }) {
   const { slug } = await params
   const decodedParam = decodeURIComponent(slug)
+  const { query } = await searchParams
 
   return (
     <main className="min-h-screen p-4 pb-32 gap-16 sm:p-20 sm:pb-32">
@@ -28,7 +33,7 @@ export default async function Page({
             Add via Camera
           </Link>
         </div>
-        <PantryCardsContainer slug={decodedParam} />
+        <PantryCardsContainer slug={decodedParam} query={query} />
       </div>
     </main>
   )
