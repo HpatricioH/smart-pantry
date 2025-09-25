@@ -29,9 +29,11 @@ export function PantryCards({ pantryItems }: PantryCardsProps) {
           return (
             <div
               key={item.id}
-              className="flex flex-col justify-start items-start p-4 shadow-md rounded-lg bg-ring/5 "
+              className="flex flex-col justify-start items-start p-4 shadow-md rounded-lg bg-ring/5 relative"
             >
+              {/* Low badge */}
               {item?.quantity !== null && item?.quantity < 2 && <Badge variant="destructive" className="self-end">Low</Badge>}
+
               <div className="w-28 h-28 relative rounded-md self-center">
                 {/* TODO: add placeholder image */}
                 <Image
@@ -41,10 +43,17 @@ export function PantryCards({ pantryItems }: PantryCardsProps) {
                   className="object-contain"
                 />
               </div>
+
+              {/* Quantity Badge */}
+              {item?.quantity !== null && item?.quantity >= 2 &&
+                <div className="flex justify-center items-center rounded-full text-text-primary bg-text-secondary/15 absolute size-7 right-3 font-bold">
+                  <p>{item.quantity}</p>
+                </div>}
+
+              {/* Footer */}
               <div className="flex justify-between items-end w-full">
                 <div className="flex flex-col">
                   <h3 className="text-md font-semibold place-content-start">{item.name}</h3>
-                  <p className="font-bold text-lg mt-1">{item.quantity}</p>
                 </div>
                 <div className="bg-chart-2 rounded-full p-2 [&_svg]:cursor-pointer [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0">
                   <Plus className="stroke-white" />
