@@ -1,7 +1,6 @@
 'use client'
 
 import { ArrowLeft } from 'lucide-react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 export function HeaderPantry() {
@@ -17,12 +16,11 @@ export function HeaderPantry() {
         >
           <ArrowLeft />
         </button>
-        <Link
-          href="/"
+        <div
           className='flex-1 text-center'
         >
           Smart Pantry
-        </Link>
+        </div>
       </nav>
     </header>
   )
