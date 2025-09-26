@@ -5,7 +5,13 @@ import { api } from "apps/web/src/trpc/server";
 
 export async function CurrentStockCards() {
   const pantry = await api.pantry.getAllPantryItems()
-  const currentStockItems = pantry?.slice(0, 2)
+
+  const filterLowItemsOut = pantry?.filter((item) => item.quantity != null && item.quantity > 1)
+
+  const currentStockItems = filterLowItemsOut
+    ?.slice()
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 2)
 
   return (
     <>
