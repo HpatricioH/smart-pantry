@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Badge } from "../../lib/utils/badge";
 import { Plus } from 'lucide-react';
 import { NoPantryItems } from "../NoPantryItems/NoPantryItems";
+import { DrawerAddItem } from "../DrawerAddItem/DrawerAddItem";
 
 
 type PantryItem = {
@@ -46,7 +47,7 @@ export function PantryCards({ pantryItems }: PantryCardsProps) {
 
               {/* Quantity Badge */}
               {item?.quantity !== null && item?.quantity >= 2 &&
-                <div className="flex justify-center items-center rounded-full text-text-primary bg-text-secondary/15 absolute size-7 right-3 font-bold">
+                <div className="flex justify-center items-center rounded-full text-text-primary bg-text-secondary/15 absolute size-7 right-4 font-bold">
                   <p>{item.quantity}</p>
                 </div>}
 
@@ -55,9 +56,7 @@ export function PantryCards({ pantryItems }: PantryCardsProps) {
                 <div className="flex flex-col">
                   <h3 className="text-md font-semibold place-content-start">{item.name}</h3>
                 </div>
-                <div className="bg-chart-2 rounded-full p-2 [&_svg]:cursor-pointer [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0">
-                  <Plus className="stroke-white" />
-                </div>
+                <DrawerAddItem pantryCards={true} />
               </div>
             </div>
           )

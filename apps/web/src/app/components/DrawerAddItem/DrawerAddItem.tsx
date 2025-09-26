@@ -5,26 +5,33 @@ import { Plus } from 'lucide-react';
 import { Input } from '../../lib/utils/input';
 
 interface DrawerAddItemProps {
-  footer?: boolean
+  footer?: boolean,
+  pantryCards?: boolean
 }
 
-export function DrawerAddItem({ footer }: DrawerAddItemProps) {
+export function DrawerAddItem({ footer, pantryCards }: DrawerAddItemProps) {
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        {!footer
+        {!footer && !pantryCards
           ?
           <Button variant="default" className="flex-1">
             <Plus />
             Add Item
           </Button>
           :
-          <button className='flex flex-col items-center cursor-pointer' type='button'>
-            <div className='size-11 flex items-center justify-center rounded-[35%] bg-chart-2 text-white mb-1'>
-              <Plus className='stroke-3' />
+          !footer && pantryCards
+            ?
+            <div className="bg-chart-2 rounded-full p-2 [&_svg]:cursor-pointer [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0">
+              <Plus className="stroke-white" />
             </div>
-            <p className='capitalize'>Add</p>
-          </button>
+            :
+            <button className='flex flex-col items-center cursor-pointer' type='button'>
+              <div className='size-11 flex items-center justify-center rounded-[35%] bg-chart-2 text-white mb-1'>
+                <Plus className='stroke-3' />
+              </div>
+              <p className='capitalize'>Add</p>
+            </button>
         }
       </DrawerTrigger>
       <DrawerContent>
