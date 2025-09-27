@@ -7,9 +7,19 @@ import { Input } from '../../lib/utils/input';
 interface DrawerAddItemProps {
   footer?: boolean,
   pantryCards?: boolean
+  id?: string | number,
+  name?: string,
+  category?: string | null
 }
 
-export function DrawerAddItem({ footer, pantryCards }: DrawerAddItemProps) {
+export function DrawerAddItem({
+  footer,
+  pantryCards,
+  id,
+  name,
+  category
+}: DrawerAddItemProps) {
+
   return (
     <Drawer>
       <DrawerTrigger asChild>
@@ -42,9 +52,9 @@ export function DrawerAddItem({ footer, pantryCards }: DrawerAddItemProps) {
           </DrawerHeader>
           <div className="p-4 pb-0">
             <form className="flex flex-col items-center justify-center gap-3">
-              <Input id='itemName' name='itemName' placeholder='Name' />
-              <Input id='category' name='category' placeholder='Category' />
-              <Input id='barcode' name='barcode' placeholder='Barcode e.g.,05536990345' />
+              <Input id='itemName' name='itemName' placeholder='Name' defaultValue={name ?? ""} />
+              <Input id='category' name='category' placeholder='Category' defaultValue={category ?? ""} />
+              <Input id='barcode' name='barcode' placeholder='Barcode e.g.,05536990345' defaultValue={id ?? ""} />
             </form>
           </div>
         </div>
