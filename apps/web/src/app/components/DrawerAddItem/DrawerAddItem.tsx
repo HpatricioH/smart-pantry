@@ -50,20 +50,21 @@ export function DrawerAddItem({
             <DrawerTitle className='text-2xl font-bold text-gray-900'>Add Item</DrawerTitle>
             <DrawerDescription>Enter the required information to add your item manually.</DrawerDescription>
           </DrawerHeader>
-          <div className="p-4 pb-0">
-            <form className="flex flex-col items-center justify-center gap-3">
+          <form>
+            <div className="flex flex-col items-center justify-center gap-3 p-6 pb-0">
               <Input id='itemName' name='itemName' placeholder='Name' defaultValue={name ?? ""} />
               <Input id='category' name='category' placeholder='Category' defaultValue={category ?? ""} />
               <Input id='barcode' name='barcode' placeholder='Barcode e.g.,05536990345' defaultValue={id ?? ""} />
-            </form>
-          </div>
+            </div>
+
+            <DrawerFooter>
+              <Button className="bg-text-primary hover:bg-text-primary/80 text-white px-6">Submit</Button>
+              <DrawerClose asChild>
+                <Button variant="outline" >Cancel</Button>
+              </DrawerClose>
+            </DrawerFooter>
+          </form>
         </div>
-        <DrawerFooter>
-          <Button className="bg-text-primary hover:bg-text-primary/80 text-white px-6">Submit</Button>
-          <DrawerClose asChild>
-            <Button variant="outline" >Cancel</Button>
-          </DrawerClose>
-        </DrawerFooter>
       </DrawerContent>
     </Drawer>
   )
