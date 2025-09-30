@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { Badge } from "../../lib/utils/badge";
 import { Plus } from 'lucide-react';
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { NoPantryItems } from "../NoPantryItems/NoPantryItems";
 import { DrawerAddItem } from "../DrawerAddItem/DrawerAddItem";
 
@@ -48,7 +50,7 @@ export function PantryCards({ pantryItems }: PantryCardsProps) {
 
               {/* Quantity Badge */}
               {item?.quantity !== null && item?.quantity >= 2 &&
-                <div className="flex justify-center items-center rounded-full text-text-primary bg-text-secondary/15 absolute size-7 right-4 font-bold z-50">
+                <div className="flex justify-center items-center rounded-full text-text-primary bg-[#e5e6e8] absolute size-7 right-4 font-bold z-50">
                   <p>{item.quantity}</p>
                 </div>}
 
@@ -57,7 +59,13 @@ export function PantryCards({ pantryItems }: PantryCardsProps) {
                 <div className="flex flex-col">
                   <h3 className="text-md font-semibold place-content-start">{item.name}</h3>
                 </div>
-                <DrawerAddItem pantryCards={true} name={item.name} category={item.category} id={item.id} />
+                <DrawerAddItem
+                  pantryCards={true}
+                  name={item.name}
+                  category={item.category}
+                  id={item.id}
+                  quantity={item.quantity}
+                />
               </div>
             </div>
           )

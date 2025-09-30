@@ -1,7 +1,10 @@
-import React from 'react'
+'use client'
+
+import { useState } from 'react'
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from '../../lib/utils/drawer'
 import { Button } from '../../lib/utils/button'
 import { Plus } from 'lucide-react';
+import { Minus } from 'lucide-react';
 import { Input } from '../../lib/utils/input';
 
 interface DrawerAddItemProps {
@@ -10,6 +13,7 @@ interface DrawerAddItemProps {
   id?: string | number,
   name?: string,
   category?: string | null
+  quantity?: number | null
 }
 
 export function DrawerAddItem({
@@ -17,8 +21,25 @@ export function DrawerAddItem({
   pantryCards,
   id,
   name,
-  category
+  category,
+  quantity,
 }: DrawerAddItemProps) {
+  const [value, setValue] = useState<number>(quantity ?? 0);
+
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
+    const newValue = Number(event.target.value);
+    if (!Number.isNaN(newValue) && newValue >= 0) {
+      setValue(newValue);
+    }
+  }
+
+  const handleIncrease = () => {
+    setValue((prevValue: number) => prevValue + 1)
+  }
+
+  const handleDecrease = () => {
+    setValue((prevValue: number) => prevValue - 1)
+  }
 
   return (
     <Drawer>
@@ -51,10 +72,27 @@ export function DrawerAddItem({
             <DrawerDescription>Enter the required information to add your item manually.</DrawerDescription>
           </DrawerHeader>
           <form>
-            <div className="flex flex-col items-center justify-center gap-3 p-6 pb-0">
+            <div className="flex flex-col items-center justify-center gap-3 p-6">
               <Input id='itemName' name='itemName' placeholder='Name' defaultValue={name ?? ""} />
               <Input id='category' name='category' placeholder='Category' defaultValue={category ?? ""} />
               <Input id='barcode' name='barcode' placeholder='Barcode e.g.,05536990345' defaultValue={id ?? ""} />
+            </div>
+
+            <div className="flex items-center justify-center border rounded-md bg-muted w-1/3 place-self-center h-9">
+              <Minus
+                className="border-r-2 stroke-text-primary flex-1 cursor-pointer"
+                onClick={handleDecrease}
+              />
+              <input
+                type="number"
+                value={value}
+                onChange={handleChange}
+                className="w-12 text-center bg-transparent outline-none"
+              />
+              <Plus
+                className="border-l-2 stroke-text-primary flex-1 cursor-pointer"
+                onClick={handleIncrease}
+              />
             </div>
 
             <DrawerFooter>
