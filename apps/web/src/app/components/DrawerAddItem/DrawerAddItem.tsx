@@ -1,7 +1,10 @@
 'use client'
 
 import { useState } from 'react'
+import { z } from "zod";
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from '../../lib/utils/drawer'
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 import { Button } from '../../lib/utils/button'
 import { Plus } from 'lucide-react';
 import { Minus } from 'lucide-react';
@@ -16,6 +19,15 @@ interface DrawerAddItemProps {
   quantity?: number | null
 }
 
+const formSchema = z.object({
+  name: z.string().min(2, "Please enter at least two characters"),
+  category: z.string().min(2, "Please enter at least two characters"),
+  id: z.string(),
+  quantity: z.string().min(1, "Please enter a quantity"),
+});
+
+type FormData = z.infer<typeof formSchema>;
+
 export function DrawerAddItem({
   footer,
   pantryCards,
@@ -25,6 +37,15 @@ export function DrawerAddItem({
   quantity,
 }: DrawerAddItemProps) {
   const [value, setValue] = useState<number>(quantity ?? 0);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(formSchema)
+  })
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
     const newValue = Number(event.target.value);
@@ -39,6 +60,10 @@ export function DrawerAddItem({
 
   const handleDecrease = () => {
     setValue((prevValue: number) => prevValue - 1)
+  }
+
+  const onSubmit = async (data: FormData) => {
+    console.log(data)
   }
 
   return (
@@ -71,11 +96,31 @@ export function DrawerAddItem({
             <DrawerTitle className='text-2xl font-bold text-gray-900'>Add Item</DrawerTitle>
             <DrawerDescription>Enter the required information to add your item manually.</DrawerDescription>
           </DrawerHeader>
-          <form>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <div className="flex flex-col items-center justify-center gap-3 p-6">
-              <Input id='itemName' name='itemName' placeholder='Name' defaultValue={name ?? ""} />
-              <Input id='category' name='category' placeholder='Category' defaultValue={category ?? ""} />
-              <Input id='barcode' name='barcode' placeholder='Barcode e.g.,05536990345' defaultValue={id ?? ""} />
+              <Input
+                {...register("name")}
+                id='name'
+                name='name'
+                placeholder='Name'
+                defaultValue={name ?? ""}
+              />
+              <Input
+                {...register("category")}
+                id='category'
+                name='category'
+                placeholder='Category'
+                defaultValue={category ?? ""}
+              />
+              <Input
+                {...register("id")}
+                id='barcode'
+                name='barcode'
+                placeholder='Barcode e.g.,05536990345'
+                defaultValue={id ?? ""}
+              />
             </div>
 
             <div className="flex items-center justify-center border rounded-md bg-muted w-1/3 place-self-center h-9">
@@ -84,6 +129,7 @@ export function DrawerAddItem({
                 onClick={handleDecrease}
               />
               <input
+                {...register("quantity")}
                 type="number"
                 value={value}
                 onChange={handleChange}
