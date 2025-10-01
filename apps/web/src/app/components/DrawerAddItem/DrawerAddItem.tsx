@@ -36,31 +36,26 @@ export function DrawerAddItem({
   category,
   quantity,
 }: DrawerAddItemProps) {
-  const [value, setValue] = useState<number>(quantity ?? 0);
 
   const {
     register,
     handleSubmit,
     reset,
+    setValue,
+    watch,
     formState: { errors },
   } = useForm({
-    resolver: zodResolver(formSchema)
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: name ?? "",
+      category: category ?? "",
+      id: String(id ?? ""),
+      quantity: String(quantity ?? 0)
+    }
   })
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
-    const newValue = Number(event.target.value);
-    if (!Number.isNaN(newValue) && newValue >= 0) {
-      setValue(newValue);
-    }
-  }
+  const qty = Number(watch("quantity") || quantity)
 
-  const handleIncrease = () => {
-    setValue((prevValue: number) => prevValue + 1)
-  }
-
-  const handleDecrease = () => {
-    setValue((prevValue: number) => prevValue - 1)
-  }
 
   const onSubmit = async (data: FormData) => {
     console.log(data)
@@ -105,39 +100,33 @@ export function DrawerAddItem({
                 id='name'
                 name='name'
                 placeholder='Name'
-                defaultValue={name ?? ""}
               />
               <Input
                 {...register("category")}
                 id='category'
                 name='category'
                 placeholder='Category'
-                defaultValue={category ?? ""}
               />
               <Input
                 {...register("id")}
                 id='barcode'
                 name='barcode'
                 placeholder='Barcode e.g.,05536990345'
-                defaultValue={id ?? ""}
               />
             </div>
 
             <div className="flex items-center justify-center border rounded-md bg-muted w-1/3 place-self-center h-9">
               <Minus
                 className="border-r-2 stroke-text-primary flex-1 cursor-pointer"
-                onClick={handleDecrease}
+                onClick={() => setValue("quantity", String(Math.max(0, qty - 1)))}
               />
-              <input
+              <Input
                 {...register("quantity")}
-                type="number"
-                value={value}
-                onChange={handleChange}
                 className="w-12 text-center bg-transparent outline-none"
               />
               <Plus
                 className="border-l-2 stroke-text-primary flex-1 cursor-pointer"
-                onClick={handleIncrease}
+                onClick={() => setValue("quantity", String(qty + 1))}
               />
             </div>
 
