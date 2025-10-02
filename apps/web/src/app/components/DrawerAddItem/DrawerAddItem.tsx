@@ -22,7 +22,7 @@ interface DrawerAddItemProps {
 const formSchema = z.object({
   name: z.string().min(2, "Please enter at least two characters"),
   category: z.string().min(2, "Please enter at least two characters"),
-  id: z.string(),
+  id: z.string().min(5, "Barcode too short").max(20, "Barcode too long"),
   quantity: z.string().min(1, "Please enter a quantity"),
 });
 
@@ -100,19 +100,30 @@ export function DrawerAddItem({
                 id='name'
                 name='name'
                 placeholder='Name'
+                aria-invalid={!!errors.name}
               />
+              {errors.name && (
+                <p className="text-sm text-destructive ">{errors.name.message}</p>
+              )}
               <Input
                 {...register("category")}
                 id='category'
                 name='category'
                 placeholder='Category'
+                aria-invalid={!!errors.category}
               />
+              {errors.category && (
+                <p className="text-sm text-destructive ">{errors.category.message}</p>
+              )}
               <Input
                 {...register("id")}
                 id='barcode'
-                name='barcode'
                 placeholder='Barcode e.g.,05536990345'
+                aria-invalid={!!errors.id}
               />
+              {errors.id && (
+                <p className="text-sm text-destructive ">{errors.id.message}</p>
+              )}
             </div>
 
             <div className="flex items-center justify-center border rounded-md bg-muted w-1/3 place-self-center h-9">
@@ -123,6 +134,7 @@ export function DrawerAddItem({
               <Input
                 {...register("quantity")}
                 className="w-12 text-center bg-transparent outline-none"
+                aria-invalid={!!errors.quantity}
               />
               <Plus
                 className="border-l-2 stroke-text-primary flex-1 cursor-pointer"
