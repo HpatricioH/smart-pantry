@@ -1,14 +1,15 @@
 'use client'
 
-import { useState } from 'react'
 import { z } from "zod";
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from '../../lib/utils/drawer'
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '../../lib/utils/select'
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from '../../lib/utils/button'
 import { Plus } from 'lucide-react';
 import { Minus } from 'lucide-react';
 import { Input } from '../../lib/utils/input';
+import { api } from "../../../trpc/react"
 
 interface DrawerAddItemProps {
   footer?: boolean,
@@ -21,7 +22,7 @@ interface DrawerAddItemProps {
 
 const formSchema = z.object({
   name: z.string().min(2, "Please enter at least two characters"),
-  category: z.string().min(2, "Please enter at least two characters"),
+  category: z.string().min(2, "Please select one category"),
   id: z.string().min(5, "Barcode too short").max(20, "Barcode too long"),
   quantity: z.string().min(1, "Please enter a quantity"),
 });
@@ -36,6 +37,10 @@ export function DrawerAddItem({
   category,
   quantity,
 }: DrawerAddItemProps) {
+  const listOfCategories = api.categories.getAllCategories.useQuery()
+  const categoriesName = listOfCategories.data?.filter((category) => {
+    return category.name
+  })
 
   const {
     register,
@@ -105,16 +110,35 @@ export function DrawerAddItem({
               {errors.name && (
                 <p className="text-sm text-destructive ">{errors.name.message}</p>
               )}
-              <Input
-                {...register("category")}
-                id='category'
-                name='category'
-                placeholder='Category'
-                aria-invalid={!!errors.category}
-              />
+
+              <Select
+                value={watch("category")}
+                onValueChange={(val) => setValue("category", val)}
+              >
+                <SelectTrigger className="w-full" aria-invalid={!!errors.category}>
+                  <SelectValue placeholder="Select a category" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel>Categories</SelectLabel>
+                    {categoriesName?.map((ctg) => {
+                      return (
+                        <SelectItem
+                          value={ctg.name.toLowerCase()}
+                          key={ctg.id}
+                        >
+                          {ctg.name}
+                        </SelectItem>
+                      )
+                    })
+                    }
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
               {errors.category && (
                 <p className="text-sm text-destructive ">{errors.category.message}</p>
               )}
+
               <Input
                 {...register("id")}
                 id='barcode'
