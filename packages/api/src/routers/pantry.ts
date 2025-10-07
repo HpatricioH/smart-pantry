@@ -63,11 +63,11 @@ export const pantryRouter = createTRPCRouter({
       return ctx.db.update(pantry)
         .set({
           ...input,
+          userId: ctx.userId as string,
         })
         .where(
           and(
             eq(pantry.id, input.id),
-            eq(pantry.userId, ctx.userId as string)
           )
         );
     }),

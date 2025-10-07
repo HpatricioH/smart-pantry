@@ -15,8 +15,9 @@ export const GetPantryItemSchema = z.object({
 
 
 export const updatePantryItemSchema = z.object({
+  name: z.string(),
+  category: z.string(),
   id: z.string(),
-  userId: z.string(),
   quantity: z.number(),
 })
 
