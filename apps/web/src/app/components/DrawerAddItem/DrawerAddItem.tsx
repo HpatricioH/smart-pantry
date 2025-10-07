@@ -8,8 +8,12 @@ import { useForm } from "react-hook-form";
 import { Button } from '../../lib/utils/button'
 import { Plus } from 'lucide-react';
 import { Minus } from 'lucide-react';
+import { Loader2 } from "lucide-react";
 import { Input } from '../../lib/utils/input';
 import { api } from "../../../trpc/react"
+import { useState } from "react";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 interface DrawerAddItemProps {
   footer?: boolean,
@@ -23,8 +27,8 @@ interface DrawerAddItemProps {
 const formSchema = z.object({
   name: z.string().min(2, "Please enter at least two characters"),
   category: z.string().min(2, "Please select one category"),
-  id: z.string().min(5, "Barcode too short").max(20, "Barcode too long"),
-  quantity: z.string().min(1, "Please enter a quantity"),
+  id: z.string().min(1, "Barcode too short").max(20, "Barcode too long"),
+  quantity: z.number().min(1, "Please enter a quantity"),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -37,10 +41,13 @@ export function DrawerAddItem({
   category,
   quantity,
 }: DrawerAddItemProps) {
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
   const listOfCategories = api.categories.getAllCategories.useQuery()
   const categoriesName = listOfCategories.data?.filter((category) => {
     return category.name
   })
+  const saveMoreItems = api.pantry.updatePantryItem.useMutation()
 
   const {
     register,
@@ -55,7 +62,7 @@ export function DrawerAddItem({
       name: name ?? "",
       category: category ?? "",
       id: String(id ?? ""),
-      quantity: String(quantity ?? 0)
+      quantity: Number(quantity ?? 0)
     }
   })
 
@@ -63,7 +70,24 @@ export function DrawerAddItem({
 
 
   const onSubmit = async (data: FormData) => {
-    console.log(data)
+    setLoading(true)
+
+    saveMoreItems.mutate(data, {
+      onSuccess: () => {
+        toast.success("Pantry item saved successfully!");
+        setLoading(false)
+        reset();
+        router.refresh();
+        // TODO: close modal window 
+      },
+      onError: (ops) => {
+        const errorMessage = ops.message.toString()
+        toast.error(
+          `Unable to save pantry item. Please try again. ${errorMessage}`
+        )
+        setLoading(false)
+      }
+    })
   }
 
   return (
@@ -153,21 +177,26 @@ export function DrawerAddItem({
             <div className="flex items-center justify-center border rounded-md bg-muted w-1/3 place-self-center h-9">
               <Minus
                 className="border-r-2 stroke-text-primary flex-1 cursor-pointer"
-                onClick={() => setValue("quantity", String(Math.max(0, qty - 1)))}
+                onClick={() => setValue("quantity", Number(Math.max(0, qty - 1)))}
               />
               <Input
-                {...register("quantity")}
+                {...register("quantity", { valueAsNumber: true })}
                 className="w-12 text-center bg-transparent outline-none"
                 aria-invalid={!!errors.quantity}
               />
               <Plus
                 className="border-l-2 stroke-text-primary flex-1 cursor-pointer"
-                onClick={() => setValue("quantity", String(qty + 1))}
+                onClick={() => setValue("quantity", Number(qty + 1))}
               />
             </div>
 
             <DrawerFooter>
-              <Button className="bg-text-primary hover:bg-text-primary/80 text-white px-6">Submit</Button>
+              <Button
+                className="bg-text-primary hover:bg-text-primary/80 text-white px-6"
+                disabled={loading}
+              >
+                {loading ? <Loader2 className="animate-spin" /> : "Submit"}
+              </Button>
               <DrawerClose asChild>
                 <Button variant="outline" >Cancel</Button>
               </DrawerClose>
