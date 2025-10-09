@@ -2,11 +2,9 @@
 
 import Image from "next/image";
 import { Badge } from "../../lib/utils/badge";
-import { Plus } from 'lucide-react';
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
 import { NoPantryItems } from "../NoPantryItems/NoPantryItems";
 import { DrawerAddItem } from "../DrawerAddItem/DrawerAddItem";
+import { useParams, usePathname } from "next/navigation";
 
 
 type PantryItem = {

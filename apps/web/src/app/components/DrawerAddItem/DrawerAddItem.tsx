@@ -5,6 +5,7 @@ import { Button } from '../../lib/utils/button'
 import { Plus } from 'lucide-react';
 import DrawerAddItemForm from './DrawerAddItemForm';
 import { useState } from 'react';
+import { useParams } from 'next/navigation';
 interface DrawerAddItemProps {
   footer?: boolean,
   pantryCards?: boolean
@@ -23,7 +24,8 @@ export function DrawerAddItem({
   quantity,
 }: DrawerAddItemProps) {
   const [open, setOpen] = useState(false);
-
+  const pathName = useParams()
+  const decodedParam = decodeURIComponent(pathName.slug as string ?? "")
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
@@ -62,7 +64,7 @@ export function DrawerAddItem({
           <DrawerAddItemForm
             id={id ?? ""}
             name={name ?? ""}
-            category={category ?? ""}
+            category={category ?? decodedParam}
             quantity={quantity ?? 1}
             onClose={() => setOpen(false)}
           />
