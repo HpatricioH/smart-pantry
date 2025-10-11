@@ -87,6 +87,7 @@ export default function DrawerAddItemForm({
   // Watch quantity field for real-time updates in +/- controls
   // Safely handle quantity with proper number conversion and fallbacks
   const watchedQuantity = watch("quantity");
+
   const qty = typeof watchedQuantity === 'number' && !Number.isNaN(watchedQuantity)
     ? watchedQuantity
     : typeof quantity === 'number' && !Number.isNaN(quantity)

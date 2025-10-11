@@ -2,15 +2,26 @@
 
 import { Camera } from 'lucide-react';
 import { CameraView } from "../../../components/CameraView/CameraView";
-import { BarcodeScanner } from '../../../components/BarcodeScanner/BarcodeScanner';
-import { useIsScanning } from "apps/web/src/store/isScanning";
+import BarcodeScanner from '../../../components/BarcodeScanner/BarcodeScanner';
+import { useIsScanning } from "../../../../store/isScanning";
+import { useRouter } from 'next/navigation';
+import { toast } from "sonner";
 
 export default function PageCamera() {
   const { isScanning, setIsScanning } = useIsScanning()
+  const router = useRouter();
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     setIsScanning(true)
+  }
+
+  const handleBarcodeDetected = (barcode: string) => {
+    console.log("📱 Barcode detected in camera page:", barcode);
+    toast.success(`Barcode detected: ${barcode}`);
+
+    // Navigate to add item page with barcode
+    // router.push(`/add-item?barcode=${encodeURIComponent(barcode)}`);
   }
 
   return (
@@ -20,18 +31,33 @@ export default function PageCamera() {
       </div>
 
       <div className="flex-1 px-2 flex flex-col">
-        {!isScanning ? <CameraView /> : <BarcodeScanner />}
+        {!isScanning ? <CameraView /> : <BarcodeScanner onDetected={handleBarcodeDetected} />}
       </div>
 
       <div className='flex flex-col justify-center items-center p-4 pb-32 gap-4'>
-        <p className="text-center">Tap the button to initiate the camera and start scanning. Align the product barcode within the frame to add the item.</p>
-        <button
-          type="button"
-          className='flex justify-center items-center bg-chart-2 rounded-full size-16 p-2'
-          onClick={(e) => handleClick(e)}
-        >
-          <Camera className='size-16 stroke-chart-2 fill-white' />
-        </button>
+        <p className="text-center">
+          {!isScanning
+            ? "Tap the button to initiate the camera and start scanning. Align the product barcode within the frame to add the item."
+            : "Point your camera at a barcode. Tap stop to cancel scanning."
+          }
+        </p>
+        {!isScanning ? (
+          <button
+            type="button"
+            className='flex justify-center items-center bg-chart-2 rounded-full size-16 p-2'
+            onClick={(e) => handleClick(e)}
+          >
+            <Camera className='size-16 stroke-chart-2 fill-white' />
+          </button>
+        ) : (
+          <button
+            type="button"
+            className='flex justify-center items-center bg-red-500 rounded-full size-16 p-2'
+            onClick={() => setIsScanning(false)}
+          >
+            <span className='text-white font-bold'>Stop</span>
+          </button>
+        )}
       </div>
 
     </main>
