@@ -16,11 +16,14 @@ export default function BarcodeScanner({ onDetected }: BarcodeScannerProps) {
   const scanAttemptsRef = useRef<number>(0);
   const { setIsScanning } = useIsScanning();
   const [error, setError] = useState<string | null>(null);
+  const [isInitialized, setIsInitialized] = useState(false);
+  const [scanningStatus, setScanningStatus] = useState<string>("Initializing camera...");
 
   // TODO: move this to a custom hook
   useEffect(() => {
     const startScanner = async () => {
       try {
+        setScanningStatus("Requesting camera access...");
         // Request camera permissions first with optimized settings for barcode scanning
         console.log("📷 Requesting camera with HD resolution for better barcode detection...");
         await navigator.mediaDevices.getUserMedia({
@@ -31,6 +34,7 @@ export default function BarcodeScanner({ onDetected }: BarcodeScannerProps) {
           }
         });
 
+        setScanningStatus("Initializing barcode reader...");
         const codeReader = new BrowserMultiFormatReader();
         codeReaderRef.current = codeReader;
 
@@ -48,6 +52,7 @@ export default function BarcodeScanner({ onDetected }: BarcodeScannerProps) {
         const deviceId = backCamera?.deviceId || devices[0]?.deviceId;
 
         if (deviceId && videoRef.current) {
+          setScanningStatus("Starting barcode scanner...");
           const controls = await codeReader.decodeFromVideoDevice(
             deviceId,
             videoRef.current,
@@ -64,10 +69,13 @@ export default function BarcodeScanner({ onDetected }: BarcodeScannerProps) {
           );
 
           controlsRef.current = controls;
+          setIsInitialized(true);
+          setScanningStatus("Ready to scan - Point camera at barcode");
           console.log("📡 Scanner started successfully");
         }
       } catch (err) {
         console.error("Camera initialization error:", err);
+        setIsInitialized(false);
         if (err instanceof Error) {
           if (err.name === 'NotAllowedError') {
             setError("Camera access denied. Please allow camera permissions and refresh.");
@@ -81,6 +89,7 @@ export default function BarcodeScanner({ onDetected }: BarcodeScannerProps) {
         } else {
           setError("Camera access failed. Please check permissions.");
         }
+        setScanningStatus("Camera initialization failed");
       }
     };
 
@@ -101,13 +110,27 @@ export default function BarcodeScanner({ onDetected }: BarcodeScannerProps) {
   return (
     <div className="w-full h-[30rem] mx-auto-md mx-auto relative">
       {error && <p className="text-red-500 mb-2">{error}</p>}
-      <video
-        ref={videoRef}
-        className="h-full w-full rounded-md object-cover"
-        autoPlay
-        muted
-        playsInline
-      />
+      
+      <div className="relative h-full w-full">
+        <video
+          ref={videoRef}
+          className="h-full w-full rounded-md object-cover"
+          autoPlay
+          muted
+          playsInline
+        />
+        
+        {/* Loading overlay */}
+        {!isInitialized && !error && (
+          <div className="absolute inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center">
+            <div className="text-white text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
+              <div className="text-lg font-semibold mb-2">Initializing Camera</div>
+              <div className="text-sm opacity-75">{scanningStatus}</div>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
