@@ -3,7 +3,6 @@ import { useIsScanning } from "../../../store/isScanning";
 import { BrowserMultiFormatReader, type IScannerControls } from "@zxing/browser";
 
 
-
 export const useCamera = ({ onDetected }: { onDetected: (result: string) => void }) => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const codeReaderRef = useRef<BrowserMultiFormatReader | null>(null);
@@ -102,5 +101,6 @@ export const useCamera = ({ onDetected }: { onDetected: (result: string) => void
         };
       }, [onDetected, setIsScanning]);
 
-    return 
+
+    return { error, isInitialized, scanningStatus, videoRef }
 };
