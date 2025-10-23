@@ -56,6 +56,7 @@ export const useCamera = ({ onDetected }: { onDetected: (result: string) => void
                     console.log("❌ Scan error:", error.name, error.message);
                   }
                   if (result) {
+                    console.log("🎉 Barcode detected:", result.getText()); 
                     onDetected?.(result.getText());
                     controls.stop();
                     setIsScanning(false);
