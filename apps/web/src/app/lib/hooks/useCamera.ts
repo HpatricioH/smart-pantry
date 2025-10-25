@@ -16,6 +16,7 @@ export const useCamera = ({ onDetected }: { onDetected: (result: string) => void
 
 
     useEffect(() => {
+        let id: string | null = null;
         const startScanner = async () => {
           try {
             setScanningStatus("Requesting camera access...");
@@ -57,13 +58,13 @@ export const useCamera = ({ onDetected }: { onDetected: (result: string) => void
                   }
                   if (result) {
                     console.log("🎉 Barcode detected:", result.getText()); 
-                    onDetected?.(result.getText());
+                    onDetected?.(result.getText());;
                     controls.stop();
                     setIsScanning(false);
                   }
                 }
               );
-    
+              
               controlsRef.current = controls;
               setIsInitialized(true);
               setScanningStatus("Ready to scan - Point camera at barcode");
