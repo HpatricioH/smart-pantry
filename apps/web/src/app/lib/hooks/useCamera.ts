@@ -21,7 +21,6 @@ export const useCamera = ({ onDetected }: { onDetected: (result: string) => void
           try {
             setScanningStatus("Requesting camera access...");
             // Request camera permissions first with optimized settings for barcode scanning
-            console.log("📷 Requesting camera with HD resolution for better barcode detection...");
             await navigator.mediaDevices.getUserMedia({
               video: {
                 facingMode: 'environment',
@@ -57,7 +56,6 @@ export const useCamera = ({ onDetected }: { onDetected: (result: string) => void
                     console.log("❌ Scan error:", error.name, error.message);
                   }
                   if (result) {
-                    console.log("🎉 Barcode detected:", result.getText()); 
                     onDetected?.(result.getText());;
                     controls.stop();
                     setIsScanning(false);
@@ -68,10 +66,9 @@ export const useCamera = ({ onDetected }: { onDetected: (result: string) => void
               controlsRef.current = controls;
               setIsInitialized(true);
               setScanningStatus("Ready to scan - Point camera at barcode");
-              console.log("📡 Scanner started successfully");
             }
           } catch (err) {
-            console.error("Camera initialization error:", err);
+
             setIsInitialized(false);
             if (err instanceof Error) {
               if (err.name === 'NotAllowedError') {

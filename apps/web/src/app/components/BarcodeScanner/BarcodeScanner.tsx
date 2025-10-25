@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import { useCamera } from "../../lib/hooks/useCamera";
 
 interface BarcodeScannerProps {
