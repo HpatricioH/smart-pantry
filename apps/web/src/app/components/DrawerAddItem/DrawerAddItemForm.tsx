@@ -96,23 +96,38 @@ export default function DrawerAddItemForm({
 
   const onSubmit = async (data: FormData) => {
     setLoading(true)
+    const barcode = data.id
 
-    saveMoreItems.mutate(data, {
-      onSuccess: () => {
-        toast.success("Pantry item saved successfully!");
-        setLoading(false)
-        reset(); // Clear form for potential reuse
-        router.refresh(); // Refresh page to show updated data
-        onClose() // Close drawer to return to main view
-      },
-      onError: (ops) => {
-        const errorMessage = ops.message.toString()
-        toast.error(
-          `Unable to save pantry item. Please try again. ${errorMessage}`
-        )
-        setLoading(false)
-      }
-    })
+    const queryFoodAPI = await fetch(`https://world.openfoodfacts.org/api/v0/product/${barcode}.json`)
+    const productDetails = await queryFoodAPI.json()
+
+
+    // Check if product exist in the open food facts API 
+    if (productDetails.status === 0) {
+      toast.error(`Product not found with barcode ${data.id} entered`)
+      setLoading(false)
+      onClose() // Close drawer to return to main view
+    } else {
+      const { image_thumb_url } = productDetails.product
+      const productData = { ...data, image: image_thumb_url }
+
+      saveMoreItems.mutate(productData, {
+        onSuccess: () => {
+          toast.success("Pantry item saved successfully!");
+          setLoading(false)
+          reset(); // Clear form for potential reuse
+          router.refresh(); // Refresh page to show updated data
+          onClose() // Close drawer to return to main view
+        },
+        onError: (ops) => {
+          const errorMessage = ops.message.toString()
+          toast.error(
+            `Unable to save pantry item. Please try again. ${errorMessage}`
+          )
+          setLoading(false)
+        }
+      })
+    }
   }
 
   return (
