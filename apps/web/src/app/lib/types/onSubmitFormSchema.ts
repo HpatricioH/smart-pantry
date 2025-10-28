@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 export const formSchema = z.object({
   name: z.string().min(2, "Please enter at least two characters"),
   category: z.string().min(2, "Please select one category"),

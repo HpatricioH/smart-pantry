@@ -17,7 +17,6 @@
  */
 "use client"
 
-import { z } from "zod";
 import { DrawerClose, DrawerFooter } from '../../lib/utils/drawer'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '../../lib/utils/select'
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -31,8 +30,8 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Button } from '../../lib/utils/button'
 import { Plus } from 'lucide-react';
-import type { FormData } from "../../lib/types/onSubmitFormSchema";
 import { formSchema } from "../../lib/types/onSubmitFormSchema";
+import { onSubmit } from "../../lib/utils/onSubmit";
 
 interface DrawerAddItemFormProps {
   id: string | number,
@@ -41,8 +40,6 @@ interface DrawerAddItemFormProps {
   quantity: number | null
   onClose: () => void
 }
-
-
 
 export default function DrawerAddItemForm({
   id,
@@ -89,44 +86,8 @@ export default function DrawerAddItemForm({
       ? quantity
       : 1;
 
-  const onSubmit = async (data: FormData) => {
-    setLoading(true)
-    const barcode = data.id
-
-    const queryFoodAPI = await fetch(`https://world.openfoodfacts.org/api/v0/product/${barcode}.json`)
-    const productDetails = await queryFoodAPI.json()
-
-
-    // Check if product exist in the open food facts API 
-    if (productDetails.status === 0) {
-      toast.error(`Product not found with barcode ${data.id} entered. Try Again!`)
-      setLoading(false)
-      onClose() // Close drawer to return to main view
-    } else {
-      const { image_thumb_url } = productDetails.product
-      const productData = { ...data, image: image_thumb_url }
-
-      saveMoreItems.mutate(productData, {
-        onSuccess: () => {
-          toast.success("Pantry item saved successfully!");
-          setLoading(false)
-          reset(); // Clear form for potential reuse
-          router.refresh(); // Refresh page to show updated data
-          onClose() // Close drawer to return to main view
-        },
-        onError: (ops) => {
-          const errorMessage = ops.message.toString()
-          toast.error(
-            `Unable to save pantry item. Please try again. ${errorMessage}`
-          )
-          setLoading(false)
-        }
-      })
-    }
-  }
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit((data) => onSubmit(data, { setLoading, toast, onClose, reset, router, saveMoreItems }))}>
       <div className="flex flex-col items-center justify-center gap-3 p-6">
         <Input
           {...register("name")}
