@@ -31,6 +31,8 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { Button } from '../../lib/utils/button'
 import { Plus } from 'lucide-react';
+import type { FormData } from "../../lib/types/onSubmitFormSchema";
+import { formSchema } from "../../lib/types/onSubmitFormSchema";
 
 interface DrawerAddItemFormProps {
   id: string | number,
@@ -40,14 +42,7 @@ interface DrawerAddItemFormProps {
   onClose: () => void
 }
 
-const formSchema = z.object({
-  name: z.string().min(2, "Please enter at least two characters"),
-  category: z.string().min(2, "Please select one category"),
-  id: z.string().min(1, "Barcode too short").max(20, "Barcode too long"),
-  quantity: z.number().min(1, "Please enter a quantity"),
-});
 
-type FormData = z.infer<typeof formSchema>;
 
 export default function DrawerAddItemForm({
   id,
@@ -104,7 +99,7 @@ export default function DrawerAddItemForm({
 
     // Check if product exist in the open food facts API 
     if (productDetails.status === 0) {
-      toast.error(`Product not found with barcode ${data.id} entered`)
+      toast.error(`Product not found with barcode ${data.id} entered. Try Again!`)
       setLoading(false)
       onClose() // Close drawer to return to main view
     } else {
