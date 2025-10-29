@@ -6,19 +6,50 @@ import BarcodeScanner from '../../../components/BarcodeScanner/BarcodeScanner';
 import { useIsScanning } from "../../../../store/isScanning";
 import { useRouter } from 'next/navigation';
 import { toast } from "sonner";
+import { api } from '../../../../trpc/react';
 
 export default function PageCamera() {
   const { isScanning, setIsScanning } = useIsScanning()
   const router = useRouter();
+  const foodApiUrl = process.env.NEXT_PUBLIC_FOOD_API_URL
+  const createProduct = api.pantry.createItemPantry.useMutation()
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     setIsScanning(true)
   }
 
-  const handleBarcodeDetected = (barcode: string) => {
-    console.log("📱 Barcode detected in camera page:", barcode);
-    toast.success(`Barcode detected: ${barcode}`);
+  const handleBarcodeDetected = async (barcode: string) => {
+    const queryFoodAPI = await fetch(`${foodApiUrl}/${barcode}.json`)
+    const data = await queryFoodAPI.json()
+    console.log(data)
+
+    if (data.status === 0) {
+      toast.error(`Product not found with ${barcode} barcode detected. Please try again!`)
+    } else {
+      const { image_thumb_url, id, product_name, quantity, product_quantity_unit } = data.product
+      const productData = {
+        id: String(id),
+        name: String(product_name ?? ''),
+        quantity: Number(quantity) || 0,
+        unit: String(product_quantity_unit ?? ''),
+        image: String(image_thumb_url ?? ''),
+        category: ''
+      }
+
+      createProduct.mutate(productData, {
+        onSuccess: () => {
+          toast.success('Product added to pantry')
+          router.back()
+        },
+        onError: (ops: { message: { toString: () => string } }) => {
+          const errorMessage = ops.message.toString()
+          toast.error(
+            `Unable to save pantry item. Please try again. ${errorMessage}`
+          )
+        }
+      })
+    }
 
     // Navigate to add item page with barcode
     // router.push(`/add-item?barcode=${encodeURIComponent(barcode)}`);
