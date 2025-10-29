@@ -16,7 +16,7 @@ export const useCamera = ({ onDetected }: { onDetected: (result: string) => void
 
 
     useEffect(() => {
-        let id: string | null = null;
+        const id: string | null = null;
         const startScanner = async () => {
           try {
             setScanningStatus("Requesting camera access...");
