@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { toast } from "sonner";
 import { api } from '../../../../trpc/react';
 import { useSearchParams } from 'next/navigation';
+import { ErrorMessage } from '../../../../../../../packages/config/src/index'
 
 export default function PageCamera() {
   const { isScanning, setIsScanning } = useIsScanning()
@@ -33,14 +34,13 @@ export default function PageCamera() {
       const productData = {
         id: String(id),
         name: String(product_name ?? ''),
-        quantity: Number(quantity) || 0,
+        quantity: Number(quantity.slice(0, 2)) || 0,
         unit: String(product_quantity_unit ?? ''),
         image: String(image_thumb_url ?? ''),
         category: String(category)
       }
-
-      console.log("Product Data = ", productData)
-
+      // TODO: fix updating when we are using a camera 
+      // TODO: fix error handling
       createProduct.mutate(productData, {
         onSuccess: () => {
           toast.success('Product added to pantry')
@@ -49,14 +49,11 @@ export default function PageCamera() {
         onError: (ops: { message: { toString: () => string } }) => {
           const errorMessage = ops.message.toString()
           toast.error(
-            `Unable to save pantry item. Please try again. ${errorMessage}`
+            `${ErrorMessage.ITEM_NOT_FOUND}. ${errorMessage}`
           )
         }
       })
     }
-
-    // Navigate to add item page with barcode
-    // router.push(`/add-item?barcode=${encodeURIComponent(barcode)}`);
   }
 
   return (
