@@ -7,10 +7,13 @@ import { useIsScanning } from "../../../../store/isScanning";
 import { useRouter } from 'next/navigation';
 import { toast } from "sonner";
 import { api } from '../../../../trpc/react';
+import { useSearchParams } from 'next/navigation';
 
 export default function PageCamera() {
   const { isScanning, setIsScanning } = useIsScanning()
   const router = useRouter();
+  const searchParams = useSearchParams()
+  const category = searchParams.get('category')
   const foodApiUrl = process.env.NEXT_PUBLIC_FOOD_API_URL
   const createProduct = api.pantry.createItemPantry.useMutation()
 
@@ -22,7 +25,6 @@ export default function PageCamera() {
   const handleBarcodeDetected = async (barcode: string) => {
     const queryFoodAPI = await fetch(`${foodApiUrl}/${barcode}.json`)
     const data = await queryFoodAPI.json()
-    console.log(data)
 
     if (data.status === 0) {
       toast.error(`Product not found with ${barcode} barcode detected. Please try again!`)
@@ -34,8 +36,10 @@ export default function PageCamera() {
         quantity: Number(quantity) || 0,
         unit: String(product_quantity_unit ?? ''),
         image: String(image_thumb_url ?? ''),
-        category: ''
+        category: String(category)
       }
+
+      console.log("Product Data = ", productData)
 
       createProduct.mutate(productData, {
         onSuccess: () => {
