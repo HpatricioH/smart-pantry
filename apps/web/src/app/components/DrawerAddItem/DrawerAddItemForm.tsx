@@ -57,7 +57,7 @@ export default function DrawerAddItemForm({
   })
 
   // tRPC mutation for updating pantry items (handles both new and existing items)
-  const saveMoreItems = api.pantry.updatePantryItem.useMutation()
+  const saveMoreItems = api.pantry.upsertPantryItem.useMutation()
 
   const {
     register,

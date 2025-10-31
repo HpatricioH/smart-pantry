@@ -16,7 +16,7 @@ export default function PageCamera() {
   const searchParams = useSearchParams()
   const category = searchParams.get('category')
   const foodApiUrl = process.env.NEXT_PUBLIC_FOOD_API_URL
-  const createProduct = api.pantry.createItemPantry.useMutation()
+  const createProduct = api.pantry.upsertPantryItem.useMutation()
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
@@ -39,7 +39,6 @@ export default function PageCamera() {
         image: String(image_thumb_url ?? ''),
         category: String(category)
       }
-      // TODO: fix updating when we are using a camera 
       // TODO: fix error handling
       createProduct.mutate(productData, {
         onSuccess: () => {

@@ -15,12 +15,22 @@ export const GetPantryItemSchema = z.object({
 
 
 export const updatePantryItemSchema = z.object({
-  name: z.string(),
-  category: z.string(),
   id: z.string(),
+  name: z.string(),
   quantity: z.number(),
+  category: z.string(),
 })
 
 export const deletePantryItemSchema = z.object({
   id: z.string
 })
+
+
+export const upsertPantryItemSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  quantity: z.number(),
+  category: z.string(),
+  unit: z.string().optional(),
+  image: z.string().optional()
+});

@@ -10,7 +10,8 @@ import {
   createItemPantryType, 
   deletePantryItemSchema, 
   updatePantryItemSchema, 
-  GetPantryItemSchema 
+  GetPantryItemSchema, 
+  upsertPantryItemSchema
 } from "../../../types/src/pantryItemType"
 
 
@@ -70,6 +71,31 @@ export const pantryRouter = createTRPCRouter({
             eq(pantry.id, input.id),
           )
         );
+    }),
+
+  // Create and Update pantry item 
+  upsertPantryItem: protectedProcedure  
+    .input(upsertPantryItemSchema)
+    .mutation(async ({ctx, input}) => {
+      const {name, ...data} = input;
+
+      const existingItem = await ctx.db.query.pantry.findFirst({
+        where: (p, { eq, and }) => and(eq(p.userId, ctx.userId as string), eq(p.name, name))
+      })
+
+      if(existingItem) {
+        return ctx.db.update(pantry)
+          .set({
+            ...data, 
+            quantity: (existingItem.quantity ?? 0) + (input.quantity ?? 1)
+          })
+          .where(eq(pantry.id, existingItem.id))
+      }
+
+      return ctx.db.insert(pantry).values({
+        ...input,
+        userId: ctx.userId as string
+      })
     }),
 
 
