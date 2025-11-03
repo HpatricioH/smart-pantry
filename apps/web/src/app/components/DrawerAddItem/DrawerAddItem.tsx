@@ -43,7 +43,7 @@ export function DrawerAddItem({
               <Plus className="stroke-white" />
             </div>
             :
-            <button className='flex flex-col items-center cursor-pointer' type='button'>
+            <button className='flex flex-col items-center cursor-pointer hover:text-chart-2' type='button'>
               <div className='size-11 flex items-center justify-center rounded-[35%] bg-chart-2 text-white mb-1'>
                 <Plus className='stroke-3' />
               </div>

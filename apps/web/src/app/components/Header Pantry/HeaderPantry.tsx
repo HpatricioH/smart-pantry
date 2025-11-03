@@ -13,8 +13,9 @@ export function HeaderPantry() {
         <button
           onClick={() => router.back()}
           type='button'
+          className='cursor-pointer'
         >
-          <ArrowLeft />
+          <ArrowLeft className='hover:stroke-chart-2' />
         </button>
         <div
           className='flex-1 text-center'

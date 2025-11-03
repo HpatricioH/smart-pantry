@@ -14,7 +14,7 @@ export function Footer() {
               <Link
                 key={item.id}
                 href={item.link}
-                className='flex flex-col items-center'
+                className='flex flex-col items-center hover:text-chart-2'
               >
                 <div className={`size-11 flex items-center justify-center ${item.bgColor} rounded-[35%] text-white mb-1`}>
                   <Icon className='stroke-3' />
