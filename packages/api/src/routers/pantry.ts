@@ -87,7 +87,7 @@ export const pantryRouter = createTRPCRouter({
         return ctx.db.update(pantry)
           .set({
             ...data, 
-            quantity: (existingItem.quantity ?? 0) + (input.quantity ?? 1)
+            // quantity: input.quantity ?? 0 < (existingItem.quantity ?? 0) ? (existingItem.quantity ?? 0) - (input.quantity ?? 1) : (existingItem.quantity ?? 0) + (input.quantity ?? 1)
           })
           .where(eq(pantry.id, existingItem.id))
       }
