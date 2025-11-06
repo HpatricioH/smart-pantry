@@ -51,10 +51,15 @@ export default function DrawerAddItemForm({
 ) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const listOfCategories = api.categories.getAllCategories.useQuery()
-  const categoriesName = listOfCategories.data?.filter((category) => {
-    return category.name
+  const listOfCategories = api.categories.getAllCategories.useQuery(undefined, {
+    staleTime: 1000 * 60 * 10, // 10 min 
+    refetchOnWindowFocus: false
   })
+  const categoriesName = Array.isArray(listOfCategories.data)
+    ? listOfCategories.data.filter((category) => {
+      return category ?? category.name
+    })
+    : []
 
   // tRPC mutation for updating pantry items (handles both new and existing items)
   const saveMoreItems = api.pantry.upsertPantryItem.useMutation()

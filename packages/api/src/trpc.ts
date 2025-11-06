@@ -2,6 +2,7 @@ import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson"
 import { ZodError } from "zod"
 import { db } from "@smart-pantry/db";
+import { cache } from "./cache";
 
 /**
  * 1. CONTEXT
@@ -24,6 +25,7 @@ export const createTRPCContext = async (opts: { headers: Headers }) => {
 
   return {
     db,
+    cache,
     userId: userId ?? null,
     ...opts,
   };
