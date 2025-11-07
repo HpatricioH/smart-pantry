@@ -11,8 +11,9 @@ type PantryItem = {
   id: string | number;
   name: string;
   image: string | null;
-  quantity: number | null;
-  category: string | null
+  quantity: string | null;
+  category: string | null;
+  unit: number | null;
 };
 
 interface PantryCardsProps {
@@ -34,7 +35,7 @@ export function PantryCards({ pantryItems }: PantryCardsProps) {
               className="flex flex-col justify-start items-start p-4 shadow-md rounded-lg bg-ring/5 relative"
             >
               {/* Low badge */}
-              {item?.quantity !== null && item?.quantity < 2 && <Badge variant="destructive" className="self-end">Low</Badge>}
+              {item?.unit !== null && item?.unit < 2 && <Badge variant="destructive" className="self-end">Low</Badge>}
 
               <div className="w-28 h-28 relative rounded-md self-center z-10">
                 {/* TODO: add placeholder image */}
@@ -47,9 +48,9 @@ export function PantryCards({ pantryItems }: PantryCardsProps) {
               </div>
 
               {/* Quantity Badge */}
-              {item?.quantity !== null && item?.quantity >= 2 &&
+              {item?.unit !== null && item?.unit >= 2 &&
                 <div className="flex justify-center items-center rounded-full text-text-primary bg-[#e5e6e8] absolute size-7 right-4 font-bold z-50">
-                  <p>{item.quantity}</p>
+                  <p>{item.unit}</p>
                 </div>}
 
               {/* Footer */}

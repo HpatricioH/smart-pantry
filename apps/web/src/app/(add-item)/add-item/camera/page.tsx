@@ -34,8 +34,8 @@ export default function PageCamera() {
       const productData = {
         id: String(id),
         name: String(product_name ?? ''),
-        quantity: Number(quantity.slice(0, 2)) || 0,
-        unit: String(product_quantity_unit ?? ''),
+        quantity: String(quantity) || "0",
+        unit: Number(1),
         image: String(image_thumb_url ?? ''),
         category: String(category)
       }
