@@ -3,8 +3,8 @@ import {z} from "zod"
 export const createItemPantryType = z.object({
   id: z.string(),
   name: z.string(),
-  quantity: z.number(),
-  unit: z.string(),
+  quantity: z.string(),
+  unit: z.number().int().min(1).default(1),
   image: z.string(),
   category: z.string(),
 })
@@ -17,7 +17,7 @@ export const GetPantryItemSchema = z.object({
 export const updatePantryItemSchema = z.object({
   id: z.string(),
   name: z.string(),
-  quantity: z.number(),
+  quantity: z.string(),
   category: z.string(),
 })
 
@@ -29,8 +29,8 @@ export const deletePantryItemSchema = z.object({
 export const upsertPantryItemSchema = z.object({
   id: z.string(),
   name: z.string(),
-  quantity: z.number(),
+  quantity: z.string(),
   category: z.string(),
-  unit: z.string().optional(),
+  unit: z.number().int().min(1).default(1),
   image: z.string().optional()
 });
