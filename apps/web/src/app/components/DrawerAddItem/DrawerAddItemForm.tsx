@@ -36,8 +36,9 @@ import { onSubmit } from "../../lib/utils/onSubmit";
 interface DrawerAddItemFormProps {
   id: string | number,
   name: string,
-  category: string | null
-  quantity: number | null
+  category: string | null,
+  quantity: string | null,
+  unit: number | null | undefined,
   onClose: () => void
 }
 
@@ -47,12 +48,13 @@ export default function DrawerAddItemForm({
   category,
   quantity,
   onClose,
+  unit
 }: DrawerAddItemFormProps
 ) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const listOfCategories = api.categories.getAllCategories.useQuery(undefined, {
-    staleTime: 1000 * 60 * 10, // 10 min 
+    staleTime: 1000 * 60 * 120,
     refetchOnWindowFocus: false
   })
   const categoriesName = Array.isArray(listOfCategories.data)
@@ -76,19 +78,20 @@ export default function DrawerAddItemForm({
     defaultValues: {
       name: name ?? "",
       category: category ?? "",
+      unit: typeof unit === 'number' ? unit : 1, // Safe number conversion with fallback
       id: String(id ?? ""),
-      quantity: typeof quantity === 'number' ? quantity : 1 // Safe number conversion with fallback
+      quantity: quantity ?? "" //TODO: remove quantity from here and previous components. 
     }
   })
 
   // Watch quantity field for real-time updates in +/- controls
   // Safely handle quantity with proper number conversion and fallbacks
-  const watchedQuantity = watch("quantity");
+  const watchedQuantity = watch("unit");
 
   const qty = typeof watchedQuantity === 'number' && !Number.isNaN(watchedQuantity)
     ? watchedQuantity
-    : typeof quantity === 'number' && !Number.isNaN(quantity)
-      ? quantity
+    : typeof unit === 'number' && !Number.isNaN(unit)
+      ? unit
       : 1;
 
   return (
@@ -155,16 +158,16 @@ export default function DrawerAddItemForm({
       <div className="flex items-center justify-center border rounded-md bg-muted w-1/3 place-self-center h-9">
         <Minus
           className="border-r-2 stroke-text-primary flex-1 cursor-pointer"
-          onClick={() => setValue("quantity", Number(Math.max(0, qty - 1)))} // Prevent negative quantities
+          onClick={() => setValue("unit", Number(Math.max(0, qty - 1)))} // Prevent negative quantities
         />
         <Input
-          {...register("quantity", { valueAsNumber: true })}
+          {...register("unit", { valueAsNumber: true })}
           className="w-12 text-center bg-transparent outline-none"
-          aria-invalid={!!errors.quantity}
+          aria-invalid={!!errors.unit}
         />
         <Plus
           className="border-l-2 stroke-text-primary flex-1 cursor-pointer"
-          onClick={() => setValue("quantity", Number(qty + 1))} // Increment quantity by 1
+          onClick={() => setValue("unit", Number(qty + 1))} // Increment quantity by 1
         />
       </div>
 

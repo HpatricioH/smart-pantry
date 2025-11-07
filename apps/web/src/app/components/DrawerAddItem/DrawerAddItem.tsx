@@ -11,8 +11,9 @@ interface DrawerAddItemProps {
   pantryCards?: boolean
   id?: string | number,
   name?: string,
-  category?: string | null
-  quantity?: number | null
+  category?: string | null,
+  quantity?: string | null,
+  unit?: number | null
 }
 
 export function DrawerAddItem({
@@ -22,6 +23,7 @@ export function DrawerAddItem({
   name,
   category,
   quantity,
+  unit
 }: DrawerAddItemProps) {
   const [open, setOpen] = useState(false);
   const pathName = useParams()
@@ -65,7 +67,8 @@ export function DrawerAddItem({
             id={id ?? ""}
             name={name ?? ""}
             category={category ?? decodedParam}
-            quantity={quantity ?? 1}
+            quantity={quantity ?? ''}
+            unit={unit}
             onClose={() => setOpen(false)}
           />
         </div>

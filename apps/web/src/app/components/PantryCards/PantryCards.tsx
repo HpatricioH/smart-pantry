@@ -62,6 +62,7 @@ export function PantryCards({ pantryItems }: PantryCardsProps) {
                   pantryCards={true}
                   name={item.name}
                   category={item.category}
+                  unit={item.unit}
                   id={item.id}
                   quantity={item.quantity}
                 />
