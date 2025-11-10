@@ -35,7 +35,10 @@ export function PantryCards({ pantryItems }: PantryCardsProps) {
               className="flex flex-col justify-start items-start p-4 shadow-md rounded-lg bg-ring/5 relative"
             >
               {/* Low badge */}
-              {item?.unit !== null && item?.unit < 2 && <Badge variant="destructive" className="self-end">Low</Badge>}
+              {item?.unit !== null && item?.unit < 2 &&
+                <Badge variant="destructive" className="self-end">
+                  {item?.unit === 0 ? "Buy" : item?.unit < 2 ? "Low" : null}
+                </Badge>}
 
               <div className="w-28 h-28 relative rounded-md self-center z-10">
                 {/* TODO: add placeholder image */}

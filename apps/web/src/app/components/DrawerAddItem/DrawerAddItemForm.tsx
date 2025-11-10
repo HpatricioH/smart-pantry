@@ -78,7 +78,7 @@ export default function DrawerAddItemForm({
     defaultValues: {
       name: name ?? "",
       category: category ?? "",
-      unit: typeof unit === 'number' ? unit : 1, // Safe number conversion with fallback
+      unit: typeof unit === 'number' ? unit : 0, // Safe number conversion with fallback
       id: String(id ?? ""),
       quantity: quantity ?? "" //TODO: remove quantity from here and previous components. 
     }
@@ -155,6 +155,11 @@ export default function DrawerAddItemForm({
       </div>
 
       {/* Interactive Quantity Control Component */}
+      {errors.unit && (
+        <p className="text-sm text-destructive text-center pb-2">
+          {errors.unit.message}
+        </p>
+      )}
       <div className="flex items-center justify-center border rounded-md bg-muted w-1/3 place-self-center h-9">
         <Minus
           className="border-r-2 stroke-text-primary flex-1 cursor-pointer"

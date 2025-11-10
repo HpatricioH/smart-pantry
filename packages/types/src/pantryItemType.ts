@@ -31,6 +31,6 @@ export const upsertPantryItemSchema = z.object({
   name: z.string(),
   quantity: z.string(),
   category: z.string(),
-  unit: z.number().int().min(1).default(1),
+  unit: z.number().int().min(0).default(1),
   image: z.string().optional()
 });
