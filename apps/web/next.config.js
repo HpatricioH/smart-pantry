@@ -16,30 +16,22 @@ const nextConfig = {
   },
 
   // Externalize server-only deps to keep webpack from bundling them server-side
-  serverExternalPackages: [
-    "libsql",
-    "@libsql/client",
-    "@libsql/hrana-client",
-    "@libsql/hrana",
-  ],
+  // serverExternalPackages: [
+  //   "libsql",
+  //   "@libsql/client",
+  //   "@libsql/hrana-client",
+  //   "@libsql/hrana",
+  // ],
 
-  webpack: (config, { isServer }) => {
-    if (isServer) {
-      const externals = Array.isArray(config.externals)
-        ? config.externals
-        : config.externals
-        ? [config.externals]
-        : [];
-      externals.push(/^@libsql\//, /^libsql(\/.*)?$/);
-      config.externals = externals;
-
-      // (Optional) Treat non-code artifacts under @libsql as source to avoid parsing
-      config.module.rules.push({
-        test: /node_modules[\\/](?:@libsql)[\\/].*\.(md|markdown|txt|license|changelog)$/i,
-        type: "asset/source",
-      });
-    }
-    return config;
+  turbopack: {
+    resolveAlias: {}, // placeholder, not needed unless you add aliases
+    // Externalize these packages in Turbopack
+    serverExternalPackages: [
+      "libsql",
+      "@libsql/client",
+      "@libsql/hrana-client",
+      "@libsql/hrana",
+    ],
   },
 };
 
