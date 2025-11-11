@@ -36,7 +36,7 @@ export function PantryCards({ pantryItems }: PantryCardsProps) {
             >
               {/* Low badge */}
               {item?.unit !== null && item?.unit < 2 &&
-                <Badge variant="destructive" className="self-end">
+                <Badge variant={`${item?.unit === 0 ? "destructive" : "secondary"}`} className={"self-end"}>
                   {item?.unit === 0 ? "Buy" : item?.unit < 2 ? "Low" : null}
                 </Badge>}
 
