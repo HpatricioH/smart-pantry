@@ -55,7 +55,8 @@ export default function DrawerAddItemForm({
   const router = useRouter();
   const listOfCategories = api.categories.getAllCategories.useQuery(undefined, {
     staleTime: 1000 * 60 * 120,
-    refetchOnWindowFocus: false
+    refetchOnWindowFocus: false,
+    suspense: true
   })
   const categoriesName = Array.isArray(listOfCategories.data)
     ? listOfCategories.data.filter((category) => {
