@@ -15,23 +15,8 @@ const nextConfig = {
     externalDir: true,
   },
 
-  // Externalize server-only deps to keep webpack from bundling them server-side
-  // serverExternalPackages: [
-  //   "libsql",
-  //   "@libsql/client",
-  //   "@libsql/hrana-client",
-  //   "@libsql/hrana",
-  // ],
-
   turbopack: {
     resolveAlias: {}, // placeholder, not needed unless you add aliases
-    // Externalize these packages in Turbopack
-    serverExternalPackages: [
-      "libsql",
-      "@libsql/client",
-      "@libsql/hrana-client",
-      "@libsql/hrana",
-    ],
   },
 };
 
