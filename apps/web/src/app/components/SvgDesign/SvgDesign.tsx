@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export function SvgDesign() {
   return (
-    <div className="absolute inset-0 pointer-events-none z-0">
+    <div className="absolute inset-0 pointer-events-none">
       {/* Top Left */}
       <div className="absolute -top-45 -left-35 w-80 h-80 -rotate-45 blur-md">
         <Image

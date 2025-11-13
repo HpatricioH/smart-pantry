@@ -14,7 +14,7 @@ export default async function Home() {
     <main className="min-h-screen gap-16">
       <div className="flex flex-col gap-[16px]">
         <LandingHero userId={userId || ""} />
-        <div className="relative">
+        <div className="relative w-full overflow-x-clip">
           <SvgDesign />
         </div>
         <LandingCards />
