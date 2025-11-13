@@ -6,7 +6,7 @@ export function LandingCards() {
   return (
     <section
       className="
-        grid gap-6 p-4 sm:p-10
+        grid gap-6 p-4 relative overflow-hidden sm:p-10
         sm:grid-cols-2 lg:grid-cols-3
         [grid-template-columns:repeat(auto-fit,minmax(16rem,1fr))] z-50
       "
