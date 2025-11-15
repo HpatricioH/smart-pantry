@@ -15,7 +15,7 @@ export async function LandingHero({ userId }: { userId?: string }) {
 
         {/* Content */}
         <div className="relative z-20 px-6 mt-4">
-          <div className="container flex flex-col gap-4 p-4 sm:pt-16">
+          <div className="container flex flex-col place-self-center gap-4 p-4 sm:pt-16 md:w-[40rem]">
             <div className="relative self-center">
               <Image
                 src="https://res.cloudinary.com/dase1w9ff/image/upload/v1763008913/SmartPantry/logo_hero_paocmr.webp"
