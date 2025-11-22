@@ -6,7 +6,7 @@ import Link from 'next/link';
 export function Navbar() {
   return (
     <nav
-      className="flex items-center justify-between p-2 bg-light-bg text-text-secondary w-full"
+      className="relative z-20 mx-auto max-w-6xl flex items-center justify-between p-2 bg-light-bg text-text-secondary w-full"
     >
       <Link
         href="/"
