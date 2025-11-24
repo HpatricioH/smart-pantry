@@ -8,7 +8,7 @@ export async function LowMissingItemCards() {
   const lowStockItemsToShow = lowItems
     ?.slice()
     .sort(() => Math.random() - 0.5)
-    .slice(0, 2)
+    .slice(0, 3)
 
   return (
     <>
