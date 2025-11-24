@@ -56,7 +56,7 @@ export default function PageCamera() {
   }
 
   return (
-    <main className="min-h-screen flex flex-col mt-12">
+    <main className="relative z-20 mx-auto w-full max-w-6xl min-h-screen flex flex-col mt-12">
       <div className="p-4 sm:p-6">
         <h2 className="text-4xl font-bold text-gray-900">Add Via Camera</h2>
       </div>
