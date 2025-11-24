@@ -9,18 +9,18 @@ export function HeaderAddItem() {
   const router = useRouter()
 
   return (
-    <header>
-      <nav className="flex items-center justify-between p-4 bg-light-bg text-text-secondary"
-        style={{ position: 'fixed', top: 0, width: '100%' }}>
+    <header className='relative mx-auto w-full max-w-6xl place-self-center z-40' style={{ position: 'fixed', top: 0 }}>
+      <nav className="flex items-center justify-between p-4 bg-light-bg text-text-secondary backdrop-blur-[6px] transition-transform">
         <button
           onClick={() => router.back()}
           type='button'
+          className='cursor-pointer'
         >
-          <ArrowLeft />
+          <ArrowLeft className='hover:stroke-chart-2' />
         </button>
         <Link
           href="/pantry"
-          className='flex-1 text-end'
+          className='text-end font-bold hover:text-red-800'
         >
           Cancel
         </Link>
