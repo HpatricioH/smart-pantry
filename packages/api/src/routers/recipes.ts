@@ -4,7 +4,7 @@ import {
   protectedProcedure,
 } from "../trpc"
 import { createRecipesSchema, getRecipeByIngredientsSchema } from "../../../types/src/recipesType";
-import {  recipeIngredients, recipes, recipeInstructions } from "../../../db/src/schema/recipes";
+import {  recipeIngredients, recipes, recipeSteps } from "../../../db/src/schema/recipes";
 
 export const recipesRouter = createTRPCRouter({
   // Create recipes 
@@ -56,9 +56,9 @@ export const recipesRouter = createTRPCRouter({
 
       const stepsRows = await ctx.db
         .select()
-        .from(recipeInstructions)
-        .where(inArray(recipeInstructions.recipeId, ids))
-        .orderBy(asc(recipeInstructions.order))
+        .from(recipeSteps)
+        .where(inArray(recipeSteps.recipeId, ids))
+        .orderBy(asc(recipeSteps.order))
 
       
         const byId = new Map(base.map(r => [r.id, { ...r, ingredients: [] as string[], instructions: [] as string[] }]))
