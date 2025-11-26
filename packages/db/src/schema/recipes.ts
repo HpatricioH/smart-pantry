@@ -105,25 +105,3 @@ export const aiRecipeGenerationLogs = createTable("ai_recipe_generation_logs", {
     .notNull()
     .default(sql`(strftime('%s','now'))`),
 })
-
-
-// Relations
-// export const recipesRelations = relations(recipes, ({ many }) => ({
-//   ingredients: many(recipeIngredients),
-//   instructions: many(recipeSteps),
-//   recipeTags: many(recipeTags),
-// }));
-
-// export const recipeIngredientsRelations = relations(recipeIngredients, ({ one }) => ({
-//   recipe: one(recipes, {
-//     fields: [recipeIngredients.recipeId],
-//     references: [recipes.id],
-//   }),
-// }));
-
-// export const recipeInstructionsRelations = relations(recipeSteps, ({ one }) => ({
-//   recipe: one(recipes, {
-//     fields: [recipeSteps.recipeId],
-//     references: [recipes.id],
-//   }),
-// }));
