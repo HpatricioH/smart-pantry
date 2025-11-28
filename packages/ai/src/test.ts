@@ -10,7 +10,7 @@ async function test() {
   const result = await callLLMJson({
     schema,
     systemPrompt: "You only anser valid JSON.",
-    userPrompt: "Return {\"Hello\": \"world\"}"
+    userPrompt: "Return {\"hello\": \"world\"}"
   });
 
   console.log(result)
