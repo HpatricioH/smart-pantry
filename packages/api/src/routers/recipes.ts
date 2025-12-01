@@ -52,7 +52,6 @@ export const recipesRouter = createTRPCRouter({
         .select()
         .from(recipeIngredients)
         .where(inArray(recipeIngredients.recipeId, ids))
-        .orderBy(asc(recipeIngredients.order))
 
       const stepsRows = await ctx.db
         .select()
