@@ -17,6 +17,10 @@ export const createRecipesSchema = z.object({
   calories: z.number(),
 })
 
-export const getRecipeByIngredientsSchema = z.object({
-  ingredients: z.array(z.string()),
-})
+export const generateFromPantrySchema = z.object({
+  maxRecipes: z.number().int().min(1).max(5).optional(),
+  maxTimeMinutes: z.number().int().min(5).max(240).optional(),
+  diet: z.string().nullable().optional(),
+  dislikedIngredients: z.array(z.string()).optional(),
+  servings: z.number().int().min(1).optional(),
+}).optional()

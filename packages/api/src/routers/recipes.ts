@@ -3,8 +3,12 @@ import {
   createTRPCRouter,
   protectedProcedure,
 } from "../trpc"
-import { createRecipesSchema, getRecipeByIngredientsSchema } from "../../../types/src/recipesType";
+import { TRPCError } from "@trpc/server";
+import { createRecipesSchema, generateFromPantrySchema } from "../../../types/src/recipesType";
 import {  recipeIngredients, recipes, recipeSteps } from "../../../db/src/schema/recipes";
+import { pantry } from "@db/schema";
+import type { PantryItemForAI } from "../../../ai/src/recipes/types"
+import { generateRecipesFromPantryAndSave } from "../../../ai/src/recipes/generateRecipesFromPantryAndSave"
 
 export const recipesRouter = createTRPCRouter({
   // Create recipes 
@@ -26,44 +30,55 @@ export const recipesRouter = createTRPCRouter({
   }),
 
   // Get all Recipes based on ingredients
-  getAllRecipesByIngredients: protectedProcedure
-    .input(getRecipeByIngredientsSchema)
-    .query(async ({ctx, input}) => {
+  generateFromPantry: protectedProcedure
+    .input(generateFromPantrySchema)
+    .mutation(async ({ctx, input}) => {
+      const userId = ctx.userId
       
-      // Step 1: recipe ids that match any ingredient in the list 
-      const recipeIds = await ctx.db
-        .selectDistinct({ recipeId: recipeIngredients.recipeId })
-        .from(recipeIngredients)
-        .where(inArray(recipeIngredients.line, input.ingredients))
+      if(!userId) {
+        throw new TRPCError({ code: "UNAUTHORIZED"})
+      }
 
-
-      if (recipeIds.length === 0) return []
-
-      // step 2: fetch the recipe + relations 
-      const ids = recipeIds.map(r => r.recipeId)
-
-
-      const base = await ctx.db
+      // Fetch pantry items for the user
+      const pantryRows = await ctx.db
         .select()
-        .from(recipes)
-        .where(inArray(recipes.id, ids))
+        .from(pantry)
+        .where(eq(pantry.userId, userId))
 
-      const ingredientsRows = await ctx.db 
-        .select()
-        .from(recipeIngredients)
-        .where(inArray(recipeIngredients.recipeId, ids))
+      // Map DB rows into PantryItemTorAI[]
+      const pantrySnapshot: PantryItemForAI[] = pantryRows.map((row) => ({        
+        name: row.name,
+        quantity: Number(row.quantity) ?? null,
+        unit: row.unit?.toString() ?? null, 
+        category: row.category ?? null, 
+      }))
 
-      const stepsRows = await ctx.db
-        .select()
-        .from(recipeSteps)
-        .where(inArray(recipeSteps.recipeId, ids))
-        .orderBy(asc(recipeSteps.order))
+      if (pantrySnapshot.length === 0) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: `No pantry items found for ${ctx.session.user}`
+        })
+      }
 
-      
-        const byId = new Map(base.map(r => [r.id, { ...r, ingredients: [] as string[], instructions: [] as string[] }]))
-        for(const ing of ingredientsRows) byId.get(ing.recipeId)?.ingredients.push(ing.line)
-        for(const st of stepsRows) byId.get(st.recipeId)?.instructions.push(st.step)
+      // Build constraints for input 
+      const constraints = {
+        maxRecipes: input?.maxRecipes ?? 3,
+        maxTimeMinutes: input?.maxTimeMinutes,
+        diet: input?.diet ?? null, 
+        dislikeIngredients: input?.dislikedIngredients ?? [],
+        servings: input?.servings ?? null,
+      }
 
-        return Array.from(byId.values())
+      // Call Ai and DB server 
+      const createdRecipes = generateRecipesFromPantryAndSave({
+        userId,
+        pantrySnapshot, 
+        constraints
+      })
+
+      // return summaries to client 
+      return { 
+        recipes: createdRecipes 
+      }
     })
 })
