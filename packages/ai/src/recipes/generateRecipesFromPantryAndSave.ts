@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid"
-import { db } from "@smart-pantry/db"
+import { db } from "../../../db"
 import { recipes, recipeIngredients, recipeSteps } from "../../../db/src/schema/recipes"
 import type { AiRecipeList } from "./schema"
 import type { 

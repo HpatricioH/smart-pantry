@@ -1,5 +1,5 @@
 import { AiRecipeListSchema, type AiRecipeList } from "./schema"
-import { callLLMJson } from "src/clients"
+import { callLLMJson } from "../clients/llm"
 import type { 
   GenerateFromPantryInput, 
   } from "./types"
