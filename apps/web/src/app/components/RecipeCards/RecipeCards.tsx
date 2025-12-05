@@ -9,13 +9,14 @@ import { useRecipe } from "../../lib/hooks/useRecipe";
 import Link from "next/link";
 
 
-export function RecipeCards() {
+export function RecipeCards({ query }: { query: string }) {
   const { data: recipes } = useRecipe()
+  const filteredRecipes = recipes?.filter((item) => item.title?.toLocaleLowerCase().includes((query ?? "")))
 
   return (
     <article>
       <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {recipes?.map(item => {
+        {filteredRecipes?.map(item => {
 
           return (
             <div

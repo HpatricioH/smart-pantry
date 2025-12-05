@@ -4,7 +4,7 @@ import React, { Suspense } from 'react'
 import { SkeletonCards } from '../SkeletonCards/SkeletonCards'
 import { RecipeCards } from '../RecipeCards/RecipeCards'
 
-export function RecipeCardsContainer() {
+export function RecipeCardsContainer({ query }: { query: string }) {
 
   return (
     <>
@@ -16,7 +16,7 @@ export function RecipeCardsContainer() {
           <SkeletonCards />
         </div>
       }>
-        <RecipeCards />
+        <RecipeCards query={query} />
       </Suspense>
     </>
   )
