@@ -23,7 +23,7 @@ export function Recipe({ id }: { id: string }) {
       <h2 className="text-4xl font-bold text-gray-900 p-4">{recipe?.title}</h2>
       <div className="w-full h-80 relative overflow-hidden">
         <Image
-          src={recipe?.image || ""}
+          src={recipe?.image || ''}
           alt={`${recipe?.title} image`}
           fill
           className="object-cover z-20"
