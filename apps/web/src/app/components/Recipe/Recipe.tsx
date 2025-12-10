@@ -9,14 +9,12 @@ import { Clock } from 'lucide-react';
 import { Flame } from 'lucide-react';
 import { Utensils } from 'lucide-react';
 import { Mountain } from 'lucide-react';
-import { api } from "apps/web/src/trpc/react";
-
 
 
 export function Recipe({ id }: { id: string }) {
   const { data: recipes } = useRecipe()
   const recipe: RecipeType | undefined = recipes?.find(i => i.id === id)
-  const aiTest = api.recipes.generateFromPantry.useMutation()
+
 
   return (
     <article>
@@ -60,18 +58,6 @@ export function Recipe({ id }: { id: string }) {
             )
           })}
         </ul>
-        <button
-          type="button"
-          onClick={() =>
-            aiTest.mutate({
-              maxRecipes: 2,
-              maxTimeMinutes: 30,
-            })
-          }
-          disabled={aiTest.isPending}
-        >
-          {aiTest.isPending ? "Generating..." : "Generate recipes from pantry"}
-        </button>
       </div>
     </article>
   )
