@@ -5,16 +5,31 @@ import { Plus } from 'lucide-react';
 import { Clock9 } from 'lucide-react';
 import { ShoppingBasket } from 'lucide-react';
 import { useRecipe } from "../../lib/hooks/useRecipe";
+import { Button } from '../../lib/utils/button'
+import { api } from "apps/web/src/trpc/react";
 import Link from "next/link";
 
 
 
 export function RecipeCards({ query }: { query: string }) {
   const { data: recipes } = useRecipe()
+  const aiTest = api.recipes.generateFromPantry.useMutation()
   const filteredRecipes = recipes?.filter((item) => item.title?.toLocaleLowerCase().includes((query ?? "")))
 
   return (
     <article>
+      <Button
+        variant="default"
+        onClick={() =>
+          aiTest.mutate({
+            maxRecipes: 2,
+            maxTimeMinutes: 30,
+          })
+        }
+        disabled={aiTest.isPending}
+      >
+        {aiTest.isPending ? "Generating..." : "Generate recipes from pantry"}
+      </Button>
       <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredRecipes?.map(item => {
 
