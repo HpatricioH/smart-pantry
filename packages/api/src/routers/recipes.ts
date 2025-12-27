@@ -70,7 +70,7 @@ export const recipesRouter = createTRPCRouter({
       }
 
       // Call Ai and DB server 
-      const createdRecipes = generateRecipesFromPantryAndSave({
+      const createdRecipes = await generateRecipesFromPantryAndSave({
         userId,
         pantrySnapshot, 
         constraints
