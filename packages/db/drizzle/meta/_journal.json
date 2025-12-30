@@ -57,6 +57,20 @@
       "when": 1764045214399,
       "tag": "0007_empty_azazel",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "6",
+      "when": 1767072366852,
+      "tag": "0008_magical_stryfe",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "6",
+      "when": 1767072995936,
+      "tag": "0009_absent_pandemic",
+      "breakpoints": true
     }
   ]
 }
