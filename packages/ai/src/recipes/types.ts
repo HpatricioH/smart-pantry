@@ -13,6 +13,14 @@ export type GenerateFromPantryConstraints = {
   servings?: number | null;
 };
 
+export type Ingredients = {
+  name: string;
+  quantity: number | null;
+  unit: string | null;
+  optional: boolean;
+  note?: string | null | undefined;
+}
+
 export type GenerateFromPantryInput = {
   userId?: string; 
   pantrySnapshot: PantryItemForAI[];
@@ -23,6 +31,9 @@ export type GeneratedRecipeSummary = {
   id: string; 
   title: string;
   description: string | null; 
+  servings: number | null;
+  maxTimeMinutes: number | null | undefined;
+  ingredients: Ingredients[];
   sourceType: string; 
   status: string; 
 }

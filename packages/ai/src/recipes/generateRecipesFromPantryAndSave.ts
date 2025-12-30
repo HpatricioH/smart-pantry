@@ -81,6 +81,9 @@ export async function generateRecipesFromPantryAndSave(
         id: recipeId, 
         title: aiRecipe.title,
         description: aiRecipe.description ?? null, 
+        servings: aiRecipe.servings ?? null,
+        maxTimeMinutes: aiRecipe.totalTimeMinutes,
+        ingredients: aiRecipe.ingredients,
         sourceType: "ai_generated",
         status: "draft"
       })
