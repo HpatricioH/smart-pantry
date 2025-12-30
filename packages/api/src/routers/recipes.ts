@@ -24,7 +24,12 @@ export const recipesRouter = createTRPCRouter({
   
   // Get all recipes 
   getAllRecipes: protectedProcedure.query(async ({ ctx }) => {
-    const getRecipesItems = await ctx.db.query.recipes.findMany();
+    const getRecipesItems = await ctx.db.query.recipes.findMany({
+      with: {
+        recipeIngredients: true,
+        recipeSteps: true
+      }
+    });
 
     return getRecipesItems ?? null
   }),

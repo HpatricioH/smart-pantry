@@ -38,7 +38,9 @@ export const recipes = createTable('recipes', {
  */
 export const recipeIngredients = createTable('recipe_ingredients', {
   id: text("id").primaryKey(),
-  recipeId: text("recipe_id").notNull(),
+  recipeId: text("recipe_id")
+    .notNull()
+    .references(() => recipes.id),
   pantryProductId: text("pantry_product_id"),
   name: text("name").notNull(),
   quantity: real("quantity"),
@@ -52,7 +54,9 @@ export const recipeIngredients = createTable('recipe_ingredients', {
  */
 export const recipeSteps = createTable('recipe_steps', {
   id: text("id").primaryKey(),
-  recipeId: text("recipe_id").notNull(),
+  recipeId: text("recipe_id")
+    .notNull()
+    .references(() => recipes.id),
   order: integer("order_index"),
   text: text("text").notNull(),
   timerSeconds: integer("timer_seconds"),
@@ -105,3 +109,22 @@ export const aiRecipeGenerationLogs = createTable("ai_recipe_generation_logs", {
     .notNull()
     .default(sql`(strftime('%s','now'))`),
 })
+
+export const recipesRelations = relations(recipes, ({ many }) => ({
+  recipeIngredients: many(recipeIngredients),
+  recipeSteps: many(recipeSteps),
+}));
+
+export const recipeIngredientsRelations = relations(recipeIngredients, ({ one }) => ({
+  recipe: one(recipes, {
+    fields: [recipeIngredients.recipeId],
+    references: [recipes.id],
+  }),
+}));
+
+export const recipeStepsRelations = relations(recipeSteps, ({ one }) => ({
+  recipe: one(recipes, {
+    fields: [recipeSteps.recipeId],
+    references: [recipes.id],
+  }),
+}));
