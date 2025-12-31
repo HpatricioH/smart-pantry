@@ -1,5 +1,6 @@
 import React from 'react'
 import { statsCardsItems } from '../app/lib/data/statsCardsItems'
+import { Badge } from '../app/lib/utils/badge';
 
 export default function StatsCards() {
   return (
@@ -15,7 +16,7 @@ export default function StatsCards() {
               <Icon />
               <div className='flex flex-col gap-1'>
                 <p className='font-medium'>{item.name}</p>
-                <p className={`rounded-md p-1 ${item.bgColor} w-fit text-xs text-text-secondary`}>Snacks</p>
+                <Badge variant="secondary" className={`${item.bgColor} text-text-secondary`}>Snacks</Badge>
               </div>
             </div>
             <div className={`flex justify-center items-center rounded-full text-text-primary ${item.bgColor} absolute size-7 right-4 font-bold z-50`}>
