@@ -10,7 +10,6 @@ export default function MainLayout({
     <>
       <Navbar />
       {children}
-      < Footer />
     </>
   );
 }
