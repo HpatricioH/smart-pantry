@@ -8,7 +8,8 @@ import { useState } from 'react';
 import { useParams } from 'next/navigation';
 interface DrawerAddItemProps {
   footer?: boolean,
-  pantryCards?: boolean
+  navbar?: boolean,
+  pantryCards?: boolean,
   id?: string | number,
   name?: string,
   category?: string | null,
@@ -18,6 +19,7 @@ interface DrawerAddItemProps {
 
 export function DrawerAddItem({
   footer,
+  navbar,
   pantryCards,
   id,
   name,
@@ -32,25 +34,24 @@ export function DrawerAddItem({
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        {!footer && !pantryCards
+        {/* TODO: remove the !footer we dont need it anymore */}
+        {!footer && !navbar && !pantryCards
           ?
           <Button variant="default" className="flex-1">
             <Plus />
             Add Item
           </Button>
           :
-          !footer && pantryCards
+          !footer && !navbar && pantryCards
             ?
             <div className="bg-chart-2 rounded-full p-2 [&_svg]:cursor-pointer [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0">
               <Plus className="stroke-white" />
             </div>
             :
-            <button className='flex flex-col items-center cursor-pointer hover:text-chart-2' type='button'>
-              <div className='size-11 flex items-center justify-center rounded-[35%] bg-chart-2 text-white mb-1'>
-                <Plus className='stroke-3' />
-              </div>
-              <p className='capitalize'>Add</p>
-            </button>
+            <Button variant="outline" className='flex-1'>
+              <Plus />
+              <p>Add Item</p>
+            </Button>
         }
       </DrawerTrigger>
       <DrawerContent>
