@@ -1,19 +1,13 @@
 import { ChevronRight } from 'lucide-react';
 import { CurrentStockCards } from '../app/components/Current Stock Cards/CurrentStockCards';
 import Link from 'next/link';
+import { SearchContainer } from '../app/components/SearchBar/SearchContainer';
 
 export function CurrentStock() {
   return (
     <section>
-      <div className="flex justify-between items-baseline">
-        <h2 className='text-xl font-semibold text-text-primary tracking-tight pb-2'>
-          Current Stock
-        </h2>
-        <Link
-          href={"/categories"}
-        >
-          <ChevronRight className='self-center text-text-secondary' />
-        </Link>
+      <div className="mb-4">
+        <SearchContainer />
       </div>
       <CurrentStockCards />
     </section>
