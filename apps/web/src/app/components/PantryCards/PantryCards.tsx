@@ -57,9 +57,9 @@ export function PantryCards({ pantryItems }: PantryCardsProps) {
                 </div>}
 
               {/* Footer */}
-              <div className="flex justify-between items-end w-full">
-                <div className="flex flex-col">
-                  <h3 className="text-md font-semibold place-content-start">{item.name}</h3>
+              <div className="flex justify-between items-end w-full mt-2">
+                <div className="flex flex-col mb-2">
+                  <h3 className="text-md font-semibold place-content-start pl-1">{item.name}</h3>
                 </div>
                 <DrawerAddItem
                   pantryCards={true}
@@ -70,6 +70,9 @@ export function PantryCards({ pantryItems }: PantryCardsProps) {
                   quantity={item.quantity}
                 />
               </div>
+              <Badge className="bg-[#E6F4EE]/60 text-text-secondary capitalize">
+                <p>{item.category}</p>
+              </Badge>
             </div>
           )
         })}
