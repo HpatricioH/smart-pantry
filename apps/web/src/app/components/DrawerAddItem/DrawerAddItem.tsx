@@ -18,7 +18,6 @@ interface DrawerAddItemProps {
 }
 
 export function DrawerAddItem({
-  footer,
   navbar,
   pantryCards,
   id,
@@ -35,14 +34,14 @@ export function DrawerAddItem({
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
         {/* TODO: remove the !footer we dont need it anymore */}
-        {!footer && !navbar && !pantryCards
+        {!navbar && !pantryCards
           ?
           <Button variant="default" className="flex-1">
             <Plus />
             Add Item
           </Button>
           :
-          !footer && !navbar && pantryCards
+          !navbar && pantryCards
             ?
             <div className="bg-chart-2 rounded-full p-2 [&_svg]:cursor-pointer [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0">
               <Plus className="stroke-white" />

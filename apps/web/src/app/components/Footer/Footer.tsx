@@ -2,7 +2,7 @@ import { footerItems } from '../../lib/data/footerItems';
 import Link from 'next/link';
 import { DrawerAddItem } from '../DrawerAddItem/DrawerAddItem';
 
-
+// TODO: Footer to be removed
 export function Footer() {
   return (
     <footer className='mx-auto w-full max-w-6xl fixed bottom-0 left-0 right-0 backdrop-blur-[6px] transition-transform z-50'>
@@ -24,7 +24,7 @@ export function Footer() {
             )
           })
         }
-        <DrawerAddItem footer={true} />
+        <DrawerAddItem />
       </div>
     </footer>
   )
