@@ -1,9 +1,7 @@
 import { SignedIn, UserButton } from '@clerk/nextjs';
-import { Plus } from 'lucide-react';
 import { ScanBarcode } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button } from '../../lib/utils/button';
 import { DrawerAddItem } from '../DrawerAddItem/DrawerAddItem';
 
 export function Navbar() {
