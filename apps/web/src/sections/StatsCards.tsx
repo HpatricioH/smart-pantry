@@ -4,7 +4,7 @@ import { Badge } from '../app/lib/utils/badge';
 
 export default function StatsCards() {
   return (
-    <section className="grid grid-cols-2 sm:grid-cols- lg:grid-cols-4 gap-4">
+    <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       {statsCardsItems.map((item) => {
         const Icon = item.icon;
         return (
