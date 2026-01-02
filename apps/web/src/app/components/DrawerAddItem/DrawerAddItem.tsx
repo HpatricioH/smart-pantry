@@ -18,6 +18,7 @@ interface DrawerAddItemProps {
 }
 
 export function DrawerAddItem({
+  footer,
   navbar,
   pantryCards,
   id,
@@ -33,7 +34,6 @@ export function DrawerAddItem({
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        {/* TODO: remove the !footer we dont need it anymore */}
         {!navbar && !pantryCards
           ?
           <Button variant="default" className="flex-1">
