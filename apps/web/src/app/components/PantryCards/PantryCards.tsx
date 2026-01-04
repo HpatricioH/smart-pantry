@@ -25,12 +25,12 @@ export function PantryCards({ pantryItems }: PantryCardsProps) {
   if (pantryItems.length <= 0) return <NoPantryItems />
 
   return (
-    <article>
+    <section>
       <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {pantryItems?.map(item => {
 
           return (
-            <div
+            <article
               key={item.id}
               className="flex flex-col justify-start items-start p-4 shadow-md rounded-lg bg-ring/5 relative"
             >
@@ -73,10 +73,10 @@ export function PantryCards({ pantryItems }: PantryCardsProps) {
               <Badge className="bg-[#E6F4EE]/60 text-text-secondary capitalize">
                 <p>{item.category}</p>
               </Badge>
-            </div>
+            </article>
           )
         })}
       </div>
-    </article>
+    </section>
   )
 }

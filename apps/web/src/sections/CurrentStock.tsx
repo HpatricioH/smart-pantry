@@ -6,7 +6,7 @@ import { SearchContainer } from '../app/components/SearchBar/SearchContainer';
 export function CurrentStock() {
   return (
     <section>
-      <div className="mb-4">
+      <div className='mb-2'>
         <SearchContainer />
       </div>
       <CurrentStockCards />
