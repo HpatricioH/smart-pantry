@@ -4,8 +4,6 @@ import Image from "next/image";
 import { Badge } from "../../lib/utils/badge";
 import { NoPantryItems } from "../NoPantryItems/NoPantryItems";
 import { DrawerAddItem } from "../DrawerAddItem/DrawerAddItem";
-import { useParams, usePathname } from "next/navigation";
-
 
 type PantryItem = {
   id: string | number;

@@ -43,7 +43,7 @@ export function DrawerAddItem({
           :
           !navbar && pantryCards
             ?
-            <div className="bg-chart-2 rounded-full p-2 [&_svg]:cursor-pointer [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0">
+            <div className="bg-chart-2 rounded-full p-2 cursor-pointer [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0">
               <Plus className="stroke-white" />
             </div>
             :
