@@ -11,8 +11,6 @@ interface ShoppingListSelectProps {
 export default function ShoppingListSelect({ lowStockCategories }: ShoppingListSelectProps) {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
 
-  console.log(selectedCategory)
-
   return (
     <Select onValueChange={setSelectedCategory}>
       <SelectTrigger className="[&_.select-chevron]:hidden">
