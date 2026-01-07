@@ -3,13 +3,14 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 import { Menu } from 'lucide-react';
 import { api } from "apps/web/src/trpc/server"
 import ShoppingListSelect from '../app/components/ShoppingListSelect/ShoppingListSelect';
+import SmartShoppingTaskList from '../app/components/SmartShoppingTaskList/SmartShoppingTaskList';
 
 export default async function ShoppingList() {
-  const categoriesData = await api.pantry.getAllPantryItems()
+  const pantryData = await api.pantry.getAllPantryItems()
 
   const lowStockCategories = Array.from(
     new Map(
-      categoriesData
+      pantryData
         .filter(item => item.unit !== null && item.unit <= 1)
         .map(item => [item.category, item.category])
     ).values()
@@ -27,6 +28,14 @@ export default async function ShoppingList() {
         <ShoppingListSelect lowStockCategories={lowStockCategories} />
       </header>
 
+      <div className="grid grid-col-1 lg:grid-cols-2 gap-4 items-start">
+        <section>
+          <SmartShoppingTaskList />
+        </section>
+        <div>
+          right section
+        </div>
+      </div>
     </section>
   )
 }
