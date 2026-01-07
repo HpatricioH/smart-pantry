@@ -69,7 +69,7 @@ export function PantryCards({ pantryItems }: PantryCardsProps) {
                 />
               </div>
               <Badge className="bg-[#E6F4EE]/60 text-text-secondary capitalize">
-                <p>{item.category}</p>
+                {item.category}
               </Badge>
             </article>
           )
