@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form"
 import { useSearchParams, useRouter } from "next/navigation";
 import { useDebouncedCallback } from 'use-debounce'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "../../lib/utils/select";
+import { Card } from "../../lib/utils/card";
 
 type SearchBarFormValues = {
   search: string;
@@ -59,41 +60,42 @@ export function SearchBar({ pathname }: SearchProps) {
 
   return (
     <search className="relative group">
-      <form className="flex  gap-2 rounded-2xl border bg-white p-2">
-        <div className="relative w-full">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground h-5 w-5 pointer-events-none" />
-          <Input
-            {...register("search", { required: false })}
-            className="pl-10 border-0"
-            placeholder="Search items..."
-            onChange={(e) => {
-              handleSearch(e.target.value)
-            }}
-          />
-          <Button
-            variant="ghost"
-            size="sm"
-            type="button"
-            className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hidden group-focus-within:block"
-            onClick={handleClick}
-          >
-            <X className="h-3 w-3" />
-          </Button>
-        </div>
-
-        <Select>
-          <SelectTrigger className="w-[190px]">
-            <SelectValue placeholder="Sort: Recently Updated" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectItem value="restock">Restock Suggestions </SelectItem>
-              <SelectItem value="expiring">Expiring Soon</SelectItem>
-              <SelectItem value="needToBuy">Need to Buy</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-      </form>
+      <Card className="p-2 shadow-2xs">
+        <form className="flex gap-2">
+          <div className="relative w-full">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground h-5 w-5 pointer-events-none" />
+            <Input
+              {...register("search", { required: false })}
+              className="pl-10 border-0"
+              placeholder="Search items..."
+              onChange={(e) => {
+                handleSearch(e.target.value)
+              }}
+            />
+            <Button
+              variant="ghost"
+              size="sm"
+              type="button"
+              className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hidden group-focus-within:block"
+              onClick={handleClick}
+            >
+              <X className="h-3 w-3" />
+            </Button>
+          </div>
+          <Select>
+            <SelectTrigger className="w-[190px]">
+              <SelectValue placeholder="Sort: Recently Updated" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem value="restock">Restock Suggestions </SelectItem>
+                <SelectItem value="expiring">Expiring Soon</SelectItem>
+                <SelectItem value="needToBuy">Need to Buy</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </form>
+      </Card>
     </search>
   )
 }
