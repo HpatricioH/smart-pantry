@@ -4,6 +4,7 @@ import { Menu } from 'lucide-react';
 import { api } from "apps/web/src/trpc/server"
 import ShoppingListSelect from '../app/components/ShoppingListSelect/ShoppingListSelect';
 import SmartShoppingTaskList from '../app/components/SmartShoppingTaskList/SmartShoppingTaskList';
+import ShoppingListCallToAction from '../app/components/ShoppingListCallToAction/ShoppingListCallToAction';
 
 export default async function ShoppingList() {
   const pantryData = await api.pantry.getAllPantryItems()
@@ -28,12 +29,12 @@ export default async function ShoppingList() {
         <ShoppingListSelect lowStockCategories={lowStockCategories} />
       </header>
 
-      <div className="grid grid-col-1 lg:grid-cols-2 gap-4 items-start">
+      <div className="grid grid-col-1 lg:grid-cols-2 gap-4 items-start mt-4">
         <section>
           <SmartShoppingTaskList />
         </section>
         <div>
-          right section
+          <ShoppingListCallToAction />
         </div>
       </div>
     </section>
