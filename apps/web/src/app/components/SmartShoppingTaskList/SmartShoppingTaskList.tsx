@@ -10,11 +10,12 @@ import { Badge } from "../../lib/utils/badge";
 export default async function SmartShoppingTaskList() {
   const pantryData = await api.pantry.getAllPantryItems()
   const shoppingList = pantryData.filter(item => item.unit !== null && item.unit <= 1)
+  const shoppingLowItems = shoppingList.slice().sort(() => Math.random() - 0.5).slice(0, 3)
 
   return (
     <Card className="shadow-2xs p-2">
       <ItemGroup>
-        {shoppingList.map((item, index) => {
+        {shoppingLowItems.map((item, index) => {
           return (
             <React.Fragment key={item.id}>
               <Item variant="default">
@@ -36,7 +37,7 @@ export default async function SmartShoppingTaskList() {
                     <DropdownMenuContent className="w-56" align="start">
                       <DropdownMenuGroup>
                         <DropdownMenuItem>
-                          Item 1
+                          Remove from list
                         </DropdownMenuItem>
                       </DropdownMenuGroup>
                     </DropdownMenuContent>
@@ -44,7 +45,7 @@ export default async function SmartShoppingTaskList() {
 
                 </ItemHeader>
               </Item>
-              {index !== shoppingList.length - 1 && <ItemSeparator />}
+              {index !== shoppingLowItems.length - 1 && <ItemSeparator />}
             </React.Fragment>
           )
         })
