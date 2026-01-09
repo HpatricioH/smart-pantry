@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { Card, CardAction, CardDescription, CardHeader, CardTitle } from "../../lib/utils/card"
+import { Card } from "../../lib/utils/card"
 import { Button } from "../../lib/utils/button"
 import { Badge } from "../../lib/utils/badge"
 import { Item, ItemActions, ItemContent, ItemDescription, ItemHeader, ItemTitle } from "../../lib/utils/item"
@@ -24,8 +24,8 @@ export default function CompactItemCard({
   expire,
 }: CompactItemCardProps) {
   return (
-    <Card className="shadow-2xs p-2">
-      <Item>
+    <Card className="shadow-2xs p-1 mt-2">
+      <Item className="p-1">
         <ItemHeader>
           <Image
             src={image}
@@ -34,7 +34,7 @@ export default function CompactItemCard({
             height={50}
             className="rounded-md"
           />
-          <ItemContent>
+          <ItemContent className="gap-0">
             <ItemTitle>{title}</ItemTitle>
             <ItemDescription>
               {category}
@@ -50,9 +50,9 @@ export default function CompactItemCard({
               </Button>
               :
               <Badge
-                className={`${actionLabel === 'restock' ? 'bg-[#E6F4EE]' : 'bg-[#FFF3D6]'} text-text-secondary capitalize`}
+                className={`${actionLabel === 'restock' ? 'bg-[#E6F4EE]' : 'bg-[#FFF3D6]'} text-text-secondary`}
               >
-                {expire}
+                {expire} days left
               </Badge>
             }
           </ItemActions>
