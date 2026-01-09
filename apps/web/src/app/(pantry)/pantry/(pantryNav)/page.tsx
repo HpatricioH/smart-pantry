@@ -4,6 +4,7 @@ import { LowMissingItems } from "apps/web/src/sections/LowMissingItems";
 import StatsCards from "apps/web/src/sections/StatsCards";
 import ShoppingList from "apps/web/src/sections/ShoppingList";
 import RestockSuggestions from "apps/web/src/sections/RestockSuggestions";
+import ExpiringSoon from "apps/web/src/sections/ExpiringSoon";
 
 export default function Home() {
   return (
@@ -25,12 +26,8 @@ export default function Home() {
 
           <aside aria-labelledby="pantry-sidebar" className="space-y-4">
             <h2 id="pantry-sidebar" className="sr-only">Pantry sidebar</h2>
-
             <RestockSuggestions />
-
-            <section className="rounded-2xl border bg-[#F5F7FA] p-4" aria-labelledby="expiring-title">
-              <h3 id="expiring-title" className="text-base font-semibold">Expiring Soon</h3>
-            </section>
+            <ExpiringSoon />
           </aside>
         </div>
       </div>
