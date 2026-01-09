@@ -1,6 +1,4 @@
 import React from 'react'
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger } from '../app/lib/utils/select'
-import { Menu } from 'lucide-react';
 import { api } from "apps/web/src/trpc/server"
 import ShoppingListSelect from '../app/components/ShoppingListSelect/ShoppingListSelect';
 import SmartShoppingTaskList from '../app/components/SmartShoppingTaskList/SmartShoppingTaskList';
