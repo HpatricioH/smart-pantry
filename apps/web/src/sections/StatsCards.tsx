@@ -3,18 +3,28 @@ import { statsCardsItems } from '../app/lib/data/statsCardsItems'
 import { Badge } from '../app/lib/utils/badge';
 import { api } from "apps/web/src/trpc/server"
 import { getPantryStats, getStatValueById } from '../app/lib/pantry/stats';
+import Link from 'next/link';
 
 export default async function StatsCards() {
   const pantryItems = await api.pantry.getAllPantryItems()
   const stats = getPantryStats(pantryItems)
 
+  const links = [
+    { name: 'total items', href: '/categories' },
+    { name: 'low stock', href: '/pantry/low-items' },
+    { name: 'expiring soon', href: '/expiring-soon' },
+    { name: 'need to buy', href: '/need-to-buy' },
+  ]
+
   return (
     <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       {statsCardsItems.map((item) => {
         const Icon = item.icon;
+
         return (
-          <article
+          <Link
             key={item.id}
+            href={links.find(link => link.name === item.name)?.href || '#'}
             className={`flex flex-col justify-start items-start p-4 shadow-md rounded-lg ${item.bgColorLight} relative`}
           >
 
@@ -30,7 +40,7 @@ export default async function StatsCards() {
               <p>{getStatValueById(stats, item.id)}</p>
             </div>
 
-          </article>
+          </Link>
         )
       })}
     </section>
