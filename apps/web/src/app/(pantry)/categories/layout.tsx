@@ -11,7 +11,6 @@ export default function CategoriesLayout({
     <>
       < HeaderPantry />
       {children}
-      < Footer />
     </>
   );
 }
