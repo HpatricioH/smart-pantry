@@ -1,15 +1,14 @@
-import { ChevronRight } from 'lucide-react';
 import { CurrentStockCards } from '../app/components/Current Stock Cards/CurrentStockCards';
-import Link from 'next/link';
 import { SearchContainer } from '../app/components/SearchBar/SearchContainer';
 
-export function CurrentStock() {
+export async function CurrentStock({ query }: { query: string }) {
+
   return (
     <section>
       <div className='mb-2'>
         <SearchContainer />
       </div>
-      <CurrentStockCards />
+      <CurrentStockCards query={query} />
     </section>
   )
 }

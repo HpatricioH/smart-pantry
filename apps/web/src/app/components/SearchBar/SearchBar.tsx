@@ -58,6 +58,17 @@ export function SearchBar({ pathname }: SearchProps) {
     }
   }
 
+  const handleSort = (value: string) => {
+    const params = new URLSearchParams(searchParams)
+
+    if (value) {
+      params.set('sort', value)
+    } else {
+      params.delete('sort')
+    }
+    replacePath.replace(`${pathname}?${params.toString()}`)
+  }
+
   return (
     <search className="relative group">
       <Card className="p-2 shadow-2xs">
@@ -82,7 +93,7 @@ export function SearchBar({ pathname }: SearchProps) {
               <X className="h-3 w-3" />
             </Button>
           </div>
-          <Select>
+          <Select onValueChange={(value) => handleSort(value)}>
             <SelectTrigger className="w-[190px]">
               <SelectValue placeholder="Sort: Recently Updated" />
             </SelectTrigger>

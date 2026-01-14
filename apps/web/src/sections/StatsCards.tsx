@@ -12,8 +12,8 @@ export default async function StatsCards() {
   const links = [
     { name: 'total items', href: '/categories' },
     { name: 'low stock', href: '/pantry/low-items' },
-    { name: 'expiring soon', href: '/expiring-soon' },
-    { name: 'need to buy', href: '/need-to-buy' },
+    { name: 'expiring soon', href: '/pantry/expiring' },
+    { name: 'need to buy', href: '/pantry/buy' },
   ]
 
   return (
