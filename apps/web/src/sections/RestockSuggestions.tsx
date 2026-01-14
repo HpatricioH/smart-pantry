@@ -1,6 +1,8 @@
 import React from "react";
 import CompactItemCard from "../app/components/CompactItemCard/CompactItemCard";
 import { api } from "apps/web/src/trpc/server"
+import Link from "next/link";
+import { ChevronRight } from 'lucide-react';
 
 
 export default async function RestockSuggestions() {
@@ -11,6 +13,8 @@ export default async function RestockSuggestions() {
     ?.slice()
     .sort(() => Math.random() - 0.5)
     .slice(0, 2)
+
+  // TODO add the onClick event
 
   return (
     <section className="rounded-2xl border bg-white p-4" aria-labelledby="restock-title">
@@ -31,6 +35,12 @@ export default async function RestockSuggestions() {
           )
         })
       }
+      <Link
+        href="/pantry/low-items"
+        className="flex justify-center items-center mt-4 text-primary text-sm font-medium gap-1 hover:underline"
+      >
+        View List <ChevronRight className="w-4 h-4" />
+      </Link>
     </section>
   )
 }
