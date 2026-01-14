@@ -1,12 +1,19 @@
 import { Hero } from "apps/web/src/sections/Hero";
 import { CurrentStock } from "apps/web/src/sections/CurrentStock";
-import { LowMissingItems } from "apps/web/src/sections/LowMissingItems";
 import StatsCards from "apps/web/src/sections/StatsCards";
 import ShoppingList from "apps/web/src/sections/ShoppingList";
 import RestockSuggestions from "apps/web/src/sections/RestockSuggestions";
 import ExpiringSoon from "apps/web/src/sections/ExpiringSoon";
 
-export default function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{
+    query: string;
+  }>
+}) {
+  const { query } = await searchParams
+
   return (
     <main className="relative z-20 mx-auto w-full max-w-6xl min-h-screen px-4 pb-32">
       <div className="flex flex-col gap-4">
@@ -17,7 +24,7 @@ export default function Home() {
           <section aria-labelledby="pantry-main" className="min-w-0 space-y-4">
             <h2 id="pantry-main" className="sr-only">Pantry overview</h2>
 
-            <CurrentStock />
+            <CurrentStock query={query} />
 
             <div className="rounded-2xl border bg-white p-4">
               <ShoppingList />

@@ -7,7 +7,7 @@ export async function LowItemsCardContainer({ query }: { query: string }) {
   const pantry = await api.pantry.getAllPantryItems()
 
   // Filter low items 
-  const lowItems = pantry?.filter((item) => item.unit != null && item.unit <= 1)
+  const lowItems = pantry?.filter((item) => item.unit != null && item.unit === 1)
 
   // Filter for search bar 
   const filteredLowItems = lowItems?.filter((item) => {
