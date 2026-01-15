@@ -4,14 +4,15 @@ import { Input } from "../../lib/utils/input";
 import { Search } from 'lucide-react';
 import { X } from 'lucide-react';
 import { Button } from "../../lib/utils/button";
-import { useForm } from "react-hook-form"
+import { Controller, useForm } from "react-hook-form"
 import { useSearchParams, useRouter } from "next/navigation";
 import { useDebouncedCallback } from 'use-debounce'
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "../../lib/utils/select";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../../lib/utils/select";
 import { Card } from "../../lib/utils/card";
 
 type SearchBarFormValues = {
   search: string;
+  filter: string;
 };
 
 interface SearchProps {
@@ -22,16 +23,20 @@ export function SearchBar({ pathname }: SearchProps) {
   const searchParams = useSearchParams()
   const replacePath = useRouter()
 
+  // React Hook Form setup
   const {
     register,
-    resetField
+    resetField,
+    control
   } = useForm<SearchBarFormValues>({
     mode: "onChange",
     defaultValues: {
-      search: ""
+      search: "",
+      filter: ""
     }
   })
 
+  // Debounced search handler to limit URL updates while typing 
   const handleSearch = useDebouncedCallback((e: string) => {
     const params = new URLSearchParams(searchParams)
 
@@ -43,21 +48,25 @@ export function SearchBar({ pathname }: SearchProps) {
     replacePath.replace(`${pathname}?${params.toString()}`)
   }, 300)
 
+  // Handle clearing search and filter
   const handleClick = () => {
     const params = new URLSearchParams(searchParams)
 
-    if (params.get('query') !== null) {
+    if (params.get('query') !== null || params.get('sort') !== null) {
       // delete params
       params.delete('query')
+      params.delete('sort')
 
       // replace url 
       replacePath.replace(`${pathname}?${params.toString()}`)
 
       // reset field 
       resetField("search")
+      resetField("filter")
     }
   }
 
+  // Handle sorting/filtering parameter
   const handleSort = (value: string) => {
     const params = new URLSearchParams(searchParams)
 
@@ -93,18 +102,35 @@ export function SearchBar({ pathname }: SearchProps) {
               <X className="h-3 w-3" />
             </Button>
           </div>
-          <Select onValueChange={(value) => handleSort(value)}>
-            <SelectTrigger className="w-[190px]">
-              <SelectValue placeholder="Sort: Recently Updated" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectItem value="restock">Restock Suggestions </SelectItem>
-                <SelectItem value="expiring">Expiring Soon</SelectItem>
-                <SelectItem value="needToBuy">Need to Buy</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+
+          {
+            pathname === "/pantry" &&
+            <Controller
+              control={control}
+              name="filter"
+              render={({ field }) => (
+                <Select
+                  value={field.value ?? ""}
+                  onValueChange={(value) => {
+                    field.onChange(value)
+                    handleSort(value)
+                  }}
+                >
+                  <SelectTrigger className="w-[190px]">
+                    <SelectValue placeholder="Select Filter" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectLabel>Filters</SelectLabel>
+                      <SelectItem value="restock">Restock Suggestions </SelectItem>
+                      <SelectItem value="expiring">Expiring Soon</SelectItem>
+                      <SelectItem value="needToBuy">Need to Buy</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+              )}
+            />
+          }
         </form>
       </Card>
     </search>
