@@ -10,9 +10,11 @@ export default async function Home({
 }: {
   searchParams: Promise<{
     query: string;
+    sort: string;
   }>
 }) {
   const { query } = await searchParams
+  const { sort } = await searchParams
 
   return (
     <main className="relative z-20 mx-auto w-full max-w-6xl min-h-screen px-4 pb-32">
@@ -24,7 +26,7 @@ export default async function Home({
           <section aria-labelledby="pantry-main" className="min-w-0 space-y-4">
             <h2 id="pantry-main" className="sr-only">Pantry overview</h2>
 
-            <CurrentStock query={query} />
+            <CurrentStock query={query} sort={sort} />
 
             <div className="rounded-2xl border bg-white p-4">
               <ShoppingList />

@@ -2,18 +2,26 @@ import { Suspense } from "react";
 import { PantryCards } from "../PantryCards/PantryCards";
 import { SkeletonPantry } from "../SkeletonCards/SkeletonPantry";
 import { api } from "apps/web/src/trpc/server";
+import { filterBySort } from "../../lib/pantry/filterBySort";
 
-export async function CurrentStockCards({ query }: { query: string }) {
+export async function CurrentStockCards({
+  query,
+  sort
+}:
+  {
+    query: string,
+    sort: string
+  }) {
   const pantry = await api.pantry.getAllPantryItems()
 
   const filterLowItemsOut = pantry?.filter((item) => item.unit != null && item.unit > 1)
 
-  const filteredCurrentStockItems = filterLowItemsOut?.filter((item) => {
-    return item.name.toLowerCase().includes((query ?? "").toLocaleLowerCase())
-  })
-
-  const currentStockItems = filteredCurrentStockItems
-    ?.slice()
+  const currentStockItems = filterBySort({
+    pantry,
+    query,
+    sort,
+    filteredItems: filterLowItemsOut
+  })?.slice()
     .sort(() => Math.random() - 0.5)
     .slice(0, 3)
 
