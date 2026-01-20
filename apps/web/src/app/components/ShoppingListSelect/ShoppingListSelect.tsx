@@ -5,7 +5,13 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 import { Menu } from 'lucide-react';
 
 interface ShoppingListSelectProps {
-  lowStockCategories: (string | null)[]
+  lowStockCategories: {
+    id: string;
+    userId: string;
+    name: string;
+    category: string | null;
+    createdAt: Date | null;
+  }[] | undefined
 }
 
 export default function ShoppingListSelect({ lowStockCategories }: ShoppingListSelectProps) {
@@ -19,13 +25,13 @@ export default function ShoppingListSelect({ lowStockCategories }: ShoppingListS
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Categories</SelectLabel>
-          {lowStockCategories?.map((category: string | null) => (
+          {lowStockCategories?.map((i) => (
             <SelectItem
-              key={category}
+              key={i.id}
               className='capitalize'
-              value={category || ""}
+              value={i.category || ""}
             >
-              {category}
+              {i?.category}
             </SelectItem>
           ))}
         </SelectGroup>

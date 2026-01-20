@@ -1,16 +1,25 @@
+'use client';
+
 import { Card } from "../../lib/utils/card";
 import { Checkbox } from "../../lib/utils/checkbox";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from "../../lib/utils/dropdown-menu";
 import { Item, ItemActions, ItemGroup, ItemHeader, ItemSeparator, ItemTitle } from "../../lib/utils/item";
 import { Ellipsis } from 'lucide-react';
-import { api } from "apps/web/src/trpc/server"
 import React from "react";
 import { Badge } from "../../lib/utils/badge";
 
-export default async function SmartShoppingTaskList() {
-  const pantryData = await api.pantry.getAllPantryItems()
-  const shoppingList = pantryData.filter(item => item.unit !== null && item.unit <= 1)
-  const shoppingLowItems = shoppingList.slice().sort(() => Math.random() - 0.5).slice(0, 3)
+interface SmartShoppingTaskListProps {
+  pantryData: {
+    id: string;
+    userId: string;
+    name: string;
+    category: string | null;
+    createdAt: Date | null;
+  }[]
+}
+
+export default function SmartShoppingTaskList({ pantryData }: SmartShoppingTaskListProps) {
+  const shoppingLowItems = pantryData.sort(() => Math.random() - 0.5).slice(0, 3)
 
   return (
     <Card className="shadow-2xs p-2">
