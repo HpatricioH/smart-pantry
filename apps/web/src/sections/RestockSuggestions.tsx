@@ -14,8 +14,6 @@ export default async function RestockSuggestions() {
     .sort(() => Math.random() - 0.5)
     .slice(0, 2)
 
-  // TODO add the onClick event
-
   return (
     <section className="rounded-2xl border bg-white p-4" aria-labelledby="restock-title">
       <h3 id="restock-title" className="text-base font-semibold">Restock Suggestions</h3>

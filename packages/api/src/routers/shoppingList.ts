@@ -18,6 +18,7 @@ export const shoppingListRouter = createTRPCRouter({
         ...input, 
         userId: ctx.userId as string
       })
+      .returning();
     }),
   
   // get All Shopping List Items
