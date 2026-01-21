@@ -39,7 +39,7 @@ export default function SmartShoppingTaskList({ pantryData }: SmartShoppingTaskL
                   </ItemActions>
 
                   <DropdownMenu>
-                    <DropdownMenuTrigger>
+                    <DropdownMenuTrigger className="cursor-pointer">
                       <Ellipsis />
                     </DropdownMenuTrigger>
 
