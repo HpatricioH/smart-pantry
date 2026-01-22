@@ -7,6 +7,7 @@ import { Item, ItemActions, ItemGroup, ItemHeader, ItemSeparator, ItemTitle } fr
 import { Ellipsis } from 'lucide-react';
 import React from "react";
 import { Badge } from "../../lib/utils/badge";
+import noItemsAvailable from "../NoPantryItems/NoItemsAvailable";
 
 interface SmartShoppingTaskListProps {
   pantryData: {
@@ -24,6 +25,7 @@ export default function SmartShoppingTaskList({ pantryData }: SmartShoppingTaskL
   return (
     <Card className="shadow-2xs p-2">
       <ItemGroup>
+        {shoppingLowItems.length === 0 && noItemsAvailable()}
         {shoppingLowItems.map((item, index) => {
           return (
             <React.Fragment key={item.id}>
