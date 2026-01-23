@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger } from '../../../app/lib/utils/select'
 import { Menu } from 'lucide-react';
+import type { ShoppingListItemsTypesProps } from 'packages/types/src';
 
 interface ShoppingListSelectProps {
   lowStockCategories: {
