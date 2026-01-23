@@ -34,7 +34,7 @@ export default function ShoppingList() {
           }
         </section>
         <div>
-          <ShoppingListCallToAction />
+          <ShoppingListCallToAction pantryData={pantryData} />
         </div>
       </div>
     </section>
