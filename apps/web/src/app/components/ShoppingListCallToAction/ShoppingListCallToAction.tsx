@@ -1,8 +1,7 @@
 import type { ShoppingListItemsTypesProps } from "packages/types/src";
-import { Button } from "../../lib/utils/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "../../lib/utils/card";
-import { List, MessageCircleMore } from 'lucide-react';
 import ModalShoppingList from "../ModalShoppingList/ModalShoppingList";
+import ModalExportShoppingList from "../ModalExportShoppingList/ModalExportShoppingList";
 
 
 export default function ShoppingListCallToAction({ pantryData }: ShoppingListItemsTypesProps) {
@@ -19,9 +18,8 @@ export default function ShoppingListCallToAction({ pantryData }: ShoppingListIte
 
         <ModalShoppingList pantryData={pantryData} />
 
-        <Button>
-          <MessageCircleMore /> Export
-        </Button>
+        <ModalExportShoppingList />
+
       </div>
     </Card >
   )
