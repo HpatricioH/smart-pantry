@@ -7,10 +7,11 @@ import {
 } from "../../lib/utils/dialog"
 import { Button } from "../../lib/utils/button"
 import { MessageCircleMore, Mail } from 'lucide-react';
-import Image from "next/image";
+import WhatsAppForm from "../WhatsAppForm/WhatsAppForm";
+import type { ShoppingListItemsTypesProps } from "packages/types/src";
 
 
-export default function ModalExportShoppingList() {
+export default function ModalExportShoppingList({ pantryData }: ShoppingListItemsTypesProps) {
 
   return (
     <Dialog>
@@ -24,16 +25,8 @@ export default function ModalExportShoppingList() {
           <DialogTitle>Send shopping list</DialogTitle>
         </DialogHeader>
         <div className="">
-          <div className="flex items-center p-4 border rounded-lg mb-4 cursor-pointer hover:bg-text-secondary/10">
-            <Image
-              src="/whatsappLogo.svg"
-              alt="Whatsapp Logo"
-              width={35}
-              height={35}
-              className="inline-block mr-2"
-            />
-            <p className="font-semibold">WhatsApp</p>
-          </div>
+          <WhatsAppForm pantryData={pantryData} />
+
           <div className="flex items-center p-4 border rounded-lg mb-4 cursor-pointer hover:bg-text-secondary/10 gap-3">
             <Mail className="w-8 h-8" />
             <p className="font-semibold">Email</p>

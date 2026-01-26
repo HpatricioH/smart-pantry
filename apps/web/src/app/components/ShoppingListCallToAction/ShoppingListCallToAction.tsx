@@ -18,7 +18,7 @@ export default function ShoppingListCallToAction({ pantryData }: ShoppingListIte
 
         <ModalShoppingList pantryData={pantryData} />
 
-        <ModalExportShoppingList />
+        <ModalExportShoppingList pantryData={pantryData} />
 
       </div>
     </Card >
