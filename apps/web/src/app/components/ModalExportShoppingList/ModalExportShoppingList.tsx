@@ -9,6 +9,7 @@ import { Button } from "../../lib/utils/button"
 import { MessageCircleMore, Mail } from 'lucide-react';
 import WhatsAppForm from "../WhatsAppForm/WhatsAppForm";
 import type { ShoppingListItemsTypesProps } from "packages/types/src";
+import ShoppingListViaEmail from "../ShoppingListViaEmail/ShoppingListViaEmail";
 
 
 export default function ModalExportShoppingList({ pantryData }: ShoppingListItemsTypesProps) {
@@ -27,10 +28,7 @@ export default function ModalExportShoppingList({ pantryData }: ShoppingListItem
         <div className="">
           <WhatsAppForm pantryData={pantryData} />
 
-          <div className="flex items-center p-4 border rounded-lg mb-4 cursor-pointer hover:bg-text-secondary/10 gap-3">
-            <Mail className="w-8 h-8" />
-            <p className="font-semibold">Email</p>
-          </div>
+          <ShoppingListViaEmail pantryData={pantryData} />
         </div>
       </DialogContent>
     </Dialog>
