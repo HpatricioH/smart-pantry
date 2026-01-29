@@ -18,6 +18,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Loader2 } from "lucide-react";
 import { useUser } from "@clerk/nextjs";
+import { submitAction } from "../../lib/pantry/submitAction";
+import { toast } from "sonner";
 
 
 export default function ShoppingListViaEmail({ pantryData }: ShoppingListItemsTypesProps) {
@@ -29,9 +31,28 @@ export default function ShoppingListViaEmail({ pantryData }: ShoppingListItemsTy
     reset,
   } = useForm()
 
-  const onSubmit = () => {
-    console.log('Pantry Data:', pantryData);
-    console.log('User email:', user?.primaryEmailAddress?.emailAddress)
+  const onSubmit = async () => {
+    const email = user?.primaryEmailAddress?.emailAddress
+    if (!email) return
+
+    setLoading(true)
+    try {
+      const result = await submitAction({
+        email,
+        pantryData: { pantryData },
+      })
+
+      if (!result.ok) {
+        const errorMessage = typeof result.error === 'string' ? result.error : 'Failed to send email'
+        toast.error(errorMessage)
+        return
+      }
+
+      toast.success("Email sent!")
+      reset()
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
