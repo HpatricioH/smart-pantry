@@ -67,6 +67,12 @@ export default function ShoppingListViaEmail({ pantryData }: ShoppingListItemsTy
         <DialogHeader >
           <DialogTitle>Send via Email</DialogTitle>
         </DialogHeader>
+
+        <div className="flex gap-2">
+          <label htmlFor="message-prev" className="text-text-secondary">Email:</label>
+          <p>{user?.primaryEmailAddress?.emailAddress}</p>
+        </div>
+
         <form
           className="flex flex-col gap-4"
           onSubmit={handleSubmit(onSubmit)}
