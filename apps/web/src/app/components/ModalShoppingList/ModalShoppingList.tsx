@@ -1,5 +1,5 @@
-import { Button } from "../../lib/utils/button"
-import { List } from 'lucide-react';
+import { Button } from "../../lib/utils/Button";
+import { List } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -7,7 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../../lib/utils/dialog"
+} from "../../lib/utils/dialog";
 import type { ShoppingListItemsTypesProps } from "packages/types/src";
 import SmartShoppingTaskList from "../SmartShoppingTaskList/SmartShoppingTaskList";
 
@@ -22,14 +22,12 @@ export default function ModalShoppingList({ pantryData }: ShoppingListItemsTypes
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Shopping List</DialogTitle>
-          <DialogDescription>
-            Here is your full shopping list.
-          </DialogDescription>
+          <DialogDescription>Here is your full shopping list.</DialogDescription>
         </DialogHeader>
         <div className="no-scrollbar -mx-4 max-h-[50vh] overflow-y-auto px-4">
           <SmartShoppingTaskList pantryData={pantryData} fullListNeeded={true} />
         </div>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

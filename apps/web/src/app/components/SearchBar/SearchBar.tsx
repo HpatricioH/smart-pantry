@@ -1,13 +1,21 @@
-"use client"
+"use client";
 
 import { Input } from "../../lib/utils/input";
-import { Search } from 'lucide-react';
-import { X } from 'lucide-react';
-import { Button } from "../../lib/utils/button";
-import { Controller, useForm } from "react-hook-form"
+import { Search } from "lucide-react";
+import { X } from "lucide-react";
+import { Button } from "../../lib/utils/Button";
+import { Controller, useForm } from "react-hook-form";
 import { useSearchParams, useRouter } from "next/navigation";
-import { useDebouncedCallback } from 'use-debounce'
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../../lib/utils/select";
+import { useDebouncedCallback } from "use-debounce";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "../../lib/utils/select";
 import { Card } from "../../lib/utils/card";
 
 type SearchBarFormValues = {
@@ -16,67 +24,63 @@ type SearchBarFormValues = {
 };
 
 interface SearchProps {
-  pathname: string
+  pathname: string;
 }
 
 export function SearchBar({ pathname }: SearchProps) {
-  const searchParams = useSearchParams()
-  const replacePath = useRouter()
+  const searchParams = useSearchParams();
+  const replacePath = useRouter();
 
   // React Hook Form setup
-  const {
-    register,
-    resetField,
-    control
-  } = useForm<SearchBarFormValues>({
+  const { register, resetField, control } = useForm<SearchBarFormValues>({
     mode: "onChange",
     defaultValues: {
       search: "",
-      filter: ""
-    }
-  })
+      filter: "",
+    },
+  });
 
-  // Debounced search handler to limit URL updates while typing 
+  // Debounced search handler to limit URL updates while typing
   const handleSearch = useDebouncedCallback((e: string) => {
-    const params = new URLSearchParams(searchParams)
+    const params = new URLSearchParams(searchParams);
 
     if (e) {
-      params.set('query', e)
+      params.set("query", e);
     } else {
-      params.delete('query')
+      params.delete("query");
     }
-    replacePath.replace(`${pathname}?${params.toString()}`)
-  }, 300)
+    replacePath.replace(`${pathname}?${params.toString()}`);
+  }, 300);
 
   // Handle clearing search and filter
   const handleClick = () => {
-    const params = new URLSearchParams(searchParams)
+    const params = new URLSearchParams(searchParams);
 
-    if (params.get('query') !== null || params.get('sort') !== null) {
+    if (params.get("query") !== null || params.get("sort") !== null) {
       // delete params
-      params.delete('query')
-      params.delete('sort')
+      params.delete("query");
+      params.delete("sort");
 
-      // replace url 
-      replacePath.replace(`${pathname}?${params.toString()}`)
+      // replace url
+      replacePath.replace(`${pathname}?${params.toString()}`);
 
-      // reset field 
-      resetField("search")
-      resetField("filter")
+      // reset field
+      resetField("search");
+      resetField("filter");
     }
-  }
+  };
 
   // Handle sorting/filtering parameter
   const handleSort = (value: string) => {
-    const params = new URLSearchParams(searchParams)
+    const params = new URLSearchParams(searchParams);
 
     if (value) {
-      params.set('sort', value)
+      params.set("sort", value);
     } else {
-      params.delete('sort')
+      params.delete("sort");
     }
-    replacePath.replace(`${pathname}?${params.toString()}`)
-  }
+    replacePath.replace(`${pathname}?${params.toString()}`);
+  };
 
   return (
     <search className="relative group">
@@ -89,7 +93,7 @@ export function SearchBar({ pathname }: SearchProps) {
               className="pl-10 border-0"
               placeholder="Search items..."
               onChange={(e) => {
-                handleSearch(e.target.value)
+                handleSearch(e.target.value);
               }}
             />
             <Button
@@ -103,8 +107,7 @@ export function SearchBar({ pathname }: SearchProps) {
             </Button>
           </div>
 
-          {
-            pathname === "/pantry" &&
+          {pathname === "/pantry" && (
             <Controller
               control={control}
               name="filter"
@@ -112,8 +115,8 @@ export function SearchBar({ pathname }: SearchProps) {
                 <Select
                   value={field.value ?? ""}
                   onValueChange={(value) => {
-                    field.onChange(value)
-                    handleSort(value)
+                    field.onChange(value);
+                    handleSort(value);
                   }}
                 >
                   <SelectTrigger className="w-[190px]">
@@ -130,9 +133,9 @@ export function SearchBar({ pathname }: SearchProps) {
                 </Select>
               )}
             />
-          }
+          )}
         </form>
       </Card>
     </search>
-  )
+  );
 }

@@ -1,20 +1,27 @@
-'use client'
+"use client";
 
-import { Drawer, DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle, DrawerTrigger } from '../../lib/utils/drawer'
-import { Button } from '../../lib/utils/button'
-import { Plus } from 'lucide-react';
-import DrawerAddItemForm from './DrawerAddItemForm';
-import { useState } from 'react';
-import { useParams } from 'next/navigation';
+import {
+  Drawer,
+  DrawerContent,
+  DrawerDescription,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "../../lib/utils/drawer";
+import { Button } from "../../lib/utils/Button";
+import { Plus } from "lucide-react";
+import DrawerAddItemForm from "./DrawerAddItemForm";
+import { useState } from "react";
+import { useParams } from "next/navigation";
 interface DrawerAddItemProps {
-  footer?: boolean,
-  navbar?: boolean,
-  pantryCards?: boolean,
-  id?: string | number,
-  name?: string,
-  category?: string | null,
-  quantity?: string | null,
-  unit?: number | null
+  footer?: boolean;
+  navbar?: boolean;
+  pantryCards?: boolean;
+  id?: string | number;
+  name?: string;
+  category?: string | null;
+  quantity?: string | null;
+  unit?: number | null;
 }
 
 export function DrawerAddItem({
@@ -25,40 +32,35 @@ export function DrawerAddItem({
   name,
   category,
   quantity,
-  unit
+  unit,
 }: DrawerAddItemProps) {
   const [open, setOpen] = useState(false);
-  const pathName = useParams()
-  const decodedParam = decodeURIComponent(pathName.slug as string ?? "")
+  const pathName = useParams();
+  const decodedParam = decodeURIComponent((pathName.slug as string) ?? "");
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        {!navbar && !pantryCards
-          ?
+        {!navbar && !pantryCards ? (
           <Button variant="default" className="flex-1">
             <Plus />
             Add Item
           </Button>
-          :
-          !navbar && pantryCards
-            ?
-            <div className="bg-chart-2 rounded-full p-2 cursor-pointer [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0">
-              <Plus className="stroke-white" />
-            </div>
-            :
-            <Button variant="outline" className='flex-1'>
-              <Plus />
-              <p>Add Item</p>
-            </Button>
-        }
+        ) : !navbar && pantryCards ? (
+          <div className="bg-chart-2 rounded-full p-2 cursor-pointer [&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0">
+            <Plus className="stroke-white" />
+          </div>
+        ) : (
+          <Button variant="outline" className="flex-1">
+            <Plus />
+            <p>Add Item</p>
+          </Button>
+        )}
       </DrawerTrigger>
       <DrawerContent>
         <div className="mx-auto w-full max-w-sm">
           <DrawerHeader>
-            <DrawerTitle className='text-2xl font-bold text-gray-900'>
-              Add Item
-            </DrawerTitle>
+            <DrawerTitle className="text-2xl font-bold text-gray-900">Add Item</DrawerTitle>
             <DrawerDescription>
               Enter the required information to add your item manually.
             </DrawerDescription>
@@ -67,12 +69,12 @@ export function DrawerAddItem({
             id={id ?? ""}
             name={name ?? ""}
             category={category ?? decodedParam}
-            quantity={quantity ?? ''}
+            quantity={quantity ?? ""}
             unit={unit}
             onClose={() => setOpen(false)}
           />
         </div>
       </DrawerContent>
     </Drawer>
-  )
+  );
 }

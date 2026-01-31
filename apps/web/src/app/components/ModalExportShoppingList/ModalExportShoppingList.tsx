@@ -4,16 +4,14 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../../lib/utils/dialog"
-import { Button } from "../../lib/utils/button"
-import { MessageCircleMore, Mail } from 'lucide-react';
+} from "../../lib/utils/dialog";
+import { Button } from "../../lib/utils/Button";
+import { MessageCircleMore, Mail } from "lucide-react";
 import WhatsAppForm from "../WhatsAppForm/WhatsAppForm";
 import type { ShoppingListItemsTypesProps } from "packages/types/src";
 import ShoppingListViaEmail from "../ShoppingListViaEmail/ShoppingListViaEmail";
 
-
 export default function ModalExportShoppingList({ pantryData }: ShoppingListItemsTypesProps) {
-
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -22,7 +20,7 @@ export default function ModalExportShoppingList({ pantryData }: ShoppingListItem
         </Button>
       </DialogTrigger>
       <DialogContent>
-        <DialogHeader >
+        <DialogHeader>
           <DialogTitle>Send shopping list</DialogTitle>
         </DialogHeader>
         <div className="">
@@ -32,5 +30,5 @@ export default function ModalExportShoppingList({ pantryData }: ShoppingListItem
         </div>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

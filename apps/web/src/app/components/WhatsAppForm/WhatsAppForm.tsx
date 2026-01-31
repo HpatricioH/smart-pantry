@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import {
   Dialog,
@@ -8,10 +8,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../../lib/utils/dialog"
+} from "../../lib/utils/dialog";
 import { Card, CardHeader, CardTitle } from "../../lib/utils/card";
-import { Button } from "../../lib/utils/button"
-import { ShoppingCart } from 'lucide-react';
+import { Button } from "../../lib/utils/Button";
+import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import { Input } from "../../lib/utils/input";
 import type { ShoppingListItemsTypesProps } from "packages/types/src";
@@ -23,13 +23,12 @@ import { Loader2 } from "lucide-react";
 
 const formData = z.object({
   phoneNumber: z.string().min(10, "Enter a valid phone number"),
-})
+});
 
 type FormData = z.infer<typeof formData>;
 
-
 export default function WhatsAppForm({ pantryData }: ShoppingListItemsTypesProps) {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -38,11 +37,11 @@ export default function WhatsAppForm({ pantryData }: ShoppingListItemsTypesProps
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(formData),
-  })
+  });
 
   const onSubmit = (data: FormData) => {
     console.log(data);
-  }
+  };
 
   return (
     <Dialog>
@@ -59,14 +58,13 @@ export default function WhatsAppForm({ pantryData }: ShoppingListItemsTypesProps
         </div>
       </DialogTrigger>
       <DialogContent>
-        <DialogHeader >
+        <DialogHeader>
           <DialogTitle>Send via WhatsApp</DialogTitle>
         </DialogHeader>
-        <form
-          className="flex flex-col gap-4"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <label htmlFor="phone-num" className="text-text-secondary">Phone number</label>
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+          <label htmlFor="phone-num" className="text-text-secondary">
+            Phone number
+          </label>
 
           <Input
             {...register("phoneNumber")}
@@ -76,7 +74,9 @@ export default function WhatsAppForm({ pantryData }: ShoppingListItemsTypesProps
             className={`${errors.phoneNumber ? "border border-red-500" : ""}`}
           />
 
-          <label htmlFor="message-prev" className="text-text-secondary">Message Preview</label>
+          <label htmlFor="message-prev" className="text-text-secondary">
+            Message Preview
+          </label>
           <Card className="shadow-2xs p-3 gap-2">
             <CardHeader className="p-2">
               <CardTitle className="flex gap-2 items-center">
@@ -84,11 +84,11 @@ export default function WhatsAppForm({ pantryData }: ShoppingListItemsTypesProps
               </CardTitle>
             </CardHeader>
             <div className="flex flex-col items-start gap-2">
-              {pantryData.map(item => (
+              {pantryData.map((item) => (
                 <p key={item.id}>- {item.name}</p>
               ))}
             </div>
-          </Card >
+          </Card>
 
           <DialogFooter className="mt-4">
             <DialogClose>
@@ -96,15 +96,12 @@ export default function WhatsAppForm({ pantryData }: ShoppingListItemsTypesProps
                 Cancel
               </Button>
             </DialogClose>
-            <Button
-              type="submit"
-              disabled={loading}
-            >
-              {loading ? <Loader2 className="animate-spin" /> : 'Submit'}
+            <Button type="submit" disabled={loading}>
+              {loading ? <Loader2 className="animate-spin" /> : "Submit"}
             </Button>
           </DialogFooter>
         </form>
       </DialogContent>
     </Dialog>
-  )
+  );
 }

@@ -1,5 +1,5 @@
 import { api } from "apps/web/src/trpc/server";
-import { Button } from "../../lib/utils/button";
+import { Button } from "../../lib/utils/Button";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -9,17 +9,17 @@ import {
   DropdownMenuContent,
   DropdownMenuSeparator,
 } from "../../lib/utils/dropdown-menu";
-import { ScanBarcode } from 'lucide-react';
+import { ScanBarcode } from "lucide-react";
 import Link from "next/link";
 
 interface Category {
-  id: string
-  name: string
-  image?: string | null
+  id: string;
+  name: string;
+  image?: string | null;
 }
 
 export default async function ScanDropdownMenu() {
-  const categoriesData = (await api.categories.getAllCategories()) as Category[] | undefined
+  const categoriesData = (await api.categories.getAllCategories()) as Category[] | undefined;
 
   return (
     <DropdownMenu>
@@ -40,10 +40,10 @@ export default async function ScanDropdownMenu() {
                   {category.name}
                 </Link>
               </DropdownMenuItem>
-            )
+            );
           })}
         </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }
