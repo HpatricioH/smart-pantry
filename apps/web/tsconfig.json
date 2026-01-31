@@ -12,9 +12,19 @@
       }
     ],
     "paths": {
-      "src/*": [
-        "./src/*"
-      ]
+      "@/*": ["./src/*"],
+      "@smart-pantry/api": ["../../packages/api/src/root.ts"],
+      "@smart-pantry/api/*": ["../../packages/api/src/*"],
+      "@smart-pantry/ui": ["../../packages/ui-web/src/index.ts"],
+      "@smart-pantry/ui/*": ["../../packages/ui-web/src/*"],
+      "@db/*": ["../../packages/db/src/*"],
+      "@trpc/*": ["../../packages/trpc/src/*"],
+      "@ai/*": ["../../packages/ai/src/*"],
+      "@smart-pantry/types": ["../../packages/types/src/index.ts"],
+      "@smart-pantry/types/*": ["../../packages/types/src/*"],
+      "@smart-pantry/queries": ["../../packages/db/src/index.ts"],
+      "@smart-pantry/queries/*": ["../../packages/db/src/*"],
+      "@config/*": ["../../packages/config/src/*"]
     },
     "allowJs": true,
     "resolveJsonModule": true,
@@ -24,10 +34,11 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "**/*.cjs",
+    "**/*.js",
     ".next/types/**/*.ts",
-    "src"
+    "src",
+    "postcss.config.mjs"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

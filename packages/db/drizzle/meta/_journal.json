@@ -1,0 +1,90 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1756436855388,
+      "tag": "0000_shocking_demogoblin",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1757651873472,
+      "tag": "0001_jittery_korg",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1757651989301,
+      "tag": "0002_glossy_valkyrie",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1757734920293,
+      "tag": "0003_spicy_iceman",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1757905066192,
+      "tag": "0004_lush_fixer",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1758082264602,
+      "tag": "0005_tense_star_brand",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1758164724767,
+      "tag": "0006_neat_switch",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "6",
+      "when": 1764045214399,
+      "tag": "0007_empty_azazel",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "6",
+      "when": 1767072366852,
+      "tag": "0008_magical_stryfe",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "6",
+      "when": 1767072995936,
+      "tag": "0009_absent_pandemic",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "6",
+      "when": 1768534314858,
+      "tag": "0010_dapper_ultimatum",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "6",
+      "when": 1768537899142,
+      "tag": "0011_brave_the_stranger",
+      "breakpoints": true
+    }
+  ]
+}

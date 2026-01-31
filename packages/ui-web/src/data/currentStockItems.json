@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "name": "Milk",
+    "image": "/images/milk.webp",
+    "alt": "Milk",
+    "width": 80,
+    "height": 80,
+    "bgColor": "#DDECFF"
+  },
+  {
+    "id": "2",
+    "name": "Bread",
+    "image": "/images/bread.webp",
+    "alt": "Bread",
+    "width": 80,
+    "height": 80,
+    "bgColor": "#FFECD8"
+  },
+  {
+    "id": "3",
+    "name": "Eggs",
+    "image": "/images/eggs.webp",
+    "alt": "Eggs",
+    "width": 100,
+    "height": 100,
+    "bgColor": "#C2F7E0"
+  },
+  {
+    "id": "4",
+    "name": "Rice",
+    "image": "/images/rice.webp",
+    "alt": "rice",
+    "width": 100,
+    "height": 100,
+    "bgColor": "#FFF1C5"
+  }
+]

@@ -1,7 +1,12 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "dist"
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "@smart-pantry/db": ["../db/src/index.ts"],
+      "@smart-pantry/db/schema": ["../db/src/schema/index.ts"]
+    }
   },
   "include": ["src"]
 }
