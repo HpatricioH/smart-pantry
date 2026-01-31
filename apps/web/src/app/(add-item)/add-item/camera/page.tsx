@@ -24,34 +24,37 @@ export default function PageCamera() {
   }
 
   const handleBarcodeDetected = async (barcode: string) => {
-    const queryFoodAPI = await fetch(`${foodApiUrl}/${barcode}.json`)
-    const data = await queryFoodAPI.json()
-
-    if (data.status === 0) {
-      toast.error(`Product not found with ${barcode} barcode detected. Please try again!`)
-    } else {
-      const { image_thumb_url, id, product_name, quantity, product_quantity_unit } = data.product
-      const productData = {
-        id: String(id),
-        name: String(product_name ?? ''),
-        quantity: String(quantity) || "0",
-        unit: Number(1),
-        image: String(image_thumb_url ?? ''),
-        category: String(category)
-      }
-      // TODO: fix error handling
-      createProduct.mutate(productData, {
-        onSuccess: () => {
-          toast.success('Product added to pantry')
-          router.back()
-        },
-        onError: (ops: { message: { toString: () => string } }) => {
-          const errorMessage = ops.message.toString()
-          toast.error(
-            `${ErrorMessage.ITEM_NOT_FOUND}. ${errorMessage}`
-          )
+    try {
+      const queryFoodAPI = await fetch(`${foodApiUrl}/${barcode}.json`)
+      const data = await queryFoodAPI.json()
+      if (data.status === 0) {
+        toast.error(`Product not found with ${barcode} barcode detected. Please try again!`)
+      } else {
+        const { image_thumb_url, id, product_name, quantity, product_quantity_unit } = data.product
+        const productData = {
+          id: String(id),
+          name: String(product_name ?? ''),
+          quantity: String(quantity) || "0",
+          unit: Number(1),
+          image: String(image_thumb_url ?? ''),
+          category: String(category)
         }
-      })
+        // TODO: fix error handling when a barcode is wrong 
+        createProduct.mutate(productData, {
+          onSuccess: () => {
+            toast.success('Product added to pantry')
+            router.back()
+          },
+          onError: (ops: { message: { toString: () => string } }) => {
+            const errorMessage = ops.message.toString()
+            toast.error(
+              `${ErrorMessage.ITEM_NOT_FOUND}. ${errorMessage}`
+            )
+          }
+        })
+      }
+    } catch (error) {
+      throw new Error('Failed to fetch product data')
     }
   }
 
@@ -75,7 +78,7 @@ export default function PageCamera() {
         {!isScanning ? (
           <button
             type="button"
-            className='flex justify-center items-center bg-chart-2 rounded-full size-16 p-2'
+            className='flex justify-center items-center bg-chart-2 rounded-full size-16 p-2 cursor-pointer'
             onClick={(e) => handleClick(e)}
           >
             <Camera className='size-16 stroke-chart-2 fill-white' />
