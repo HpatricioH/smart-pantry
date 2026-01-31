@@ -1,11 +1,11 @@
-import { z } from "zod"
+import { z } from "zod";
 
 export const AiRecipeIngredientsSchema = z.object({
   name: z.string(),
   quantity: z.number().nullable(),
   unit: z.string().nullable(),
   optional: z.boolean().default(false),
-  note: z.string().nullable().optional()
+  note: z.string().nullable().optional(),
 });
 
 export const AiRecipeStepSchema = z.object({

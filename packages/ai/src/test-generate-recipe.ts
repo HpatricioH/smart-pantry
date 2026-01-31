@@ -1,6 +1,5 @@
 import { generateRecipesFromPantryAndSave } from "./recipes/generateRecipesFromPantryAndSave";
 
-
 async function main() {
   const pantrySnapshot = [
     { name: "Tomato", quantity: 3, unit: "piece" },
@@ -10,20 +9,20 @@ async function main() {
 
   const constraints = {
     maxRecipes: 1,
-  }
+  };
 
   const userId = "test-user-123";
 
   const result = await generateRecipesFromPantryAndSave({
     userId,
-    pantrySnapshot, 
-    constraints
-  })
+    pantrySnapshot,
+    constraints,
+  });
 
   console.log("AI returned recipes:");
   console.log(result);
 }
 
 main().catch((err) => {
-  console.error("Error:", err)
-})
+  console.error("Error:", err);
+});

@@ -11,22 +11,18 @@ export function LandingFooter({ userId }: { userId?: string }) {
       <div className="mt-4 text-center">
         <SignedOut>
           <SignInButton>
-            <Button>
-              Sign In Now
-            </Button>
+            <Button>Sign In Now</Button>
           </SignInButton>
         </SignedOut>
-        {
-          userId
-          &&
+        {userId && (
           <Link
             href="/pantry"
             className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all shrink-0 outline-none bg-chart-2 text-primary-foreground shadow-xs hover:bg-chart-3/90 h-9 px-4 py-2"
           >
             Pantry Dashboard
           </Link>
-        }
+        )}
       </div>
     </section>
-  )
+  );
 }

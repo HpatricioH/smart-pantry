@@ -1,8 +1,7 @@
-
-import Image from "next/image"
-import type { ComponentType, SVGProps } from "react"
+import Image from "next/image";
+import type { ComponentType, SVGProps } from "react";
 import type { LucideIcon } from "lucide-react";
-import clsx from "clsx"
+import clsx from "clsx";
 
 type FeatureCardProps = {
   title: string;
@@ -12,7 +11,7 @@ type FeatureCardProps = {
   imageSrc?: string;
   imageAlt?: string;
   className?: string;
-}
+};
 
 export function FeatureCard({
   title,
@@ -40,9 +39,7 @@ export function FeatureCard({
         ) : null}
       </div>
 
-      <h2 className="text-text-primary font-bold text-md sm:text-lg text-center">
-        {title}
-      </h2>
+      <h2 className="text-text-primary font-bold text-md sm:text-lg text-center">{title}</h2>
       <p className="text-center text-sm sm:text-base mt-2">{description}</p>
     </div>
   );

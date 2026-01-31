@@ -1,20 +1,18 @@
-import { AiRecipeListSchema, type AiRecipeList } from "./schema"
-import { callLLMJson } from "../clients/llm"
-import type { 
-  GenerateFromPantryInput, 
-  } from "./types"
+import { AiRecipeListSchema, type AiRecipeList } from "./schema";
+import { callLLMJson } from "../clients/llm";
+import type { GenerateFromPantryInput } from "./types";
 
-export async function generateRecipesFromPantry(input: GenerateFromPantryInput,) {
-  const { pantrySnapshot, constraints = {}} = input 
+export async function generateRecipesFromPantry(input: GenerateFromPantryInput) {
+  const { pantrySnapshot, constraints = {} } = input;
 
-  const pantryJson  = JSON.stringify(pantrySnapshot, null, 2);
+  const pantryJson = JSON.stringify(pantrySnapshot, null, 2);
   const constraintsJson = JSON.stringify(constraints, null, 2);
 
   const systemPrompt = `
   You are a helpful cooking assistant. 
   You MUST return valid JSON matching the schema. 
   `;
-  
+
   const userPrompt = `
   Here is the user's pantry (JSON):
 
@@ -72,6 +70,5 @@ export async function generateRecipesFromPantry(input: GenerateFromPantryInput,)
     userPrompt,
   });
 
-  return result
+  return result;
 }
-

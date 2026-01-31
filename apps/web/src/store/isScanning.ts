@@ -1,11 +1,11 @@
-import { create } from 'zustand'
+import { create } from "zustand";
 
 interface isScanningProps {
-  isScanning: boolean
-  setIsScanning: (isScanning: boolean) => void
+  isScanning: boolean;
+  setIsScanning: (isScanning: boolean) => void;
 }
 
 export const useIsScanning = create<isScanningProps>((set) => ({
   isScanning: false,
-  setIsScanning: (isScanning: boolean) => set({ isScanning })
-}))
+  setIsScanning: (isScanning: boolean) => set({ isScanning }),
+}));

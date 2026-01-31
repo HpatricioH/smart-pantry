@@ -356,9 +356,7 @@
       "indexes": {
         "pantry-recipe_tags_name_unique": {
           "name": "pantry-recipe_tags_name_unique",
-          "columns": [
-            "name"
-          ],
+          "columns": ["name"],
           "isUnique": true
         }
       },

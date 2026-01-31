@@ -6,38 +6,40 @@ import { filterBySort } from "../../lib/pantry/filterBySort";
 
 export async function CurrentStockCards({
   query,
-  sort
-}:
-  {
-    query: string,
-    sort: string
-  }) {
-  const pantry = await api.pantry.getAllPantryItems()
+  sort,
+}: {
+  query: string;
+  sort: string;
+}) {
+  const pantry = await api.pantry.getAllPantryItems();
 
-  const filterLowItemsOut = pantry?.filter((item) => item.unit != null && item.unit > 1)
+  const filterLowItemsOut = pantry?.filter((item) => item.unit != null && item.unit > 1);
 
   const currentStockItems = filterBySort({
     pantry,
     query,
     sort,
-    filteredItems: filterLowItemsOut
-  })?.slice()
+    filteredItems: filterLowItemsOut,
+  })
+    ?.slice()
     .sort(() => Math.random() - 0.5)
-    .slice(0, 3)
+    .slice(0, 3);
 
   return (
     <>
       {
-        <Suspense fallback={
-          <div className='grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
-            <SkeletonPantry />
-            <SkeletonPantry />
-            <SkeletonPantry />
-          </div>
-        }>
+        <Suspense
+          fallback={
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <SkeletonPantry />
+              <SkeletonPantry />
+              <SkeletonPantry />
+            </div>
+          }
+        >
           <PantryCards pantryItems={currentStockItems ?? []} />
         </Suspense>
       }
     </>
-  )
+  );
 }

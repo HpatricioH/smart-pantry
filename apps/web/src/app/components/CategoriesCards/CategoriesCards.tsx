@@ -1,25 +1,25 @@
-import Image from "next/image"
-import Link from "next/link"
-import { api } from "apps/web/src/trpc/server"
+import Image from "next/image";
+import Link from "next/link";
+import { api } from "apps/web/src/trpc/server";
 
 interface Category {
-  id: string
-  name: string
-  image?: string | null
+  id: string;
+  name: string;
+  image?: string | null;
 }
 
 export async function CategoriesCards({ query }: { query: string }) {
-  const categoriesData = (await api.categories.getAllCategories()) as Category[] | undefined
+  const categoriesData = (await api.categories.getAllCategories()) as Category[] | undefined;
 
   const filteredCategories: Category[] | undefined = categoriesData?.filter(
     (category: Category) => {
-      return category.name.toLowerCase().includes((query ?? "").toLowerCase())
-    }
-  )
+      return category.name.toLowerCase().includes((query ?? "").toLowerCase());
+    },
+  );
 
   return (
     <article className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {filteredCategories?.map(item => {
+      {filteredCategories?.map((item) => {
         return (
           <Link
             key={item.id}
@@ -36,8 +36,8 @@ export async function CategoriesCards({ query }: { query: string }) {
             </div>
             <h3 className="text-md font-semibold self-center">{item.name}</h3>
           </Link>
-        )
+        );
       })}
     </article>
-  )
+  );
 }

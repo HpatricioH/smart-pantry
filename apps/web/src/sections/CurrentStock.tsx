@@ -1,19 +1,19 @@
-import { CurrentStockCards } from '../app/components/Current Stock Cards/CurrentStockCards';
-import { SearchContainer } from '../app/components/SearchBar/SearchContainer';
+import { CurrentStockCards } from "../app/components/Current Stock Cards/CurrentStockCards";
+import { SearchContainer } from "../app/components/SearchBar/SearchContainer";
 
 export async function CurrentStock({
   query,
-  sort
+  sort,
 }: {
-  query: string,
-  sort: string
+  query: string;
+  sort: string;
 }) {
   return (
     <section>
-      <div className='mb-2'>
+      <div className="mb-2">
         <SearchContainer />
       </div>
       <CurrentStockCards query={query} sort={sort} />
     </section>
-  )
+  );
 }

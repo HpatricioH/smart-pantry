@@ -6,9 +6,9 @@ export default async function RecipesPage({
 }: {
   searchParams: Promise<{
     query: string;
-  }>
+  }>;
 }) {
-  const { query } = await searchParams
+  const { query } = await searchParams;
 
   return (
     <main className="relative z-20 mx-auto w-full max-w-6xl min-h-screen p-4 pb-32 gap-16 sm:p-20 sm:pb-32">

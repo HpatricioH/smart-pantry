@@ -11,5 +11,5 @@ export function SkeletonShoppingCard() {
         <Skeleton className="h-4 w-24 mt-2" />
       </div>
     </Card>
-  )
+  );
 }

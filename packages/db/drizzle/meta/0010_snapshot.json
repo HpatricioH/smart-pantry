@@ -290,12 +290,8 @@
           "name": "pantry-recipe_ingredients_recipe_id_pantry-recipes_id_fk",
           "tableFrom": "pantry-recipe_ingredients",
           "tableTo": "pantry-recipes",
-          "columnsFrom": [
-            "recipe_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["recipe_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -349,12 +345,8 @@
           "name": "pantry-recipe_steps_recipe_id_pantry-recipes_id_fk",
           "tableFrom": "pantry-recipe_steps",
           "tableTo": "pantry-recipes",
-          "columnsFrom": [
-            "recipe_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["recipe_id"],
+          "columnsTo": ["id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -384,9 +376,7 @@
       "indexes": {
         "pantry-recipe_tags_name_unique": {
           "name": "pantry-recipe_tags_name_unique",
-          "columns": [
-            "name"
-          ],
+          "columns": ["name"],
           "isUnique": true
         }
       },

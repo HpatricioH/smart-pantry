@@ -1,1 +1,1 @@
-export * from "./enums/errorMessages"
+export * from "./enums/errorMessages";

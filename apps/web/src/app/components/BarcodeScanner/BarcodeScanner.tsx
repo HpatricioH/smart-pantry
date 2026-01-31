@@ -7,7 +7,9 @@ interface BarcodeScannerProps {
 }
 
 export default function BarcodeScanner({ onDetected }: BarcodeScannerProps) {
-  const { error, isInitialized, scanningStatus, videoRef } = useCamera({ onDetected: onDetected ?? (() => { }) });
+  const { error, isInitialized, scanningStatus, videoRef } = useCamera({
+    onDetected: onDetected ?? (() => {}),
+  });
 
   return (
     <div className="w-full h-[30rem] mx-auto-md mx-auto relative">

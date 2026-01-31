@@ -3,9 +3,7 @@ import { Skeleton } from "../../lib/utils/skeleton";
 export function SkeletonPantry() {
   return (
     <article>
-      <div
-        className="flex flex-col justify-start items-start shadow-md rounded-lg bg-ring/5 "
-      >
+      <div className="flex flex-col justify-start items-start shadow-md rounded-lg bg-ring/5 ">
         <div className="w-28 h-33 relative rounded-t-lg overflow-hidden self-center">
           <Skeleton className="h-32 w-full rounded-t-xl mt-3" />
         </div>
@@ -20,5 +18,5 @@ export function SkeletonPantry() {
         </div>
       </div>
     </article>
-  )
+  );
 }

@@ -8,7 +8,7 @@ export default function RecipesLayout({
 }) {
   return (
     <>
-      < HeaderPantry />
+      <HeaderPantry />
       {children}
       <Footer />
     </>

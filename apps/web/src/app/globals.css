@@ -5,28 +5,28 @@
 
 @theme {
   /* Base color palette */
-  --color-white: #FDFDFD;
-  --color-black: #1A1A1A;
-  --color-gray-500: #6B7280;
-  --color-gray-700: #996A69;
-  --color-blue-500: #4F83FF;
-  --color-green-400: #6CDAB6;
-  --color-red-400: #F87171;
-  --color-red-500: #FB6D63;
-  --color-purple-400: #A78BFA;
-  --color-purple-pale: #F3EDFF;
-  --color-pale-blue: #DDECFF;
-  --color-pale-orange: #FFECD8;
-  --color-pale-green: #C2F7E0;
-  --color-pale-yellow: #FFF1C5;
+  --color-white: #fdfdfd;
+  --color-black: #1a1a1a;
+  --color-gray-500: #6b7280;
+  --color-gray-700: #996a69;
+  --color-blue-500: #4f83ff;
+  --color-green-400: #6cdab6;
+  --color-red-400: #f87171;
+  --color-red-500: #fb6d63;
+  --color-purple-400: #a78bfa;
+  --color-purple-pale: #f3edff;
+  --color-pale-blue: #ddecff;
+  --color-pale-orange: #ffecd8;
+  --color-pale-green: #c2f7e0;
+  --color-pale-yellow: #fff1c5;
 
   /* Custom Colors - Available as Tailwind classes */
   --color-text-primary: #016642;
   --color-text-secondary: var(--color-gray-500);
   --color-primary: var(--color-green-400);
-  --color-primary-hover: #5BC7A8;
+  --color-primary-hover: #5bc7a8;
   --color-secondary: var(--color-red-500);
-  --color-secondary-hover: #E55A54;
+  --color-secondary-hover: #e55a54;
   --color-surface: var(--color-white);
   --color-danger: var(--color-red-400);
   --color-danger-text: var(--color-gray-700);
@@ -116,7 +116,7 @@
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
   --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: #12764F;
+  --chart-2: #12764f;
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
@@ -174,12 +174,12 @@
 }
 
 /* Hide number input spinners */
-input[type='number']::-webkit-inner-spin-button,
-input[type='number']::-webkit-outer-spin-button {
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-input[type='number'] {
+input[type="number"] {
   appearance: textfield;
   -moz-appearance: textfield;
 }

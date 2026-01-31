@@ -5,6 +5,6 @@ export interface ShoppingListItemsTypesProps {
     name: string;
     category: string | null;
     createdAt: Date | null;
-  }[],
+  }[];
   fullListNeeded?: boolean;
 }

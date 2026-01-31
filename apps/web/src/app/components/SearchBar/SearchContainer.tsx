@@ -1,13 +1,10 @@
-'use client'
-import React from 'react'
+"use client";
+import React from "react";
 import { usePathname } from "next/navigation";
-import { SearchBar } from './SearchBar';
-
+import { SearchBar } from "./SearchBar";
 
 export const SearchContainer = () => {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
-  return (
-    <SearchBar pathname={pathname} />
-  )
-}
+  return <SearchBar pathname={pathname} />;
+};

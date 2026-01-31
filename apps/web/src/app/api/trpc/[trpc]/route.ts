@@ -35,7 +35,7 @@ const handler = async (req: NextRequest) => {
                 ? String((err as { cause?: unknown }).cause)
                 : "<no-cause>";
             console.error(
-              `❌ tRPC failed on ${path ?? "<no-path>"}: ${error.message}\nCause: ${cause}\nStack:\n${stack}`
+              `❌ tRPC failed on ${path ?? "<no-path>"}: ${error.message}\nCause: ${cause}\nStack:\n${stack}`,
             );
           }
         : undefined,

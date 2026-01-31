@@ -1,7 +1,6 @@
 import { Footer } from "../../components/Footer/Footer";
 import { HeaderPantry } from "../../components/Header Pantry/HeaderPantry";
 
-
 export default function CategoriesLayout({
   children,
 }: {
@@ -9,7 +8,7 @@ export default function CategoriesLayout({
 }) {
   return (
     <>
-      < HeaderPantry />
+      <HeaderPantry />
       {children}
     </>
   );

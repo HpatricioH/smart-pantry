@@ -1,4 +1,4 @@
-import { HeaderPantry } from "../../../components/Header Pantry/HeaderPantry"
+import { HeaderPantry } from "../../../components/Header Pantry/HeaderPantry";
 
 export default function PantryLayout({
   children,
@@ -7,7 +7,7 @@ export default function PantryLayout({
 }) {
   return (
     <>
-      < HeaderPantry />
+      <HeaderPantry />
       {children}
     </>
   );

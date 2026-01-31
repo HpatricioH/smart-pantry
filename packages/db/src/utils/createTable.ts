@@ -1,3 +1,3 @@
-import { sqliteTableCreator } from 'drizzle-orm/sqlite-core'
+import { sqliteTableCreator } from "drizzle-orm/sqlite-core";
 
-export const createTable = sqliteTableCreator((name) => `pantry-${name}`)
+export const createTable = sqliteTableCreator((name) => `pantry-${name}`);

@@ -39,7 +39,9 @@ const makeClient = () => {
     throw new Error("DATABASE_URL is not set. Expected libsql://<db-name>-<org>.turso.io");
   }
   if (!authToken) {
-    throw new Error("TURSO_AUTH_TOKEN is not set. Generate a db token with 'turso db tokens create <db>'");
+    throw new Error(
+      "TURSO_AUTH_TOKEN is not set. Generate a db token with 'turso db tokens create <db>'",
+    );
   }
   return createClient({ url, authToken });
 };

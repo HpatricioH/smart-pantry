@@ -2,11 +2,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "../providers/ThemeProvider";
-import { ClerkProvider } from '@clerk/nextjs'
+import { ClerkProvider } from "@clerk/nextjs";
 import { TRPCReactProvider } from "../trpc/react";
 import { ReactScan } from "./components/ReactScan/ReactScan";
 import { Toaster } from "sonner";
-
 
 const inter = Inter({
   variable: "--font-inter",
@@ -28,26 +27,21 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} antialiased`}>
       <ReactScan />
-      <body >
+      <body>
         <TRPCReactProvider>
           <ClerkProvider
             appearance={{
               elements: {
                 footer: {
-                  opacity: '0',
+                  opacity: "0",
                 },
-                cssLayerName: 'clerk'
-              }
+                cssLayerName: "clerk",
+              },
             }}
           >
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="light"
-              disableTransitionOnChange
-            >
+            <ThemeProvider attribute="class" defaultTheme="light" disableTransitionOnChange>
               {children}
               <Toaster richColors position="top-center" />
-
             </ThemeProvider>
           </ClerkProvider>
         </TRPCReactProvider>

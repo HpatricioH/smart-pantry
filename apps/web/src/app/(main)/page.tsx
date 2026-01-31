@@ -6,9 +6,8 @@ import { LandingHero } from "../../sections/LandingHero";
 import { LandingReviews } from "../../sections/LandingReviews";
 import { SvgDesign } from "../components/SvgDesign/SvgDesign";
 
-
 export default async function Home() {
-  const { userId } = await auth()
+  const { userId } = await auth();
 
   return (
     <main className="min-h-screen gap-16">

@@ -1,5 +1,5 @@
-export type PantryItemForAI = { 
-  name: string; 
+export type PantryItemForAI = {
+  name: string;
   quantity: number | null;
   unit: string | null;
   category?: string | null;
@@ -8,7 +8,7 @@ export type PantryItemForAI = {
 export type GenerateFromPantryConstraints = {
   maxRecipes?: number;
   maxTimeMinutes?: number;
-  diet?: string | null; 
+  diet?: string | null;
   dislikedIngredients?: string[];
   servings?: number | null;
 };
@@ -19,21 +19,21 @@ export type Ingredients = {
   unit: string | null;
   optional: boolean;
   note?: string | null | undefined;
-}
+};
 
 export type GenerateFromPantryInput = {
-  userId?: string; 
+  userId?: string;
   pantrySnapshot: PantryItemForAI[];
   constraints?: GenerateFromPantryConstraints;
 };
 
 export type GeneratedRecipeSummary = {
-  id: string; 
+  id: string;
   title: string;
-  description: string | null; 
+  description: string | null;
   servings: number | null;
   maxTimeMinutes: number | null | undefined;
   ingredients: Ingredients[];
-  sourceType: string; 
-  status: string; 
-}
+  sourceType: string;
+  status: string;
+};

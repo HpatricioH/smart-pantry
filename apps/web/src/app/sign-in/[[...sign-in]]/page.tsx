@@ -1,4 +1,4 @@
-import { SignIn } from "@clerk/nextjs"
+import { SignIn } from "@clerk/nextjs";
 
 export default function Page() {
   return (
@@ -7,14 +7,14 @@ export default function Page() {
         appearance={{
           elements: {
             footer: {
-              display: 'none',
+              display: "none",
             },
             logoBox: {
-              height: 'calc(10rem)'
-            }
-          }
+              height: "calc(10rem)",
+            },
+          },
         }}
       />
     </section>
-  )
+  );
 }

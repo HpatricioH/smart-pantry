@@ -1,4 +1,3 @@
-
 export default function PageAddItem() {
   return (
     <main className="grid grid-rows-[20px_1fr_20px] justify-items-center min-h-screen p-4 pb-20 gap-16 sm:p-20">

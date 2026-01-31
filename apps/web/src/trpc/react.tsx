@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { QueryClientProvider, type QueryClient } from "@tanstack/react-query";
 import { loggerLink, httpBatchStreamLink } from "@trpc/client";
@@ -10,12 +10,12 @@ import SuperJSON from "superjson";
 import type { AppRouter } from "@smart-pantry/api";
 import { createQueryClient } from "./query-client";
 
-let clientQueryClientSingleton: QueryClient | undefined = undefined
+let clientQueryClientSingleton: QueryClient | undefined = undefined;
 
 const getQueryClient = () => {
   if (typeof window === "undefined") {
-    // server: always make a new query client 
-    return createQueryClient()
+    // server: always make a new query client
+    return createQueryClient();
   }
 
   // Browser: use singleton pattern to keep the same query client
@@ -58,7 +58,7 @@ export function TRPCReactProvider(props: { children: React.ReactNode }) {
           url: `${getBaseUrl()}/api/trpc`,
           headers: () => {
             return {
-              "x-trpc-source": "nextjs-react"
+              "x-trpc-source": "nextjs-react",
             };
           },
         }),
@@ -72,7 +72,7 @@ export function TRPCReactProvider(props: { children: React.ReactNode }) {
         {props.children}
       </api.Provider>
     </QueryClientProvider>
-  )
+  );
 }
 
 function getBaseUrl() {

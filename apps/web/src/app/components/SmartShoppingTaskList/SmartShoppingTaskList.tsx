@@ -27,11 +27,13 @@ import type { ShoppingListItemsTypesProps } from "packages/types/src";
 
 export default function SmartShoppingTaskList({
   pantryData,
-  fullListNeeded
+  fullListNeeded,
 }: ShoppingListItemsTypesProps) {
   const utils = api.useUtils();
   const shoppingListItems = api.shoppingList.deleteShoppingListItem.useMutation();
-  const shoppingLowItems = fullListNeeded ? pantryData : pantryData?.sort(() => Math.random() - 0.5).slice(0, 3);
+  const shoppingLowItems = fullListNeeded
+    ? pantryData
+    : pantryData?.sort(() => Math.random() - 0.5).slice(0, 3);
 
   const handleRemoveItem = (itemId: string) => {
     console.log(`Remove item with id: ${itemId}`);

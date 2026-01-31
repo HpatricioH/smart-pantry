@@ -1,5 +1,5 @@
-import { SquareCheck } from 'lucide-react';
-import { ChefHat } from 'lucide-react';
+import { SquareCheck } from "lucide-react";
+import { ChefHat } from "lucide-react";
 import { FeatureCard } from "../app/components/FeatureCard/FeatureCard";
 
 export function LandingCards() {
@@ -9,11 +9,13 @@ export function LandingCards() {
         relative max-w-6xl mx-auto overflow-hidden z-50
       "
     >
-      <div className="
+      <div
+        className="
         grid gap-6 p-4 sm:p-10
         sm:grid-cols-2 lg:grid-cols-3
         [grid-template-columns:repeat(auto-fit,minmax(16rem,1fr))]
-      ">
+      "
+      >
         <FeatureCard
           bg="bg-[#FFECD8]"
           title="Track Your Pantry"
@@ -35,6 +37,5 @@ export function LandingCards() {
         />
       </div>
     </section>
-
-  )
+  );
 }

@@ -1,4 +1,4 @@
-import {z} from 'zod'
+import { z } from "zod";
 
 export const createRecipesSchema = z.object({
   id: z.string(),
@@ -15,12 +15,14 @@ export const createRecipesSchema = z.object({
   tags: z.array(z.string()),
   difficulty: z.enum(["Easy", "Medium", "Hard"]),
   calories: z.number(),
-})
+});
 
-export const generateFromPantrySchema = z.object({
-  maxRecipes: z.number().int().min(1).max(5).optional(),
-  maxTimeMinutes: z.number().int().min(5).max(240).optional(),
-  diet: z.string().nullable().optional(),
-  dislikedIngredients: z.array(z.string()).optional(),
-  servings: z.number().int().min(1).optional(),
-}).optional()
+export const generateFromPantrySchema = z
+  .object({
+    maxRecipes: z.number().int().min(1).max(5).optional(),
+    maxTimeMinutes: z.number().int().min(5).max(240).optional(),
+    diet: z.string().nullable().optional(),
+    dislikedIngredients: z.array(z.string()).optional(),
+    servings: z.number().int().min(1).optional(),
+  })
+  .optional();

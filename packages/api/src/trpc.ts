@@ -1,6 +1,6 @@
 import { initTRPC, TRPCError } from "@trpc/server";
-import superjson from "superjson"
-import { ZodError } from "zod"
+import superjson from "superjson";
+import { ZodError } from "zod";
 import { db } from "@smart-pantry/db";
 import { cache } from "./cache";
 
@@ -19,7 +19,7 @@ import { cache } from "./cache";
 
 export const createTRPCContext = async (opts: { headers: Headers }) => {
   // Get user ID from Clerk (it should be set in headers by Clerk middleware)
-  const userId = opts.headers.get('x-clerk-user-id') || opts.headers.get('x-user-id')
+  const userId = opts.headers.get("x-clerk-user-id") || opts.headers.get("x-user-id");
 
   // db comes from @smart-pantry/db (Drizzle instance with .query, .select, etc.)
 
@@ -46,8 +46,7 @@ const t = initTRPC.context<typeof createTRPCContext>().create({
       ...shape,
       data: {
         ...shape.data,
-        zodError:
-          error.cause instanceof ZodError ? error.cause.flatten() : null,
+        zodError: error.cause instanceof ZodError ? error.cause.flatten() : null,
       },
     };
   },
@@ -84,14 +83,13 @@ export const createTRPCRouter = t.router;
  */
 export const publicProcedure = t.procedure;
 
-export const protectedProcedure = t.procedure
-  .use(({ctx, next}) => {
-    if (!ctx.userId) {
-      throw new TRPCError({code: "UNAUTHORIZED"})
-    }
-    return next({
-      ctx: {
-        session: { user: ctx.userId }
-      }
-    })
-  })
+export const protectedProcedure = t.procedure.use(({ ctx, next }) => {
+  if (!ctx.userId) {
+    throw new TRPCError({ code: "UNAUTHORIZED" });
+  }
+  return next({
+    ctx: {
+      session: { user: ctx.userId },
+    },
+  });
+});
