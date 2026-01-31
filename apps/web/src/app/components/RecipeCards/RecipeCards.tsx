@@ -4,7 +4,6 @@ import Image from "next/image";
 import { Plus } from 'lucide-react';
 import { Clock9 } from 'lucide-react';
 import { ShoppingBasket } from 'lucide-react';
-import { useRecipe } from "../../lib/hooks/useRecipe";
 import { Button } from '../../lib/utils/button'
 import { api } from "apps/web/src/trpc/react";
 import Link from "next/link";
@@ -12,9 +11,14 @@ import Link from "next/link";
 
 
 export function RecipeCards({ query }: { query: string }) {
-  const { data: recipes } = useRecipe()
   const aiTest = api.recipes.generateFromPantry.useMutation()
-  const filteredRecipes = recipes?.filter((item) => item.title?.toLocaleLowerCase().includes((query ?? "")))
+  const filteredRecipes = aiTest.data?.recipes?.filter((item) => item.title?.toLocaleLowerCase().includes((query ?? "")))
+
+  // TODO: build a helper to solve the problem to avoid to generate a recipe every time, if the ingredients match what we have in the pantry should get that recipe, we generate only when we have new ingredients. and just return the existing pantry items recipes. 
+
+  // TODO: fix the images in the generation of the recipes from AI. 
+
+  // TODO: Do a loading while the recipe is coming from the server. 
 
   return (
     <article>
@@ -41,7 +45,7 @@ export function RecipeCards({ query }: { query: string }) {
               {/* Card Header */}
               <div className="w-full h-40 relative rounded-t-lg overflow-hidden">
                 <Image
-                  src={item.image}
+                  src={item.title || 'https://via.placeholder.com/150'}
                   alt={`${item.title} image`}
                   fill
                   className="object-cover"
@@ -55,7 +59,7 @@ export function RecipeCards({ query }: { query: string }) {
                   <h3 className="text-md font-bold place-content-start">{item.title}</h3>
                   <div className="flex items-center gap-2 mt-2">
                     <Clock9 className="size-4 stroke-text-secondary" />
-                    <p className="font-semibold text-sm mt-1">{item.totalTime}</p>
+                    <p className="font-semibold text-sm mt-1">{item.maxTimeMinutes}</p>
                   </div>
                   <div className="flex items-center gap-2 mb-2">
                     <ShoppingBasket className="size-4 stroke-text-secondary" />
