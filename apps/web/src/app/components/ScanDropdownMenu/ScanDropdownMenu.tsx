@@ -36,7 +36,7 @@ export default async function ScanDropdownMenu() {
           {categoriesData?.map((category) => {
             return (
               <DropdownMenuItem key={category.id}>
-                <Link href={`/add-item/camera?category=${category.name}`}>
+                <Link href={`/add-item/camera?category=${category.name.toLowerCase()}`}>
                   {category.name}
                 </Link>
               </DropdownMenuItem>
