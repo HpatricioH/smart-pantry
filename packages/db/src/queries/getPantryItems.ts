@@ -1,4 +1,4 @@
-import type { PantryItems } from "@smart-pantry/types";
+import type { PantryItems } from "../../../types";
 
 export async function getPantryItems(): Promise<PantryItems[]> {
   const res = await fetch("/data/mock-pantry.json");

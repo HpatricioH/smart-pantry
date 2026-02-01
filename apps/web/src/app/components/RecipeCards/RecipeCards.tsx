@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Plus } from "lucide-react";
 import { Clock9 } from "lucide-react";
 import { ShoppingBasket } from "lucide-react";
-import { Button } from "../../lib/utils/button";
+import { Button } from "../../lib/utils/Button";
 import { api } from "apps/web/src/trpc/react";
 import Link from "next/link";
 

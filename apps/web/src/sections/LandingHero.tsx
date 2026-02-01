@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { HeroBackground } from "../app/components/HeroBackground/HeroBackground";
-import { Button } from "../app/lib/utils/button";
+import { Button } from "../app/lib/utils/Button";
 import { SignedOut, SignInButton } from "@clerk/nextjs";
 import Link from "next/link";
 

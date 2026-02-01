@@ -1,5 +1,5 @@
 import { SignedOut, SignInButton } from "@clerk/nextjs";
-import { Button } from "../app/lib/utils/button";
+import { Button } from "../app/lib/utils/Button";
 import Link from "next/link";
 
 export function LandingFooter({ userId }: { userId?: string }) {
