@@ -4,7 +4,6 @@ import "./globals.css";
 import { ThemeProvider } from "../providers/ThemeProvider";
 import { ClerkProvider } from "@clerk/nextjs";
 import { TRPCReactProvider } from "../trpc/react";
-import { ReactScan } from "./components/ReactScan/ReactScan";
 import { Toaster } from "sonner";
 
 const inter = Inter({
@@ -26,7 +25,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} antialiased`}>
-      <ReactScan />
       <body>
         <TRPCReactProvider>
           <ClerkProvider
