@@ -1,7 +1,5 @@
 "use client";
 
-import type { Recipe as RecipeType } from "@smart-pantry/types";
-import { useRecipe } from "../../lib/hooks/useRecipe";
 import Image from "next/image";
 import { CookingPot } from "lucide-react";
 import { Carrot } from "lucide-react";

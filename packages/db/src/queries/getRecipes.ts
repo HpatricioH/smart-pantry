@@ -1,4 +1,4 @@
-import type { Recipe } from "@smart-pantry/types";
+import type { Recipe } from "../../../types";
 
 export async function getRecipes(): Promise<Recipe[]> {
   const res = await fetch("/data/recipes.json");
