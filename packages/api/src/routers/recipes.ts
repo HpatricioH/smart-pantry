@@ -3,7 +3,7 @@ import { createTRPCRouter, protectedProcedure } from "../trpc";
 import { TRPCError } from "@trpc/server";
 import { createRecipesSchema, generateFromPantrySchema } from "../../../types/src/recipesType";
 import { recipeIngredients, recipes, recipeSteps } from "../../../db/src/schema/recipes";
-import { pantry } from "@db/schema";
+import { pantry } from "../../../db/src/schema";
 import type { PantryItemForAI } from "../../../ai/src/recipes/types";
 import { generateRecipesFromPantryAndSave } from "../../../ai/src/recipes/generateRecipesFromPantryAndSave";
 
