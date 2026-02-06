@@ -20,6 +20,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
+import { toast } from "sonner";
 
 const formData = z.object({
   phoneNumber: z.string().min(10, "Enter a valid phone number"),
@@ -39,8 +40,37 @@ export default function WhatsAppForm({ pantryData }: ShoppingListItemsTypesProps
     resolver: zodResolver(formData),
   });
 
-  const onSubmit = (data: FormData) => {
-    console.log(data);
+  const onSubmit = async (data: FormData) => {
+    const url = 'https://graph.facebook.com/v22.0/{phone number id}/messages'
+    const options = {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_WHATSAPP_TOKEN}`,
+        'Content-Type': 'application/json',
+      },
+      body: `{
+        "messaging_product": "whatsapp",
+        "recipient_type": "individual",
+        "to": "${data.phoneNumber}",
+        "type": "text",
+        "text": {
+          "body": "Shopping List:\\n${pantryData.map(item => `- ${item.name}`).join('\\n')}"
+        }
+      }`
+    }
+
+    try {
+      setLoading(true);
+      const response = await fetch(url, options)
+      const data = await response.json();
+      console.log(data)
+      toast.success("Message sent via WhatsApp successfully!");
+      setLoading(false);
+      reset();
+    } catch (error) {
+      toast.error("Failed to send message via WhatsApp. Please try again.");
+      setLoading(false);
+    }
   };
 
   return (
