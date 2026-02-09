@@ -31,6 +31,7 @@ type FormData = z.infer<typeof formData>;
 export default function WhatsAppForm({ pantryData }: ShoppingListItemsTypesProps) {
   const [loading, setLoading] = useState(false);
 
+
   const {
     register,
     handleSubmit,
@@ -41,34 +42,36 @@ export default function WhatsAppForm({ pantryData }: ShoppingListItemsTypesProps
   });
 
   const onSubmit = async (data: FormData) => {
-    const url = 'https://graph.facebook.com/v22.0/{phone number id}/messages'
-    const options = {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_WHATSAPP_TOKEN}`,
-        'Content-Type': 'application/json',
-      },
-      body: `{
-        "messaging_product": "whatsapp",
-        "recipient_type": "individual",
-        "to": "${data.phoneNumber}",
-        "type": "text",
-        "text": {
-          "body": "Shopping List:\\n${pantryData.map(item => `- ${item.name}`).join('\\n')}"
-        }
-      }`
-    }
-
     try {
       setLoading(true);
-      const response = await fetch(url, options)
-      const data = await response.json();
-      console.log(data)
+
+      console.log(data.phoneNumber.replace(/\D/g, ""))
+      const message =
+        `Shopping List:\n${pantryData.map((item) => `- ${item.name}`).join("\n")}`;
+
+      const res = await fetch("/api/whatsapp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          to: data.phoneNumber.replace(/\D/g, ""),
+          message,
+        })
+      })
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        console.log("Whatsapp error:", result.error)
+        toast.error("Failed to send message via WhatsApp.");
+        return
+      }
+
       toast.success("Message sent via WhatsApp successfully!");
-      setLoading(false);
       reset();
     } catch (error) {
-      toast.error("Failed to send message via WhatsApp. Please try again.");
+      console.error("Error sending WhatsApp message:", error);
+      toast.error("An error occurred while sending the message.");
+    } finally {
       setLoading(false);
     }
   };
