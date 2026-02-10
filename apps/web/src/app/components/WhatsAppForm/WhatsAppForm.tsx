@@ -20,6 +20,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
+import { toast } from "sonner";
 
 const formData = z.object({
   phoneNumber: z.string().min(10, "Enter a valid phone number"),
@@ -30,6 +31,7 @@ type FormData = z.infer<typeof formData>;
 export default function WhatsAppForm({ pantryData }: ShoppingListItemsTypesProps) {
   const [loading, setLoading] = useState(false);
 
+
   const {
     register,
     handleSubmit,
@@ -39,8 +41,39 @@ export default function WhatsAppForm({ pantryData }: ShoppingListItemsTypesProps
     resolver: zodResolver(formData),
   });
 
-  const onSubmit = (data: FormData) => {
-    console.log(data);
+  const onSubmit = async (data: FormData) => {
+    try {
+      setLoading(true);
+
+      console.log(data.phoneNumber.replace(/\D/g, ""))
+      const message =
+        `Shopping List:\n${pantryData.map((item) => `- ${item.name}`).join("\n")}`;
+
+      const res = await fetch("/api/whatsapp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          to: data.phoneNumber.replace(/\D/g, ""),
+          message,
+        })
+      })
+
+      const result = await res.json();
+
+      if (!res.ok) {
+        console.log("Whatsapp error:", result.error)
+        toast.error("Failed to send message via WhatsApp.");
+        return
+      }
+
+      toast.success("Message sent via WhatsApp successfully!");
+      reset();
+    } catch (error) {
+      console.error("Error sending WhatsApp message:", error);
+      toast.error("An error occurred while sending the message.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
