@@ -252,8 +252,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
   <p>
     <a href="https://github.com/HpatricioH/smart-pantry">GitHub</a>
     •
-    <a href="https://smart-pantry.vercel.app">Demo</a>
-    •
     <a href="https://github.com/HpatricioH/smart-pantry/issues">Report Bug</a>
   </p>
 </div>
