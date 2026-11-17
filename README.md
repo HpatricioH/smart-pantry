@@ -37,28 +37,28 @@ Smart Pantry is a modern web application designed to revolutionize how you manag
 
 ## ✨ Features
 
-### 🗄️ Pantry Management
+### 🗄️ Pantry Management.
 - **Current Stock Overview**: View all items in your pantry at a glance
 - **Barcode Scanner**: Add items quickly using your device's camera
 - **Expiration Tracking**: Monitor items approaching their expiration date
 - **Low Stock Alerts**: Get notified when items are running low
 
-### 🛒 Shopping List
+### 🛒 Shopping List.
 - **Smart Suggestions**: Automatically generate shopping lists based on low/missing items
 - **Restock Recommendations**: AI-powered suggestions for restocking
 - **Category Organization**: Items organized by food categories
 
-### 👨‍🍳 Recipe Discovery
+### 👨‍🍳 Recipe Discovery.
 - **Ingredient-Based Search**: Find recipes using what you have
 - **AI-Powered Recommendations**: Get personalized recipe suggestions
 - **Detailed Instructions**: Step-by-step cooking guidance
 
-### 📊 Analytics
+### 📊 Analytics.
 - **Usage Statistics**: Track your pantry activity
 - **Waste Metrics**: Monitor food waste reduction
 - **Cost Savings**: See how much money you're saving
 
-## 🛠️ Tech Stack
+## 🛠️ Tech Stack.
 
 ### Frontend
 - **[Next.js 16](https://nextjs.org/)** - React framework with App Router
